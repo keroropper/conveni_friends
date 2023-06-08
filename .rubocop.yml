@@ -1,0 +1,92 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  SuggestExtensions: false
+  # 最新のルールを適用する
+  NewCops: enable
+  # 何のルールに引っかかったか表示する
+  DisplayCopNames: true
+  Exclude:
+    - "Gemfile"
+    - "bin/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "node_modules"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "lib/tasks/auto_annotate_models.rake"
+    - "config/environments/*"
+    - "config/puma.rb"
+
+Rails/FilePath:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Style/RedundantConstantBase:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Style/RedundantConstantBase:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+# 一行あたりの文字数
+Layout/LineLength:
+  Enabled: false
+
+# メソッドの改行ルール
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# 日本語のコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+#コメントやドキュメントが適切かどうか
+Style/Documentation:
+  Enabled: false
+
+# 文字列のfreeze（Ruby3からは自動でfreezeされるので要らない）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# ガード節の提案
+Style/GuardClause:
+  Enabled: false
+
+# 文字列のダブルクォートチェック
+Style/StringLiterals:
+  Enabled: false
+
+# シンボルによる配列の%記法のチェック
+Style/SymbolArray:
+  Enabled: false
+
+# 文字列による配列の%記法のチェック
+Style/WordArray:
+  Enabled: false
+
+# 変数名に数字を許可
+Naming/VariableNumber:
+  Enabled: false
+
+# = と == の指摘
+Lint/AssignmentInCondition:
+  Enabled: false
+
+# 日本語の場合、i18n localeファイルを使用することを強制する設定をfalseにする
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+# onlyまたはexceptで指定したメソッドが、クラス内に存在するかどうか
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
