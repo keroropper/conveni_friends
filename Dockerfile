@@ -1,4 +1,4 @@
-FROM ruby:3.2.1 AS base
+FROM ruby:3.1.1 AS base
 
 FROM base AS builder
 RUN apt-get update -qq \
