@@ -1,0 +1,10 @@
+# name: Build and push image
+
+# on:
+#   pull_request:
+#     types:
+#       - closed
+
+# jobs:
+#   if_merged:
+#     if: github.event.pull_request.merged == true
