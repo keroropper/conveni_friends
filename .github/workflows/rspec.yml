@@ -32,21 +32,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Bundler install
-        run: |
-          gem install bundler -v 2.4.12
-
-      - name: Cache gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-
       - name: Bundle install
         run: |
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+          gem install bundler -v 2.4.12
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
 
       - name: Yarn install
         run: yarn install --check-files
