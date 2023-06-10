@@ -5,52 +5,79 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-  test:
+  # test:
+  #   runs-on: ubuntu-latest
+  #   services:
+  #     db:
+  #       image: mysql:5.7
+  #       ports:
+  #         - 3306:3306
+  #       env:
+  #         MYSQL_ROOT_PASSWORD: ${{ vars.MYSQL_ROOT_PASSWORD }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: .ruby-version
+  #         bundler-cache: true
+
+  #     - name: Cache node modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Bundle install
+  #       run: |
+  #         gem install bundler -v 2.4.12
+  #         bundle config set --local path 'vendor/bundle'
+  #         bundle install --jobs 4 --retry 3
+
+  #     - name: Yarn install
+  #       run: yarn install --check-files
+
+  #     - name: Setup Database
+  #       env:
+  #         MYSQL_ROOT_PASSWORD: ${{ vars.MYSQL_ROOT_PASSWORD }}
+  #       run: |
+  #         cp config/database.yml.ci config/database.yml
+  #         bundle exec rails db:create RAILS_ENV=test
+  #         bundle exec rails db:migrate RAILS_ENV=test
+
+  #     - name: Test with RSpec
+  #       run: bundle exec rspec
+
+  #     - name: Rubocop
+  #       run: bundle exec rubocop
+
+  build:
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: mysql:5.7
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ vars.MYSQL_ROOT_PASSWORD }}
+    env:
+      AWS_REGION: ap-northeast-1
+      ECR_REPOSITORY: conveni_friends-dev
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Bundle install
-        run: |
-          gem install bundler -v 2.4.12
-          bundle config set --local path 'vendor/bundle'
-          bundle install --jobs 4 --retry 3
-
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Setup Database
+      - name: Build and push image to Amazon ECR
+        id: build-image
         env:
-          MYSQL_ROOT_PASSWORD: ${{ vars.MYSQL_ROOT_PASSWORD }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
-
-      - name: Test with RSpec
-        run: bundle exec rspec
-
-      - name: Rubocop
-        run: bundle exec rubocop
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
