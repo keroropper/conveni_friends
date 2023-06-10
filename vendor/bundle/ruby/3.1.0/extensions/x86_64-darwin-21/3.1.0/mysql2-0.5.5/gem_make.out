@@ -1,5 +1,5 @@
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
-/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-83966-goq9fk.rb extconf.rb --with-opt-dir\=/usr/local/opt/openssl@1.1
+/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-13166-5gbfyl.rb extconf.rb --with-opt-dir\=/usr/local/opt/openssl@1.1
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for rb_gc_mark_movable()... yes
@@ -59,4 +59,4 @@ linking shared-object mysql2/mysql2.bundle
 
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20230610-83966-yqo5bl/mysql2
+/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20230610-13166-zpykd/mysql2

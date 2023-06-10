@@ -1,5 +1,5 @@
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
-/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-83966-j5xzbl.rb extconf.rb
+/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-23971-wf4vxr.rb extconf.rb
 creating Makefile
 
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
@@ -12,4 +12,4 @@ linking shared-object websocket_mask.bundle
 
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20230610-83966-ljzxlb
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20230610-23971-ilwub2

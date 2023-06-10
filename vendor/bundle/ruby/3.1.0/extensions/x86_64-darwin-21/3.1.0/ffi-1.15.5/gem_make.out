@@ -1,5 +1,5 @@
 current directory: /Users/tabataryoya/portfolio/conveni_friends/vendor/bundle/ruby/3.1.0/gems/ffi-1.15.5/ext/ffi_c
-/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-83966-bc7t6x.rb extconf.rb
+/Users/tabataryoya/.rbenv/versions/3.1.1/bin/ruby -I /Users/tabataryoya/.rbenv/versions/3.1.1/lib/ruby/3.1.0 -r ./siteconf20230610-23971-zzgd6f.rb extconf.rb
 checking for ffi_prep_closure_loc() in -lffi... no
 checking for ffi_prep_closure_loc() in -llibffi... no
 checking for ffi_prep_closure_loc() in -llibffi-8... no
@@ -129,4 +129,4 @@ compiling Types.c
 compiling Variadic.c
 compiling ffi.c
 linking shared-object ffi_c.bundle
-/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20230610-83966-odd9xs
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20230610-23971-1l3tb5
