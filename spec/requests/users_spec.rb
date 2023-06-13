@@ -6,5 +6,4 @@ RSpec.describe "Users", type: :request do
       get "/users/dummy"
     end
   end
-
 end
