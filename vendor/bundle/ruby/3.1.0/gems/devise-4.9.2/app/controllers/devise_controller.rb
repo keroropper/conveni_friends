@@ -172,6 +172,7 @@ MESSAGE
   def set_minimum_password_length
     if devise_mapping.validatable?
       @minimum_password_length = resource_class.password_length.min
+      @maximum_password_length = resource_class.password_length.max 
     end
   end
 

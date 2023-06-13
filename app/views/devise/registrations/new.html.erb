@@ -1,0 +1,49 @@
+<div class="auth-wrapper">
+  <div class="auth-item">
+
+    <div class="auth-title">
+      <h1><%= t('.sign_up') %></h1>
+    </div>
+
+    <div class="auth-data">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+        <div class="name-field">
+          <span class="require">必須</span>
+          <%= f.label :name, "ユーザー名  (#{resource.class.validators_on(:name).second.options[:maximum]}文字以内で入力してください)" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: 20 %>
+          <%= render 'devise/shared/error_messages', attr: :name %>
+        </div>
+
+        <div class="age-field">
+          <span class="require">必須</span>
+          <%= f.label :age %><br />
+          <%= f.text_field :age, maxlength: 3, value: '' %> <span>歳</span><br>
+          <%= render 'devise/shared/error_messages', attr: :age %>
+        </div>
+
+        <div class="gender-field">
+          <span class="optional">任意</span>
+          <%= f.label :gender %><br />
+          <%= f.select :gender, [["選択しない","選択しない"],["女性","女性"],["男性","男性"]], {selected: "選択しない"} %>
+        </div>
+
+        <%= render 'devise/shared/email_and_password_form', f: f %>
+
+        <div class="password-field">
+          <span class="require">必須</span>
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= render 'devise/shared/error_messages', attr: :password_confirmation %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "登録" %>
+        </div>
+      <% end %>
+      <div id="auth_page-link">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

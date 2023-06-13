@@ -44,6 +44,7 @@ jobs:
       - name: Setup Database
         env:
           MYSQL_ROOT_PASSWORD: ${{ vars.MYSQL_ROOT_PASSWORD }}
+          DB_HOST: ${{ vars.DB_HOST }}
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
