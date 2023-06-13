@@ -1,0 +1,25 @@
+<div class="auth-wrapper">
+  <div class="auth-item">
+
+    <div class="auth-title">
+      <h1><%= t('.sign_in') %></h1>
+    </div>
+
+    <div class="auth-data">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+        <p class="alert"><%= alert %></p>
+
+        <%= render 'devise/shared/email_and_password_form', f: f %>
+
+        <div class="actions">
+          <%= f.submit "ログイン" %>
+        </div>
+      <% end %>
+      <div id="auth_page-link">
+        <%= render "devise/shared/links" %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
 gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
+gem 'sassc', '~> 2.1.0'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
@@ -40,3 +41,6 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails'
+gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'

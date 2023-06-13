@@ -19,9 +19,15 @@ services:
       - 3000:3000
     volumes:
       - .:/src/app
+      - node_modules_volume:/workspaces/node_modules
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
     depends_on:
       - db
     tty: true
 
 volumes:
   db_data:
+  node_modules_volume:
