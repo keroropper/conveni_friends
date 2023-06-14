@@ -42,6 +42,10 @@ Style/BlockComments:
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 
+#ブロックあたりの行数
+Metrics/BlockLength:
+  Enabled: false
+
 # 一行あたりの文字数
 Layout/LineLength:
   Enabled: false
