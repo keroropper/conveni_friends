@@ -5,5 +5,7 @@ FactoryBot.define do
     gender { '男性' }
     sequence(:email) { |n| "test#{n}@example.com" }
     password { 'password' }
+    confirmed_at { 1.day.ago }
+    activated { true }
   end
 end

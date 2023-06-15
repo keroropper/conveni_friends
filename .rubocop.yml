@@ -39,7 +39,17 @@ Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/models/user.rb'
+
 Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
   Enabled: false
 
 #ブロックあたりの行数
