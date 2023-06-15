@@ -6,7 +6,7 @@
   color: white;
 }
 
-// 新規登録画面
+// 認証画面
 .auth-wrapper {
   height: 100%;
   width: 500px;
@@ -24,6 +24,10 @@
     .auth-data {
       padding: 0 40px;
       .alert {
+        color: red;
+      }
+      .error-message {
+        font-size: 0.8rem;
         color: red;
       }
       [class$="-field"] {
@@ -61,9 +65,13 @@
         .field_with_errors:has(#user_age) {
           display: inline;
         }
-        .error-message {
-          font-size: 0.8rem;
-          color: red;
+        .field_with_errors>#user_email {
+          width: 100%;
+          height: 35px;
+          font-size: 1.3rem;
+          border: 0.5px solid rgb(200, 200, 200);
+          border-radius: 3px;
+          margin-top: 5px;
         }
       }
       .actions {
@@ -82,21 +90,28 @@
           }
         }
       }
-      #auth_page-link {
-        width: 300px;
-        margin: 0 auto;
-        text-align: center;
-        padding: 10px 0;
-        a {
-          display: block;
-          text-decoration: none;
-          color: #2C7CFF;
-          margin-bottom: 10px;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
+    }
+  }
+  .auth-item.info {
+    margin-top: 40%;
+    .confirmation-info {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  }
+}
+#auth_page-link {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0;
+  a {
+    display: block;
+    text-decoration: none;
+    color: #2C7CFF;
+    margin-bottom: 10px;
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

@@ -1,16 +1,26 @@
-<h2><%= t('.resend_confirmation_instructions') %></h2>
+<div class="auth-wrapper">
+  <div class="auth-item">
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="auth-title">
+      <h1><%= t('.resend_confirmation_instructions') %></h1>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    <div class="auth-data">
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource, attr: :email %>
+
+        <div class="email-field">
+          <div class="field_with_errors"></div> <%# ダミー %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : @email) %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit '送信' %>
+        </div>
+      <% end %>
+      <div id="auth_page-link">
+        <%= link_to t("devise.registrations.new.sign_up"), new_registration_path(resource_name) %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit t('.resend_confirmation_instructions') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

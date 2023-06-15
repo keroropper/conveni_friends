@@ -91,7 +91,7 @@ module Devise
       end
 
       def active_for_authentication?
-        true
+        !confirmation_required? || confirmed? || confirmation_period_valid?
       end
 
       def inactive_message

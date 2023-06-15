@@ -30,6 +30,10 @@ ja:
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
+      info: 
+        info: メールが送信されました。
+        confirmation_period: "%{period}分以内に認証を行なってください。"
+        didn_t_receive_confirmation_instructions: メールを再送信する
       new:
         resend_confirmation_instructions: アカウント確認メール再送
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
@@ -135,7 +139,7 @@ ja:
   errors:
     messages:
       already_confirmed: は既に登録済みです。ログインしてください。
-      confirmation_period_expired: の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。
+      confirmation_period_expired: の期限が切れました。%{period}以内に認証してください。
       expired: の有効期限が切れました。新しくリクエストしてください。
       not_found: は見つかりませんでした。
       not_locked: はロックされていません。
