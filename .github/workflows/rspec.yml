@@ -39,8 +39,9 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Yarn install
-        run: yarn install --check-files
-        run: bundle exec rails webpacker:compile
+        run: |
+          yarn install --check-files
+          bundle exec rails webpacker:compile
 
       - name: Setup Database
         env:
