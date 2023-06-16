@@ -40,6 +40,7 @@ jobs:
 
       - name: Yarn install
         run: yarn install --check-files
+        run: bundle exec rails webpacker:compile
 
       - name: Setup Database
         env:
