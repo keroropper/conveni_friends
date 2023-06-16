@@ -41,6 +41,7 @@ jobs:
       - name: Yarn install
         run: |
           yarn install --check-files
+          export NODE_OPTIONS=--openssl-legacy-provider
           bundle exec rails webpacker:compile
 
       - name: Setup Database
