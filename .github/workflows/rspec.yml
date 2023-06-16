@@ -39,10 +39,7 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Yarn install
-        run: |
-          yarn install --check-files
-          export NODE_OPTIONS=--openssl-legacy-provider
-          bundle exec rails webpacker:compile
+        run: yarn install --check-files
 
       - name: Setup Database
         env:
@@ -54,7 +51,10 @@ jobs:
           bundle exec rails db:migrate RAILS_ENV=test
 
       - name: Test with RSpec
-        run: bundle exec rspec
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          RAILS_ENV=test bundle exec rails webpacker:compile
+          bundle exec rspec
 
       - name: Rubocop
         run: bundle exec rubocop
