@@ -1,14 +1,30 @@
-document.addEventListener('turbolinks:load', () => {
-  
+window.addEventListener('unhandledrejection', function(event) {
+  // イベントオブジェクトは2つの特別なプロパティを持っています:
+  alert(event.promise); // [object Promise] - エラーを生成した promise
+  alert(event.reason); // Error: Whoops! - 未処理のエラーオブジェクト
+});
+
+window.addEventListener('turbolinks:load', () => {
+ 
   const errorContainer = document.querySelector('.error-message-container');
   const emailInput = document.getElementById('user_email');
-  const submitBtn = document.querySelector('.actions.password_reset_actions');
+  const submitBtn = document.querySelector('#password_reset_actions');
+  function removeErr() {
+    const flashMsg = document.querySelector('.flash-message')
+    if(flashMsg) {
+      flashMsg.textContent = ''
+    }
+    const errorMsgTag = document.querySelector('.error-message')
+    if(errorMsgTag && errorMsgTag.parentNode === errorContainer) {
+      errorContainer.removeChild(errorMsgTag)
+    }
+  }
   submitBtn.addEventListener('click', async(event) => {
     removeErr();
     submitBtn.disable = true;
-      event.preventDefault();
-      const email = emailInput.value;
-      try {
+    event.preventDefault();
+    const email = emailInput.value;
+    try {
       const response = await fetch('/users/password', {
         method: 'Post',
         headers: {
@@ -22,7 +38,7 @@ document.addEventListener('turbolinks:load', () => {
         showPopup(email);
       } else {
         const responseMsg = await response.text();
-        const errorMessageMatch = responseMsg.match(/<span class="error-message">(.*?)<\/span>/);
+        const errorMessageMatch = responseMsg.match(/<span class="error-message">(.+)<\/span>/);
         if (errorMessageMatch) {
           const errorMessageText = errorMessageMatch[1];
           const errorMessage = document.createElement('span');
@@ -53,13 +69,6 @@ document.addEventListener('turbolinks:load', () => {
 
   function showError(msg) {
     errorContainer.appendChild(msg);
-  }
-  
-  function removeErr() {
-    const errorMsgTag = document.querySelector('.error-message')
-    if(errorMsgTag) {
-      errorContainer.removeChild(errorMsgTag)
-    }
   }
 
   document.addEventListener('turbolinks:before-visit', () => {

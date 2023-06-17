@@ -31,6 +31,10 @@ Style/RedundantConstantBase:
   Exclude:
     - 'spec/rails_helper.rb'
 
+Lint/UselessAssignment:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
 Style/RedundantConstantBase:
   Exclude:
     - 'spec/rails_helper.rb'

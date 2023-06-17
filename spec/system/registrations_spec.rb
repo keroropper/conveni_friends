@@ -4,7 +4,7 @@ require 'uri'
 RSpec.describe "Registrations", type: :system do
   include ActiveJob::TestHelper
 
-  it "ユーザーは新規登録に成功する", focus: true do
+  it "ユーザーは新規登録に成功する" do
     perform_enqueued_jobs do
       expect do
         sign_up
