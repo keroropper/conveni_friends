@@ -19,7 +19,8 @@ class PasswordsController < Devise::PasswordsController
         respond_with resource
       end
     else
-      render 'new'
+      flash[:error_message] = resource.errors[:reset_password_token][0]
+      redirect_to new_user_password_path
     end
   end
 end

@@ -9,7 +9,7 @@
 
     <div class="auth-data">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render 'devise/shared/error_messages', attr: :reset_password_token %>
+        <span class="flash-message"><%= flash[:error_message] %></span>
         <%= render 'devise/shared/error_messages', attr: :email %>
         <div class="error-message-container"></div>
 
@@ -18,8 +18,8 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
 
-        <div class="actions password_reset_actions">
-          <%= f.submit '送信' %>
+        <div class="actions">
+          <%= f.submit '送信', id: "password_reset_actions" %>
         </div>
       <% end %>
       <div id="auth_page-link">
