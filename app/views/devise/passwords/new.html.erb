@@ -1,16 +1,40 @@
-<h2><%= t('.forgot_your_password') %></h2>
+<div class="auth-wrapper">
+  <div class="auth-item">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="auth-title">
+      <h1><%= t('.forgot_your_password') %></h1>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <p class='password_reset_info'>ご登録されたメールアドレスに再設定のご案内が送信されます。</p>
+
+    <div class="auth-data">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render 'devise/shared/error_messages', attr: :reset_password_token %>
+        <%= render 'devise/shared/error_messages', attr: :email %>
+        <div class="error-message-container"></div>
+
+        <div class="email-field">
+          <div class="field_with_errors"></div> <%# ダミー %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="actions password_reset_actions">
+          <%= f.submit '送信' %>
+        </div>
+      <% end %>
+      <div id="auth_page-link">
+        <%= link_to t("devise.sessions.new.sign_in"), new_session_path(resource_name) %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
+<div class="password_reset popup-menu" hidden>
+  <div class="password_reset header">
+    <span class="password_reset content">メールを確認してください</span>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="password_reset actions">
+    <button id='password_reset-btn'>OK</button>
+  </div>
+</div>
+<div class="overlay" hidden></div>

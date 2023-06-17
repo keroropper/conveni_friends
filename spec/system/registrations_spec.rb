@@ -4,7 +4,7 @@ require 'uri'
 RSpec.describe "Registrations", type: :system do
   include ActiveJob::TestHelper
 
-  it "ユーザーは新規登録に成功する" do
+  it "ユーザーは新規登録に成功する", focus: true do
     perform_enqueued_jobs do
       expect do
         sign_up
@@ -28,6 +28,7 @@ RSpec.describe "Registrations", type: :system do
     confirmed_url = URI.extract(mail_body)[0]
     visit confirmed_url
     expect(current_path).to eq authenticated_root_path
+    expect(User.last.activated).to eq true
   end
 
   it "ユーザー登録後、メール再送信ページに登録したアドレスが入力されている" do

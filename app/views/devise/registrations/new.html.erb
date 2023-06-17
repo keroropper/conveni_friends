@@ -28,7 +28,8 @@
           <%= f.select :gender, [["選択しない","選択しない"],["女性","女性"],["男性","男性"]], {selected: "選択しない"} %>
         </div>
 
-        <%= render 'devise/shared/email_and_password_form', f: f %>
+        <%= render 'devise/shared/email_form', f: f %>
+        <%= render 'devise/shared/password_form', f: f %>
 
         <div class="password-field">
           <span class="require">必須</span>

@@ -10,7 +10,8 @@
 
         <p class="alert"><%= alert %></p>
 
-        <%= render 'devise/shared/email_and_password_form', f: f %>
+        <%= render 'devise/shared/email_form', f: f %>
+        <%= render 'devise/shared/password_form', f: f %>
 
         <div class="actions">
           <%= f.submit "ログイン" %>
