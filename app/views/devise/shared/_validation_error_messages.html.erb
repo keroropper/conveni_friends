@@ -1,0 +1,3 @@
+  <% if resource.errors.include?(attr) %>
+    <span class="error-message"><%= resource.errors.full_messages_for(attr).first %></span><br>
+  <% end %>

@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="list-sidebar__content">
+    <div class="header-top">
+      <div class="header-top-contents">
+        <% unless current_user %>
+          <%= link_to "新規登録", "#" %>
+          <%= link_to "ログイン", "#" %>
+        <% else %>
+          <%= link_to 'マイページ', "#" %>  
+          <%= link_to '通知', "#" %>  
+          <%= link_to '投稿する', "#" %>  
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="header-search">
+    <div class="header-fixed">
+      <p class="header-logo">
+        <a href="" class="logo-image">刹那フレンド</a>
+      </p>
+      <div class="search-suggest">
+        <div class="form">
+          <span>エリア</span>
+          <span>キーワード</span>
+          <span>ジャンル</span>
+          <span>日付</span>
+          <span>時間帯</span>
+          <div>
+            <span>所要時間</span>
+            <span>性別</span>
+            <span>年齢</span>
+            <span>評価</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

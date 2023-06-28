@@ -1,0 +1,74 @@
+<%= render 'shared/header' %>
+
+<div class="crt-recruit-wrap">
+  <div class="crt-recruit-item">
+
+    <%= form_with id: 'crt-form', model: @recruit, local: true do |f| %>
+
+      <%= render 'devise/shared/custom_error_messages', attr: :images, resource: @recruit, message: '画像を選択してください' %>
+      <%= render 'create_image_field', f: f %>
+
+      <div class="crt-form tag">
+        <div class="crt-input tag">
+          <input type="カテゴリー">
+        </div>
+      </div>
+
+      <div class="headline">タイトルと概要</div>
+      <%= render 'devise/shared/validation_error_messages', attr: :title, resource: @recruit %>
+      <%= render 'devise/shared/validation_error_messages', attr: :explain, resource: @recruit %>
+      <div class="crt-form summary">
+        <div class="crt-input title">
+          <%= f.text_field :title, placeholder: 'タイトル（必須 20文字まで）', maxlength: "20" %>
+          <span class="title-word-count">0</span><span class="max-count">/20</span>
+        </div>
+        <div class="crt-input explain">
+          <%= f.text_area :explain, placeholder: '概要（必須 100文字まで）', maxlength: "100" %>
+          <span class="explain-word-count">0</span><span class="max-count">/100</span>
+        </div>
+      </div>
+
+      <div class="headline">時間</div>
+      <%= render 'devise/shared/validation_error_messages', attr: :date, resource: @recruit %>
+      <%= render 'devise/shared/validation_error_messages', attr: :meeting_time, resource: @recruit %>
+      <%= render 'devise/shared/custom_error_messages', attr: :required_time, resource: @recruit, message: '所要時間を選択してください' %>
+      <div class="crt-form timeline">
+        <div class="crt-input date">
+          <div class="crt-date-label">
+            <%= f.label :date, '日付' %>
+            <span>(必須)</span>
+          </div>
+          <%= f.text_field :date, class: "recruit_date" %>
+        </div>
+        <div class="crt-input meeting">
+          <div class="crt-date-label">
+            <%= f.label :meeting_time, '集合時間' %>
+            <span>(必須)</span>
+          </div>
+          <%= f.text_field :meeting_time %>
+        </div>
+        <div class="crt-input required">
+          <div class="crt-date-label">
+            <%= f.label :required_time, '所要時間' %>
+            <span>(必須)</span>
+          </div>
+          <%= f.select :required_time, required_time_options, { selected: "--" }  %>
+        </div>
+      </div>
+
+      <div class="headline">その他</div>
+      <%= render 'devise/shared/validation_error_messages', attr: :option, resource: @recruit %>
+      <div class="crt-form other">
+        <div class="crt-input option">
+          <%= f.text_area :option, placeholder: '補足（任意 100文字まで）', maxlength: "100" %>
+          <span class="option-word-count">0</span><span class="max-count">/100</span>
+        </div>
+      </div>
+
+      <div class="crt-submit">
+        <%= f.submit "募集" %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>

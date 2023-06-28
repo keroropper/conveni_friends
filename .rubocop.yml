@@ -105,6 +105,10 @@ Style/SymbolArray:
 Style/WordArray:
   Enabled: false
 
+# モジュールのネストチェック
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 # 変数名に数字を許可
 Naming/VariableNumber:
   Enabled: false

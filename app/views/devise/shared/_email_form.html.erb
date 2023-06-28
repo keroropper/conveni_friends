@@ -4,5 +4,5 @@
   <% end %>
   <%= f.label :email %><br />
   <%= f.email_field :email, autocomplete: "email" %>
-  <%= render 'devise/shared/error_messages', attr: :email%>
+  <%= render 'devise/shared/validation_error_messages', attr: :email%>
 </div>

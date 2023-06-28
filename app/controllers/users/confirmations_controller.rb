@@ -1,4 +1,4 @@
-class ConfirmationsController < Devise::ConfirmationsController
+class Users::ConfirmationsController < Devise::ConfirmationsController
   def new
     @email = params[:email]
     self.resource = resource_class.new
