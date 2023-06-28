@@ -5,3 +5,11 @@ ja:
         name: ユーザー名
         gender: 性別
         age: 年齢
+      recruit:
+        title: タイトル
+        explain: 概要
+        date: 日付
+        meeting_time: 集合時間
+        required_time: 所要時間
+        option: 補足
+        images: 画像

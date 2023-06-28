@@ -26,13 +26,6 @@
     }
     .auth-data {
       padding: 0 40px;
-      .alert {
-        color: red;
-      }
-      .error-message, .flash-message {
-        font-size: 0.8rem;
-        color: red;
-      }
       [class$="-field"] {
         margin-bottom: 25px;
         .require {

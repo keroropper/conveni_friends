@@ -7,8 +7,13 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import '@fortawesome/fontawesome-free/js/all';
 require('../main/mail_info')
+require('../main/flatpickr')
+require('../main/preview')
+require('../main/count')
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

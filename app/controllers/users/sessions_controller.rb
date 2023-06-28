@@ -1,4 +1,4 @@
-class SessionsController < Devise::RegistrationsController
+class Users::SessionsController < Devise::RegistrationsController
   def new
     if user_signed_in?
       redirect_to root_path

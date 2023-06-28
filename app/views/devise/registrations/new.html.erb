@@ -12,14 +12,14 @@
           <span class="require">必須</span>
           <%= f.label :name, "ユーザー名  (#{resource.class.validators_on(:name).second.options[:maximum]}文字以内で入力してください)" %>
           <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: 20 %>
-          <%= render 'devise/shared/error_messages', attr: :name %>
+          <%= render 'devise/shared/validation_error_messages', attr: :name %>
         </div>
 
         <div class="age-field">
           <span class="require">必須</span>
           <%= f.label :age %><br />
           <%= f.text_field :age, maxlength: 3, value: '' %> <span>歳</span><br>
-          <%= render 'devise/shared/error_messages', attr: :age %>
+          <%= render 'devise/shared/validation_error_messages', attr: :age %>
         </div>
 
         <div class="gender-field">
@@ -35,7 +35,7 @@
           <span class="require">必須</span>
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-          <%= render 'devise/shared/error_messages', attr: :password_confirmation %>
+          <%= render 'devise/shared/validation_error_messages', attr: :password_confirmation %>
         </div>
 
         <div class="actions">

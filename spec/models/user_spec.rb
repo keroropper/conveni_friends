@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to validate_presence_of :age }
 
+  it { is_expected.to validate_numericality_of(:age).only_integer }
+
   it 'accept the email addresses' do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]

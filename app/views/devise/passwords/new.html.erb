@@ -10,7 +10,7 @@
     <div class="auth-data">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <span class="flash-message"><%= flash[:error_message] %></span>
-        <%= render 'devise/shared/error_messages', attr: :email %>
+        <%= render 'devise/shared/validation_error_messages', attr: :email %>
         <div class="error-message-container"></div>
 
         <div class="email-field">
