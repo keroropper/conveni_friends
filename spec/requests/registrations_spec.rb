@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Registrations" do
+RSpec.describe "Registrations", focus: true do
   describe 'アカウント登録' do
     before do
       ActionMailer::Base.deliveries.clear

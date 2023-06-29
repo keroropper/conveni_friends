@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2023_06_25_102308) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-06-24", null: false
+    t.date "date", default: "2023-06-29", null: false
     t.index ["user_id"], name: "index_recruits_on_user_id"
   end
 
