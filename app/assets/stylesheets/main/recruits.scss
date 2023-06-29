@@ -82,6 +82,16 @@ $element-border-color: #EEEEEE;
     .crt-input.option {
       display: flex;
       align-items: flex-end;
+      .field_with_errors {
+        width: 100%;
+      }
+    }
+    .crt-input.required {
+      .field_with_errors {
+        #recruit_required_time {
+          width: 100%;
+        }
+      }
     }
   }
   .crt-form.timeline {

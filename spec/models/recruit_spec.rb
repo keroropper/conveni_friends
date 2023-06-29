@@ -13,6 +13,48 @@ RSpec.describe Recruit, type: :model do
 
   it { is_expected.to validate_numericality_of(:required_time).only_integer }
 
+  describe 'Recruit :images' do
+    let(:user) { create(:user) }
+    let(:recruit) { FactoryBot.build(:recruit, :with_images, user:) }
+    it '画像がアタッチされていること' do
+      recruit.save
+      expect(recruit.images.attached?).to be true
+    end
+
+    context "images属性 presence, content type, length, and sizeバリデーション検証" do
+      it "presence" do
+        recruit = FactoryBot.build(:recruit)
+        expect(recruit).not_to be_valid
+      end
+
+      it "type" do
+        invalid_type_file = Rails.root.join('spec', 'fixtures', 'files', 'SVGアイコン.svg')
+        recruit.images.attach(io: File.open(invalid_type_file), filename: 'SVGアイコン', content_type: 'image/svg')
+        recruit.valid?
+        expect(recruit).not_to be_valid
+        expect(recruit.errors.full_messages).to eq(["画像形式はjpeg, jpg, gif, pngのみ有効です。"])
+      end
+
+      it 'length(max == 4)' do
+        5.times do
+          file = Rails.root.join('spec', 'fixtures', 'files', 'kitten.jpg')
+          recruit.images.attach(io: File.open(file), filename: 'kitten.jpg', content_type: 'image/jpg')
+        end
+        recruit.valid?
+        expect(recruit).not_to be_valid
+        expect(recruit.errors.full_messages).to eq(["画像の数が許容範囲外です"])
+      end
+
+      it "size" do
+        over_size_file = Rails.root.join('spec', 'fixtures', 'files', '6MB.jpg')
+        recruit.images.attach(io: File.open(over_size_file), filename: '6MB.jpg', content_type: 'image/jpg')
+        recruit.valid?
+        expect(recruit).not_to be_valid
+        expect(recruit.errors.full_messages).to eq(["画像ファイルは5MB以下である必要があります。"])
+      end
+    end
+  end
+
   describe '#date_must_be_future' do
     let(:user) { FactoryBot.create(:user) }
 

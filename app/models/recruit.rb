@@ -5,9 +5,9 @@ class Recruit < ApplicationRecord
   validates :title, :explain, :date, :required_time, :meeting_time, presence: true
   validates :title, length: { maximum: 20 }
   validates :explain, :option, length: { maximum: 100 }
-  validates :images, attached: true,
-                     content_type: { in: %w[image/jpeg image/gif image/png],
-                                     message: "jpeg, gif, pngのみ有効です。" },
+  validates :images, limit: { min: 1, max: 4 },
+                     content_type: { in: %w[image/jpeg image/gif image/png image/jpg],
+                                     message: "形式はjpeg, jpg, gif, pngのみ有効です。" },
                      size: { less_than: 5.megabytes,
                              message: "ファイルは5MB以下である必要があります。" }
   validate :date_must_be_future, on: :create

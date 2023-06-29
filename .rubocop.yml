@@ -51,10 +51,19 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'app/models/user.rb'
 
+Rails/RootPathnameMethods:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 
 Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
   Enabled: false
 
 Metrics/AbcSize:
