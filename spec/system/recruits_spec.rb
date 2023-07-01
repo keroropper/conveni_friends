@@ -58,7 +58,7 @@ RSpec.describe "Recruits", type: :system, js: true do
       expect(page).to have_content('画像を選択してください')
     end
 
-    scenario 'タグは3つまでであること', focus: true do
+    scenario 'タグは3つまでであること' do
       expect do
         create_recruit(tags: 'tag1 tag2 tag3 tag4')
       end.to_not(change { Tag.count })

@@ -26,7 +26,6 @@ class Recruit < ApplicationRecord
       end
 
       params_tags = tags.find_by(name: tags_name)
-      tags.find_by(name: tags_name).destroy unless tag_count == 1
       recruit_tags.find_by(tag_id: params_tags).destroy
     end
   end
