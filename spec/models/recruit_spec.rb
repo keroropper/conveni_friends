@@ -15,7 +15,7 @@ RSpec.describe Recruit, type: :model do
 
   describe 'Recruit :images' do
     let(:user) { create(:user) }
-    let(:recruit) { FactoryBot.build(:recruit, :with_images, user:) }
+    let(:recruit) { FactoryBot.build(:recruit, user:) }
     it '画像がアタッチされていること' do
       recruit.save
       expect(recruit.images.attached?).to be true
@@ -24,6 +24,7 @@ RSpec.describe Recruit, type: :model do
     context "images属性 presence, content type, length, and sizeバリデーション検証" do
       it "presence" do
         recruit = FactoryBot.build(:recruit)
+        recruit.images = []
         expect(recruit).not_to be_valid
       end
 
@@ -73,5 +74,12 @@ RSpec.describe Recruit, type: :model do
         expect(recruit.errors[:date]).to include('は本日以降を選択してください')
       end
     end
+  end
+
+  it 'save with tags' do
+    user = FactoryBot.create(:user)
+    recruit = FactoryBot.build(:recruit, user:)
+    recruit.save
+    expect(recruit).to be_valid
   end
 end

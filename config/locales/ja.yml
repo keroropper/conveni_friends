@@ -13,3 +13,9 @@ ja:
         required_time: 所要時間
         option: 補足
         images: 画像
+      tags:
+        name: タグ
+
+
+
+

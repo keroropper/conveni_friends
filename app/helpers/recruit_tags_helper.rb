@@ -1,0 +1,2 @@
+module RecruitTagsHelper
+end
