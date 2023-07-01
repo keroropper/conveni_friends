@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_25_102308) do
+ActiveRecord::Schema.define(version: 2023_06_29_105853) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 2023_06_25_102308) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "recruit_tags", charset: "utf8", force: :cascade do |t|
+    t.integer "recruit_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recruits", charset: "utf8", force: :cascade do |t|
     t.integer "required_time", default: 0, null: false
     t.time "meeting_time", default: "2000-01-01 00:00:00", null: false
@@ -50,8 +57,14 @@ ActiveRecord::Schema.define(version: 2023_06_25_102308) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-06-29", null: false
+    t.date "date", default: "2023-07-01", null: false
     t.index ["user_id"], name: "index_recruits_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|

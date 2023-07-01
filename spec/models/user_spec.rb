@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  FactoryBot.create(:user)
+  let(:user) { FactoryBot.build(:user) }
 
   it { is_expected.to validate_length_of(:name).is_at_most(20) }
 

@@ -3,7 +3,7 @@ FactoryBot.define do
     name { 'ryoya' }
     age { 24 }
     gender { '男性' }
-    sequence(:email) { |n| "test#{n}@example.com" }
+    sequence(:email) { Faker::Internet.unique.email }
     password { 'password' }
     confirmed_at { 1.day.ago }
     activated { true }

@@ -8,11 +8,15 @@
       <%= render 'devise/shared/custom_error_messages', attr: :images, resource: @recruit, message: '画像を選択してください' %>
       <%= render 'create_image_field', f: f %>
 
-      <div class="crt-form tag">
-        <div class="crt-input tag">
-          <input type="カテゴリー">
+      <%= f.fields_for :tags do |tag_form| %>
+        <div class="headline">タグ</div>
+        <%= render 'devise/shared/validation_error_messages', attr: 'tags.name', resource: @recruit %>
+        <div class="crt-form summary">
+          <div class="crt-input tag">
+            <%= tag_form.text_field :name, id: 'recruit_tags', value: @tags ,placeholder: "スペース区切りで3つまで。  例） 暇つぶし 付き添い カフェ" %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="headline">タイトルと概要</div>
       <%= render 'devise/shared/validation_error_messages', attr: :title, resource: @recruit %>
