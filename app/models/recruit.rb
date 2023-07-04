@@ -17,24 +17,18 @@ class Recruit < ApplicationRecord
   validate :time_must_be_future, on: :create
 
   def recruit_tags_create(tags_name)
-    tag_list = tags_name.split(/[[:blank:]]+/).select(&:present?)
-    tag_count = tag_list.length
-    if tag_count <= 3
+
+    tag_list = tags_name.strip.split(/[[:blank:]]+/).select(&:present?)
+    return false if tag_list.length > 3
+
+    if tag_list.length.between?(2, 3)
       tag_list.each do |tag|
         tag = Tag.find_or_create_by(name: tag)
         tags << tag
       end
-
-      params_tags = tags.find_by(name: tags_name)
-      recruit_tags.find_by(tag_id: params_tags).destroy
+      tags.find_by(name: tags_name).destroy if tag_list.length > 1 || Tag.where(name: tags_name).count == 2
     end
-  end
-
-  def recruit_tags_not_create(tag_names)
-    tag_count = tag_names.split(/[[:blank:]]+/).count(&:present?)
-    errors.add(:name, "は3つまでしか登録できません") if tag_count > 3
-    tags.clear
-    tags.build
+    return true
   end
 
   private

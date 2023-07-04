@@ -16,7 +16,7 @@ document.addEventListener("turbolinks:load", () => {
                  noCalendar  : true,
                  dateFormat  : "H:i",
                  time_24hr   : true,
-                 defaultDate: "12:00"
+                 defaultDate: new Date()
                });
 
   function dateTimeOpen(picker, type) {

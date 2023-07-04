@@ -8,7 +8,7 @@ RSpec.describe "Recruits", type: :system, js: true do
   end
 
   context "正常系" do
-    scenario '投稿を作成する' do
+    scenario '投稿を作成する', focus: true do
       expect do
         create_recruit
       end.to change { user.recruits.count }.by(1)
@@ -17,9 +17,16 @@ RSpec.describe "Recruits", type: :system, js: true do
 
     scenario 'タグ付きの投稿を作成する' do
       expect do
-        create_recruit(tags: 'tag')
+        create_recruit(tags: 'tag1')
       end.to change { Tag.count }.by(1)
       expect(RecruitTag.count).to eq 1
+    end
+
+    scenario '同じ名前のタグは重複して保存されないこと' do
+      expect do
+        create_recruit(tags: 'tag tag')
+      end.to change { Tag.count }.by(1)
+      expect(Tag.where(name: 'tag').count).to eq 1
     end
 
     scenario '画像のプレビューができること' do
@@ -31,7 +38,7 @@ RSpec.describe "Recruits", type: :system, js: true do
       attach_image('kitten.jpg')
       delete_btn = find('.image-delete')
       delete_btn.click
-      expect(page).to_not have_selector('img')
+      expect(page).to_not have_selector('.image')
       expect(page).to have_field('img-file', with: '')
     end
 
@@ -40,8 +47,8 @@ RSpec.describe "Recruits", type: :system, js: true do
       attach_image('縦長.jpeg')
       first_delete_btn = all('.image-delete').first
       first_delete_btn.click
-      expect(page).to have_selector('img', count: 1)
-      expect(page).to have_selector('img', visible: true, count: 1)
+      expect(page).to have_selector('.image', count: 1)
+      expect(page).to have_selector('.image', visible: true, count: 1)
     end
   end
 
