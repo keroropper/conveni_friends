@@ -17,7 +17,6 @@ class Recruit < ApplicationRecord
   validate :time_must_be_future, on: :create
 
   def recruit_tags_create(tags_name)
-
     tag_list = tags_name.strip.split(/[[:blank:]]+/).select(&:present?)
     return false if tag_list.length > 3
 
@@ -28,7 +27,7 @@ class Recruit < ApplicationRecord
       end
       tags.find_by(name: tags_name).destroy if tag_list.length > 1 || Tag.where(name: tags_name).count == 2
     end
-    return true
+    true
   end
 
   private

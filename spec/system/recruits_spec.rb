@@ -140,11 +140,10 @@ RSpec.describe "Recruits", type: :system, js: true do
     input_element.set(meeting_time)
 
     # googleMap
-    mapInput = find('input[placeholder="Google マップを検索する"]')
-    mapInput.set(address)
-    mapSubmit = find('input[value="検索"]')
-    mapSubmit.click if mapInput.value.present?
-
+    map_input = find('input[placeholder="Google マップを検索する"]')
+    map_input.set(address)
+    map_submit = find('input[value="検索"]')
+    map_submit.click if map_input.value.present?
 
     select required_time,	from: "recruit_required_time"
     fill_in "recruit_option",	with: option
