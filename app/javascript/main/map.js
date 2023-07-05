@@ -85,7 +85,7 @@ document.addEventListener('turbolinks:load', function() {
   let form = document.getElementById('crt-form');
   form.addEventListener('submit', function(e) {
     let mapResponse = document.getElementById('response');
-    if(mapResponse.value) {
+    if(mapResponse.textContent) {
       e.preventDefault();
   
       let response = JSON.parse(mapResponse.textContent);

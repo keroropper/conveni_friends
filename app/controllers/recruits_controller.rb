@@ -7,7 +7,7 @@ class RecruitsController < ApplicationController
   def create
     @recruit = current_user.recruits.build(recruit_params)
     @tags = params[:recruit][:tags_attributes]["0"][:name]
-
+    
     if @recruit.save && @recruit.recruit_tags_create(@tags)
       redirect_to root_path
     else

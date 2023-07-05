@@ -8,7 +8,7 @@ RSpec.describe "Recruits", type: :system, js: true do
   end
 
   context "正常系" do
-    scenario '投稿を作成する', focus: true do
+    scenario '投稿を作成する' do
       expect do
         create_recruit
       end.to change { user.recruits.count }.by(1)
@@ -49,6 +49,13 @@ RSpec.describe "Recruits", type: :system, js: true do
       first_delete_btn.click
       expect(page).to have_selector('.image', count: 1)
       expect(page).to have_selector('.image', visible: true, count: 1)
+    end
+
+    scenario 'googleMapにピンを立てると経度、緯度、住所が保存されること', focus: true do
+      create_recruit(address: '秋葉原')
+      expect(user.recruits.first.address).to eq "Akihabara, Taito City, Tokyo 110-0006, Japan"
+      expect(user.recruits.first.latitude).to be_within(999.000001).of(35.702259)
+      expect(user.recruits.first.latitude).to be_within(999.000001).of(139.774475)
     end
   end
 
@@ -116,7 +123,7 @@ RSpec.describe "Recruits", type: :system, js: true do
   end
 
   def create_recruit(attach: true, file_name: 'kitten.jpg', tags: '', title: "title", explain: "explain", date: Date.tomorrow,
-                     meeting_time: "23", required_time: "30分", option: "option")
+                     meeting_time: "23", required_time: "30分", address: '', option: "option")
     attach_image(file_name) if attach
     fill_in "recruit_tags", with: tags
     fill_in "recruit_title",	with: title
@@ -131,6 +138,13 @@ RSpec.describe "Recruits", type: :system, js: true do
     find("#recruit_meeting_time").click
     input_element = find(".numInput.flatpickr-hour")
     input_element.set(meeting_time)
+
+    # googleMap
+    mapInput = find('input[placeholder="Google マップを検索する"]')
+    mapInput.set(address)
+    mapSubmit = find('input[value="検索"]')
+    mapSubmit.click if mapInput.value.present?
+
 
     select required_time,	from: "recruit_required_time"
     fill_in "recruit_option",	with: option
