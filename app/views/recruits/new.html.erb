@@ -60,6 +60,16 @@
         </div>
       </div>
 
+      <div class="headline">場所<br>(任意で目的地を設定してください)</div>
+      <div class="crt-form place">
+        <div class="crt-input address">
+          <div id="map"></div>
+          <%= f.hidden_field :address, id: 'address-field' %>
+          <%= f.hidden_field :latitude, id: 'latitude-field' %>
+          <%= f.hidden_field :longitude, id: 'longitude-field' %>
+        </div>
+      </div>
+
       <div class="headline">その他</div>
       <%= render 'devise/shared/validation_error_messages', attr: :option, resource: @recruit %>
       <div class="crt-form other">
@@ -76,3 +86,4 @@
     <% end %>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" defer></script>

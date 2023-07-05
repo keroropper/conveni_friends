@@ -17,6 +17,7 @@ class RecruitsController < ApplicationController
   private
 
   def recruit_params
-    params.require(:recruit).permit(:title, :explain, :date, :required_time, :meeting_time, :option, images: [], tags_attributes: [:name])
+    params.require(:recruit).permit(:title, :explain, :date, :required_time, :meeting_time, :option,
+                                    :address, :latitude, :longitude, images: [], tags_attributes: [:name])
   end
 end

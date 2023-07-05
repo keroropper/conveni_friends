@@ -11,7 +11,7 @@ document.addEventListener("turbolinks:load", () => {
       return;
     }
     
-    const imageNum = document.querySelectorAll('img').length
+    const imageNum = document.querySelectorAll('.image').length
     const imageContainer = document.querySelector(`#crt-image-field-${imageNum + 1}`);
     const nextImageContainer = document.querySelector(`#crt-image-field-${imageNum + 2}`);
     const labelElement = imageContainer.querySelector('label');
