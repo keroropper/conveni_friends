@@ -1,3 +1,6 @@
 class SecretsController < ApplicationController
-  def index; end
+  def index
+    @recruits = Recruit.all
+    @recruit = Recruit.first
+  end
 end

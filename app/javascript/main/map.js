@@ -88,8 +88,9 @@ document.addEventListener('turbolinks:load', function() {
     if(mapResponse.textContent) {
       e.preventDefault();
   
-      let response = JSON.parse(mapResponse.textContent);
-      document.getElementById('address-field').value = response.results[0].formatted_address;
+      const response = JSON.parse(mapResponse.textContent);
+      let address = response.results[0].formatted_address.split(' ').slice(1);
+      document.getElementById('address-field').value = address
       document.getElementById('latitude-field').value = response.results[0].geometry.location.lat;
       document.getElementById('longitude-field').value = response.results[0].geometry.location.lng;
       
