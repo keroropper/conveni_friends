@@ -8,7 +8,7 @@ RSpec.describe "Homes", type: :system do
     visit root_path
   end
 
-  describe "secrets#index", focus: true do
+  describe "secrets#index" do
     it '画面に投稿が表示されている' do
       expect(page).to have_selector('.list-rst__body', count: 5)
       expect(page).to have_css('strong', text: '5')
