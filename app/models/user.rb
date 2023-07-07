@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
+  has_one_attached :profile_photo, dependent: :destroy
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -7,6 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :age, presence: true, numericality: { only_integer: true }
   validates :email, uniqueness: { case_sensitive: false }
+  validates :introduce, length: { maximum: 400 }
 
   def active_for_authentication?
     super && activated?

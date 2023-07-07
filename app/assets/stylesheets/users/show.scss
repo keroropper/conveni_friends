@@ -1,0 +1,45 @@
+.profile-main {
+  margin: 0 450px 0 400px;
+  .profile-photo-main-container {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #EEEEEE;
+    .profile-photo-main-item {
+      display: flex;
+      align-items: center;
+      .profile-image {
+        position: relative;
+        margin-right: 16px;
+        width: 128px;
+        height: 170px;
+        border-radius: 16px;
+        background-color: gainsboro;
+        .fa-camera {
+          position: absolute;
+          bottom: 10px;
+          color: rgb(255, 255, 255);
+          left: 0px;
+          margin: auto;
+          right: 0px;
+          height: 24px;
+        }
+      }
+      .user-attributes.name {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+      .user-attributes.age-and-gender {
+        span {
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+    .profile-detail-contents {
+      margin-top: 40px;
+      & > .profile-detail {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+}

@@ -42,4 +42,6 @@ RSpec.describe User, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:password) }
+
+  it { is_expected.to validate_length_of(:introduce).is_at_most(400) }
 end
