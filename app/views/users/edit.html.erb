@@ -1,0 +1,55 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="profile-main">
+    <div class="edit-btn">
+      <div id="update-btn">更新する</div>
+    </div>
+    <%= form_with model: @user, id: 'user-update-form', local: true do |f| %>
+      <%= f.file_field :images, accept: "image/jpeg,image/gif,image/png", style: 'display: none;', id: "input-profile" %>
+      <div class="profile-photo-main-container">
+        <div class="profile-photo-main-item">
+          <label for="input-profile">
+            <div class="profile-image">
+              <% if @user.profile_photo.attached? %>
+                <%= image_tag @user.profile_photo %>
+                <i class="fa fa-user hidden-icon" aria-hidden="true" style='visibility: hidden;'></i>
+                <i class="fas fa-camera fa-lg hidden-icon" style='visibility: hidden;'></i>
+              <% else %>
+                <i class="fa fa-user visible-icon" aria-hidden="true"></i>
+                <i class="fas fa-camera fa-lg visible-icon"></i>
+              <% end %>
+            </div>
+          </label>
+
+          <div class="user-attributes">
+          <%= render 'devise/shared/validation_error_messages', attr: :name, resource: @user %>
+            <div class="user-attributes name">
+              <%= f.text_field :name, maxlength: 10 %>
+              <i class="fa-solid fa-pen fa-xs"></i>
+            </div>
+            
+            <div class="user-attributes age-and-gender">
+              <%= @user.age %>歳 <span>/</span>
+              <%= @user.gender %>
+            </div>
+          </div>
+        </div>
+        <% if @user.profile_photo.attached? %>
+          <div class="image-delete">削除</div>
+         <% end %>
+      </div>
+
+      <%= render 'devise/shared/validation_error_messages', attr: :introduce, resource: @user %>
+      <div class="profile-detail-contents">
+        <div class="profile-detail introduce">
+          <h3>自己紹介</h3>
+          <div class="introduce-text">
+            <%= f.text_area :introduce, placeholder: '自己紹介文を入力', maxlength: 400 %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

@@ -90,14 +90,7 @@ document.addEventListener("turbolinks:load", () => {
     });
   };
 
-  function checkFileSize(file, fileField) {
-    const size_in_megabytes = file[0].size/1024/1024;
-    if(size_in_megabytes > 5) {
-      alert('ファイルサイズは最大5MBです。');
-      fileField.value = '';
-      return true
-    };
-  };
+
 
   function editStyle(first, second) {
     const firstField = document.querySelector(`#crt-image-field-${first} label`);
@@ -130,3 +123,12 @@ document.addEventListener("turbolinks:load", () => {
   };
       
 });
+
+export   function checkFileSize(file, fileField) {
+  const size_in_megabytes = file[0].size/1024/1024;
+  if(size_in_megabytes > 5) {
+    alert('ファイルサイズは最大5MBです。');
+    fileField.value = '';
+    return true
+  };
+};

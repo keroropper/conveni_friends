@@ -1,0 +1,38 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="profile-main">
+    <div class="edit-btn">
+      <%= link_to "プロフィールを編集する", edit_user_path(@user) %>
+    </div>
+    <div class="profile-photo-main-container">
+      <div class="profile-photo-main-item">
+        <div class="profile-image">
+          <% if @user.profile_photo.attached? %>
+            <%= image_tag @user.profile_photo %>
+          <% else %>
+            <i class="fa fa-user visible-icon" aria-hidden="true"></i>
+          <% end %>
+        </div>
+        <div class="user-attributes">
+          <div class="user-attributes name">
+            <%= @user.name %>
+          </div>
+          
+          <div class="user-attributes age-and-gender">
+            <%= @user.age %>歳 <span>/</span>
+            <%= @user.gender %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="profile-detail-contents">
+        <div class="profile-detail introduce">
+          <h3>自己紹介</h3>
+          <div class="introduce-text"><%= safe_join(@user.introduce.split("\n"),tag(:br)) %></div>
+        </div>
+      </div>
+
+  </div>
+</div>

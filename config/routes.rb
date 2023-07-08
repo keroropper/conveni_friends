@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   root to: "home#index"
   resources :recruits
+  resources :users, only: [:show, :edit, :update]
 end
