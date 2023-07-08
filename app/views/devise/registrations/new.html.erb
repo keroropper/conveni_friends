@@ -11,7 +11,7 @@
         <div class="name-field">
           <span class="require">必須</span>
           <%= f.label :name, "ユーザー名  (#{resource.class.validators_on(:name).second.options[:maximum]}文字以内で入力してください)" %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: 20 %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", maxlength: 10 %>
           <%= render 'devise/shared/validation_error_messages', attr: :name %>
         </div>
 

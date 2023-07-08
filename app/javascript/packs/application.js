@@ -11,7 +11,8 @@ import '@fortawesome/fontawesome-free/js/all';
 
 require('../main/mail_info')
 require('../main/flatpickr')
-require('../main/preview')
+require('../main/recruit_preview')
+require('../main/profile_preview')
 require('../main/count')
 require('../main/map')
 
