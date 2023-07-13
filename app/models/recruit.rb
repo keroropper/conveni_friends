@@ -7,7 +7,7 @@ class Recruit < ApplicationRecord
   validates :required_time, numericality: { only_integer: true }
   validates :title, :explain, :date, :required_time, :meeting_time, presence: true
   validates :title, length: { maximum: 20 }
-  validates :explain, :option, length: { maximum: 100 }
+  validates :explain, length: { maximum: 100 }
   validates :images, limit: { min: 1, max: 4 },
                      content_type: { in: %w[image/jpeg image/gif image/png image/jpg],
                                      message: "形式はjpeg, jpg, gif, pngのみ有効です。" },
@@ -28,6 +28,12 @@ class Recruit < ApplicationRecord
       tags.find_by(name: tags_name).destroy if tag_list.length > 1 || Tag.where(name: tags_name).count == 2
     end
     true
+  end
+
+  def resize_image(image)
+    metadata = image.blob.metadata
+    size = [metadata[:width], metadata[:height]].min
+    image.variant(gravity: :center, resize: "#{size}x#{size}", crop: "#{size}x#{size}+0+0")
   end
 
   private

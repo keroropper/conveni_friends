@@ -9,7 +9,6 @@ RSpec.describe Recruit, type: :model do
 
   it { is_expected.to validate_length_of(:title).is_at_most(20) }
   it { is_expected.to validate_length_of(:explain).is_at_most(100) }
-  it { is_expected.to validate_length_of(:option).is_at_most(100) }
 
   it { is_expected.to validate_numericality_of(:required_time).only_integer }
 

@@ -1,0 +1,96 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="show-recruit__wrap">
+
+    <div class="show-recruit__article">
+      <div class="show-recruit__images__wrap">
+        <div class="show-recruit__images">
+          <div class="show-recruit__image side-image-block">
+            <% @recruit.images.each do |image| %>
+              <div class="show-recruit__image side-image">
+                <%= image_tag image %>
+              </div>
+            <% end %>
+          </div>
+          <div class="show-recruit__image main-image__wrap">
+            <div class="show-recruit__image main-image-block">
+              <div class="show-recruit__image main-image">
+                <% style_left = 0 %>
+                <%= i = 1 %>
+                <% @recruit.images.each do |image| %>
+                  <%= image_tag image, id: "show-image-#{i}", style: "left: #{style_left}px" %>
+                  <% style_left += 592 %>
+                  <%= i += 1 %>
+                <% end %>
+              <div class="left-arrow" style='visibility: hidden;'>
+                <i class="fa-solid fa-arrow-left fa-xl" style="color: #ffffff;"></i>
+              </div>
+              <div class="right-arrow">
+                <i class="fa-solid fa-arrow-right fa-xl" style="color: #ffffff;"></i>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="show-recruit__info">
+        <section class="info__header">
+          <h1 class="info__title">
+            <%= @recruit.title %>
+          </h1>
+          <div class="info__offer-btn actions">
+            <input type="submit" name="commit" value="応募">
+          </div>
+        </section>
+        <section class="info__summary">
+          <div class="info__explain__wrap">
+            <div class="info__label">
+              <h2 class="info__label-text">概要</h2>
+            </div>
+            <div class="info__explain__content">
+              <%= @recruit.explain %>          
+            </div>
+            <div class="recruit__time-ago">
+              <%= time_ago_in_words(@recruit.created_at) %>前
+            </div>
+          </div>
+        </section>
+        <section class="info__schedule">
+          <div class="info__label">
+            <h2 class="info__label-text">募集の情報</h2>
+          </div>
+          <div class="info__schedule-items">
+            <div class="info__tags">
+              <div class="info__tags__label">
+                <span class="label">タグ</span>
+              </div>
+              <div class="info_tag-list">
+                <% @tags.each do |tag| %>
+                  <p class="info__tag-item">
+                    <%= tag.name %>
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+            <%= render 'shared/timeline', recruit: @recruit %>
+          </div>
+        </section>
+        <section class="info__recruit-user">
+          <div class="info__label">
+            <h2 class="info__label-text">募集者</h2>
+          </div>
+          <div class="info__user__wrap">
+            <%= link_to user_path(@recruit.user) do %>
+              <%= render 'shared/user_info', recruit: @recruit %>
+            <% end %>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+  </div>
+</div>

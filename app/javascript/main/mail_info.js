@@ -5,7 +5,7 @@ window.addEventListener('unhandledrejection', function(event) {
 });
 
 window.addEventListener('turbolinks:load', () => {
- 
+  const loader = document.querySelector('.loader');
   const errorContainer = document.querySelector('.error-message-container');
   const emailInput = document.getElementById('user_email');
   const submitBtn = document.querySelector('#password_reset_actions');
@@ -20,6 +20,7 @@ window.addEventListener('turbolinks:load', () => {
     }
   }
   submitBtn.addEventListener('click', async(event) => {
+    loader.style.visibility = 'visible';
     removeErr();
     submitBtn.disable = true;
     event.preventDefault();
@@ -35,21 +36,26 @@ window.addEventListener('turbolinks:load', () => {
       });
         
       if(response.ok) {
+        loader.style.visibility = 'hidden';
         showPopup(email);
       } else {
+        loader.style.visibility = 'hidden';
         const responseMsg = await response.text();
         const errorMessageMatch = responseMsg.match(/<span class="error-message">(.+)<\/span>/);
         if (errorMessageMatch) {
+          loader.style.visibility = 'hidden';
           const errorMessageText = errorMessageMatch[1];
           const errorMessage = document.createElement('span');
           errorMessage.classList.add('error-message');
           errorMessage.textContent = errorMessageText;
           showError(errorMessage);
         } else {
+          loader.style.visibility = 'hidden';
           console.error('エラーメッセージが見つかりません');
         }
       }
     } catch (error) {
+      loader.style.visibility = 'hidden';
       console.error('エラーが発生しました', error);
     } finally {
       submitBtn.disabled = false;
@@ -61,8 +67,8 @@ window.addEventListener('turbolinks:load', () => {
 
   function showPopup(email) {
     const message = `${email}にパスワード再設定のメールを送信しました`;
-    const passwordResetHeader = document.querySelector('.password_reset.header');
-    passwordResetHeader.insertAdjacentHTML('afterend', `<div class='password_reset message'><span>${message}</span></div>`);
+    const passwordResetHeader = document.querySelector('.password-reset__header');
+    passwordResetHeader.insertAdjacentHTML('afterend', `<div class='password-reset_message'><span>${message}</span></div>`);
     popupMenu.style.display = 'block';
     overlay.style.display = 'block';
   }
@@ -76,10 +82,10 @@ window.addEventListener('turbolinks:load', () => {
   });
 
   // OKボタンクリックでログインページへ遷移
-  const btn = document.querySelector('#password_reset-btn')
+  const btn = document.querySelector('#password-reset__btn')
   btn.addEventListener('click', function(){
     window.location.href = '/users/sign_in';
-    const message = document.querySelector('.password_reset.message')
+    const message = document.querySelector('.password-reset__message')
     message.remove()
   })
 

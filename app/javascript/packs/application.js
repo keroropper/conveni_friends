@@ -15,6 +15,7 @@ require('../main/recruit_preview')
 require('../main/profile_preview')
 require('../main/count')
 require('../main/map')
+require('../main/scroll')
 
 Rails.start()
 Turbolinks.start()

@@ -70,15 +70,6 @@
         </div>
       </div>
 
-      <div class="headline">その他</div>
-      <%= render 'devise/shared/validation_error_messages', attr: :option, resource: @recruit %>
-      <div class="crt-form other">
-        <div class="crt-input option">
-          <%= f.text_area :option, placeholder: '補足（任意 100文字まで）', maxlength: "100" %>
-          <span class="option-word-count">0</span><span class="max-count">/100</span>
-        </div>
-      </div>
-
       <div class="crt-submit">
         <%= f.submit "募集" %>
       </div>

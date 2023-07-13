@@ -1,3 +1,4 @@
+@import '../mixins.scss';
 .profile-main {
   margin: 0 450px 0 400px;
   .edit-btn {
@@ -5,7 +6,7 @@
     line-height: 21px;
     font-weight: 600;
     text-align: right;
-    #update-btn {
+    #update-btn, a {
       color: rgb(0, 150, 169);
       text-decoration: none;
       cursor: pointer;
@@ -14,7 +15,7 @@
   .profile-photo-main-container {
     position: relative;
     padding-bottom: 40px;
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid $border-color;
     .profile-photo-main-item {
       display: flex;
       align-items: center;
@@ -25,12 +26,6 @@
         height: 170px;
         border-radius: 16px;
         background-color: gainsboro;
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: center;
-        }
         .fa-user {
           position: absolute;
           top: 50%;
@@ -52,9 +47,9 @@
       .user-attributes.name {
         font-size: 28px;
         font-weight: 800;
-        margin-bottom: 20px;
       }
       .user-attributes.age-and-gender {
+        margin-top: 20px;
         span {
           margin: 0 10px;
         }

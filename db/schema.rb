@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_07_060319) do
+ActiveRecord::Schema.define(version: 2023_07_10_043810) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2023_07_07_060319) do
   create_table "recruits", charset: "utf8", force: :cascade do |t|
     t.integer "required_time", default: 0, null: false
     t.time "meeting_time", default: "2000-01-01 00:00:00", null: false
-    t.string "option"
     t.boolean "closed", default: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

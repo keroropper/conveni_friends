@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
   def show
     @user = current_user
   end
@@ -20,6 +21,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  # 正しいユーザーかどうかを確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user == @user
+  end
 
   def user_params
     params.require(:user).permit(:name, :profile_photo, :introduce)

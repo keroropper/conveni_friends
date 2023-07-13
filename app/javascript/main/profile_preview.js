@@ -3,6 +3,7 @@ document.addEventListener('turbolinks:load', function() {
   const inputImgField = document.getElementById('input-profile');
   let imgTag = document.querySelector('img');
   let deleteBtn = document.querySelector('.image-delete');
+  let flag = true;
   if(deleteBtn) {
     addDeleteEvent(deleteBtn);
   }
@@ -23,8 +24,9 @@ document.addEventListener('turbolinks:load', function() {
     reader.addEventListener("load", function (e) {
       let imgUrl = e.target.result;
       // 初期画像が無い場合
-      if(!imgTag) {
+      if(!imgTag && flag) {
         createImgBlock(imgUrl);
+        flag = false;
       // 初期画像がある場合
       } else {
         // 画像削除後、冒頭で定義したimgTagには削除前の画像が代入されているため、再度取得する
@@ -71,13 +73,15 @@ document.addEventListener('turbolinks:load', function() {
     })
   } 
   function switchIcon(style) {
-    let icon = document.querySelectorAll('svg');
+    let icon = document.querySelectorAll('svg')
+    let imageIcon = Array.from(icon).slice(0, 2);
+    
     if(style == 'hidden'){
-      icon.forEach((e) => {
+      imageIcon.forEach((e) => {
         e.setAttribute('style', 'visibility: hidden;');
       });
     }else if(style == 'visible'){
-      icon.forEach((e) => {
+      imageIcon.forEach((e) => {
         e.removeAttribute('style', 'visibility: hidden;');
       });
     }
