@@ -5,7 +5,6 @@ FactoryBot.define do
     date { Date.tomorrow }
     meeting_time { 1.hour.from_now }
     required_time { 30 }
-    option { 'option' }
     user { association :user }
 
     transient do

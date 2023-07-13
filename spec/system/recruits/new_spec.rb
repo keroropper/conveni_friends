@@ -123,7 +123,7 @@ RSpec.describe "Recruits", type: :system, js: true do
   end
 
   def create_recruit(attach: true, file_name: 'kitten.jpg', tags: '', title: "title", explain: "explain", date: Date.tomorrow,
-                     meeting_time: "23", required_time: "30分", address: '', option: "option")
+                     meeting_time: "23", required_time: "30分", address: '')
     attach_image(file_name) if attach
     fill_in "recruit_tags", with: tags
     fill_in "recruit_title",	with: title
@@ -146,7 +146,6 @@ RSpec.describe "Recruits", type: :system, js: true do
     map_submit.click if map_input.value.present?
 
     select required_time,	from: "recruit_required_time"
-    fill_in "recruit_option",	with: option
     click_button "募集"
   end
 end

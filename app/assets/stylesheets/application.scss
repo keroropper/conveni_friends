@@ -3,6 +3,7 @@
  */
 @import "main/*";
 @import "users/*";
+@import "recruits/*";
 @import "flatpickr/dist/flatpickr.min";
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
@@ -17,10 +18,110 @@ body {
   height: 100%;
 }  
 
+.header {
+  @include position-fixed(0, 0);
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 9999;
+  .list-sidebar__content {
+    padding: 0 70px;
+    height: 40px;
+    .header-top-contents {
+      text-align: right;
+    }
+  }
+  .header-search {
+    width: 100%;
+    border-bottom: 1px solid $border-color;
+    .header-fixed {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 70px 5px 70px;
+      height: 100%;
+      .search-suggest {
+        .form {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  word-wrap: break-word;
+  margin-top: 170px;
+  padding: 0 70px;
+  aside {
+    height: 100%;
+    min-width: 280px;
+    max-width: 320px;
+    outline: 0;
+    h3 {
+      margin: 0;
+      padding: 10px;
+      background: #faf8f5;
+    }
+    .list-sidebar__content {
+      margin: 14px;
+      .list-sidebar__box {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
 .alert {
   color: red;
 }
 .error-message, .flash-message {
   font-size: 0.8rem;
   color: red;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.label {
+  font-weight: 800;
+  padding-right: 20px;
+}
+
+// ユーザーアイコン + 名前
+.list-rst__user {
+  height: 70px;
+  margin-bottom: 10px;
+  .profile-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .profile-name {
+      font-size: 25px;
+      font-weight: 800;
+      margin-left: 20px;
+    }
+    .profile-photo {
+      overflow: hidden;
+    }
+    .profile-icon, .profile-photo {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border: 1px solid $border-color;
+      border-radius: 50%;
+      .fa-user {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        height: 40px;
+        width: 40px;
+        color: rgb(200, 200, 200);
+      }
+    }
+  }
 }

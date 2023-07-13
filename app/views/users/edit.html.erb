@@ -25,7 +25,7 @@
           <div class="user-attributes">
           <%= render 'devise/shared/validation_error_messages', attr: :name, resource: @user %>
             <div class="user-attributes name">
-              <%= f.text_field :name, maxlength: 10 %>
+              <%= f.text_field :name, maxlength: 10, placeholder: 'ユーザー名を入力' %>
               <i class="fa-solid fa-pen fa-xs"></i>
             </div>
             
