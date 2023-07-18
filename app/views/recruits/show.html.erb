@@ -17,11 +17,11 @@
             <div class="show-recruit__image main-image-block">
               <div class="show-recruit__image main-image">
                 <% style_left = 0 %>
-                <%= i = 1 %>
+                <% i = 1 %>
                 <% @recruit.images.each do |image| %>
                   <%= image_tag image, id: "show-image-#{i}", style: "left: #{style_left}px" %>
                   <% style_left += 592 %>
-                  <%= i += 1 %>
+                  <% i += 1 %>
                 <% end %>
               <div class="left-arrow" style='visibility: hidden;'>
                 <i class="fa-solid fa-arrow-left fa-xl" style="color: #ffffff;"></i>
@@ -36,13 +36,20 @@
       </div>
 
       <div class="show-recruit__info">
+        <% if current_user == @recruit.user %>
+          <div class="edit-btn">
+            <%= link_to "編集する", edit_recruit_path(@recruit) %>
+          </div>
+        <% end %>
         <section class="info__header">
           <h1 class="info__title">
             <%= @recruit.title %>
           </h1>
-          <div class="info__offer-btn actions">
-            <input type="submit" name="commit" value="応募">
-          </div>
+          <% if current_user != @recruit.user %>
+            <div class="info__offer-btn actions">
+              <input type="submit" name="commit" value="応募">
+            </div>
+          <% end %>
         </section>
         <section class="info__summary">
           <div class="info__explain__wrap">

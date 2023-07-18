@@ -1,0 +1,49 @@
+<div class="crt-image-wrap">
+  <div class="crt-image-item">
+    <div class="crt-image-data">
+    
+      <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: 'display: none;', id: "img-file" %>
+      <%= f.hidden_field :image_num, id: 'image-number', style: 'visibility: hidden;' %>
+      <% if @recruit.images.count > 0 && @image_count > 0 %>
+        <% visibility = 'hidden' %>
+      <% else %>
+        <% visibility = '' %>
+      <% end %>
+      <% (1..4).each do |i| %>
+        <div class="crt-image-field" id="crt-image-field-<%= i %>">
+          <div id="image-preview-<%= i %>">
+            <% if request.path.include?('/edit') || @image_count >= i %>
+              <% if @recruit.images.attached? && @recruit.images.count >= i %>
+                <div class="prev-image-container">
+                  <div class="image">
+                    <%= image_tag @recruit.images[i - 1] %>
+                  </div>
+                </div>
+                <div class="image-delete">削除</div>
+              <% end %>
+            <% end %>
+          </div>
+          <% if request.path.include?('/edit') %>
+            <% if [1, 2, 3].include?(@recruit.images.count) && i == @recruit.images.count + 1 %>
+              <% visibility = '' %>
+            <% end %>
+          <% elsif request.path == ("/recruits/#{@recruit.id}") %>
+            <% if i == @image_count + 1 %>
+              <% visibility = '' %>
+            <% end %>
+          <% end %>
+          <label for="img-file" style=<%= "visibility:#{visibility};" %>>
+            <div class="icon">
+              <i class="fas fa-camera"></i>
+              <% if i == 1 %>
+                <p>（必須）</p>
+              <% end %>
+            </div>
+          </label>
+        </div>
+        <% visibility = 'hidden' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

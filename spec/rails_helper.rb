@@ -37,6 +37,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
+  config.include CreateRecruit, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
 

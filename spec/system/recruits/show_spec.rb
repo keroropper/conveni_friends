@@ -9,7 +9,7 @@ RSpec.describe "Recruits", type: :system, js: true do
     visit recruit_path(recruit)
   end
 
-  it '画像クリックで画像がスライドすること', focus: true do
+  it '画像クリックで画像がスライドすること' do
     side_images = find_all('.show-recruit__image.side-image')
     side_images[1].click
     image_wrap = find('.show-recruit__image.main-image')

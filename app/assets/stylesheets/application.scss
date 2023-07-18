@@ -125,3 +125,16 @@ img {
     }
   }
 }
+
+// 編集ボタン
+.edit-btn {
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 600;
+  text-align: right;
+  #update-btn, a {
+    color: rgb(0, 150, 169);
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
