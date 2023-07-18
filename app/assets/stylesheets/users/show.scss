@@ -1,17 +1,6 @@
 @import '../mixins.scss';
 .profile-main {
   margin: 0 450px 0 400px;
-  .edit-btn {
-    font-size: 18px;
-    line-height: 21px;
-    font-weight: 600;
-    text-align: right;
-    #update-btn, a {
-      color: rgb(0, 150, 169);
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
   .profile-photo-main-container {
     position: relative;
     padding-bottom: 40px;

@@ -76,6 +76,9 @@
       grid-column: span 5 / auto;
       padding-left: 16px;
       margin-bottom: 32px;
+      .edit-btn {
+        margin-bottom: 20px;
+      }
       .info__header {
         margin-bottom: 32px;
         .info__title {

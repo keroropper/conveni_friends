@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2023_07_10_043810) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-07-05", null: false
+    t.date "date", default: "2023-07-17", null: false
     t.string "address"
     t.float "latitude"
     t.float "longitude"

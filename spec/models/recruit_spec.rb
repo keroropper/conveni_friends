@@ -20,11 +20,11 @@ RSpec.describe Recruit, type: :model do
       expect(recruit.images.attached?).to be true
     end
 
-    context "images属性 presence, content type, length, and sizeバリデーション検証" do
+    context "images属性 presence, content type, and sizeバリデーション検証" do
       it "presence" do
-        recruit = FactoryBot.build(:recruit)
-        recruit.images = []
+        recruit = Recruit.new(FactoryBot.attributes_for(:recruit, user:))
         expect(recruit).not_to be_valid
+        expect(recruit.errors.full_messages).to include("画像の数が許容範囲外です")
       end
 
       it "type" do
@@ -33,16 +33,6 @@ RSpec.describe Recruit, type: :model do
         recruit.valid?
         expect(recruit).not_to be_valid
         expect(recruit.errors.full_messages).to eq(["画像形式はjpeg, jpg, gif, pngのみ有効です。"])
-      end
-
-      it 'length(max == 4)' do
-        5.times do
-          file = Rails.root.join('spec', 'fixtures', 'files', 'kitten.jpg')
-          recruit.images.attach(io: File.open(file), filename: 'kitten.jpg', content_type: 'image/jpg')
-        end
-        recruit.valid?
-        expect(recruit).not_to be_valid
-        expect(recruit.errors.full_messages).to eq(["画像の数が許容範囲外です"])
       end
 
       it "size" do

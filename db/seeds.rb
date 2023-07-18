@@ -24,7 +24,6 @@ user = User.create!(name:                  'ryoya',
                         date:            Time.zone.tomorrow,
                         meeting_time:   '0:00',
                         required_time:   30,
-                        option:         'option',
                         address:        '東京都台東区秋葉原',
                         latitude:        35.702259,
                         longitude:       139.774475)

@@ -4,6 +4,7 @@ let geocoder;
 let responseDiv;
 let response;
 
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -30,6 +31,7 @@ function initMap() {
   clearButton.classList.add("button", "button-secondary");
   response = document.createElement("pre");
   response.id = "response";
+  response.style.visibility = 'hidden';
   response.innerText = "";
   responseDiv = document.createElement("div");
   responseDiv.id = "response-container";
@@ -42,6 +44,7 @@ function initMap() {
   marker = new google.maps.Marker({
     map,
   });
+
   map.addListener("click", (e) => {
     geocode({ location: e.latLng });
   });
@@ -69,7 +72,7 @@ function geocode(request) {
       map.setCenter(results[0].geometry.location);
       marker.setPosition(results[0].geometry.location);
       marker.setMap(map);
-      responseDiv.style.display = "block";
+      responseDiv.style.visibility = "hidden";
       response.innerText = JSON.stringify(result, null, 2);
       return results;
     })
@@ -79,6 +82,7 @@ function geocode(request) {
 }
 
 window.initMap = initMap;
+
   
 document.addEventListener('turbolinks:load', function() {
 
@@ -89,8 +93,8 @@ document.addEventListener('turbolinks:load', function() {
       e.preventDefault();
   
       const response = JSON.parse(mapResponse.textContent);
-      let address = response.results[0].formatted_address.split(' ').slice(1);
-      document.getElementById('address-field').value = address
+      let addressVal = response.results[0].formatted_address.split(' ').slice(1);
+      document.getElementById('address-field').value = addressVal;
       document.getElementById('latitude-field').value = response.results[0].geometry.location.lat;
       document.getElementById('longitude-field').value = response.results[0].geometry.location.lng;
       

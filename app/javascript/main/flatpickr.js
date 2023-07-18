@@ -6,17 +6,27 @@ document.addEventListener("turbolinks:load", () => {
   const timePicker = document.getElementById("recruit_meeting_time");
   let initializedDate = false;
   let initializedTime = false;
+  let date = "today";
+  if(location.href.includes('/edit') || !location.href.includes('/new') || window.location.pathname == (/\/recruits\/\d+/)) {
+    date = "<%= @recruit.date %>";
+  };
   let fpDate = flatpickr(datePicker, {
-    dateFormat: "Y/m/d",
     locale: Japanese,
-    defaultDate: "today"
+    defaultDate: date,
+    dateFormat: "Y/n/j",
   });
+
+  let time = new Date();
+  if(location.href.includes('/edit') || !location.href.includes('/new') || window.location.pathname == (/\/recruits\/\d+/)) {
+    time = timePicker.value.split(' ')[1]
+  };
+
   let fpTime = flatpickr(timePicker, {
                  enableTime  : true,
                  noCalendar  : true,
                  dateFormat  : "H:i",
                  time_24hr   : true,
-                 defaultDate: new Date()
+                 defaultDate: time,
                });
 
   function dateTimeOpen(picker, type) {
