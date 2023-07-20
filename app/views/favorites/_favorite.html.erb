@@ -1,0 +1,20 @@
+<% if !user_signed_in? %>
+  <div class="like-icon">
+    <i class="fa-regular fa-heart fa-2xl" style='color: red;'></i>
+    <span class="likes-count"><%= recruit.favorites.count %></span>
+  </div>
+<% elsif current_user.favorite_by?(recruit.id) %>
+  <%= link_to recruit_favorite_path(recruit, recruit.favorites), method: :delete, remote: true do %>
+    <div class="like-icon">
+      <i class="fa-solid fa-heart fa-2xl" style='color: red;'></i>
+      <span class="likes-count"><%= recruit.favorites.count %></span>
+    </div>
+  <% end %>
+<% elsif !current_user.favorite_by?(recruit.id) %>
+  <%= link_to recruit_favorites_path(recruit), method: :post, remote: true do %>
+    <div class="like-icon">
+      <i class="fa-regular fa-heart fa-2xl" style='color: red;'></i>
+      <span class="likes-count"><%= recruit.favorites.count %></span>
+    </div>
+  <% end %>
+<% end %>

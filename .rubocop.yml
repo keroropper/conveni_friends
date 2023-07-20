@@ -126,6 +126,10 @@ Naming/VariableNumber:
 Lint/AssignmentInCondition:
   Enabled: false
 
+# Factoryがからの場合の指摘
+Lint/EmptyBlock:
+  Enabled: false
+
 # 日本語の場合、i18n localeファイルを使用することを強制する設定をfalseにする
 Rails/I18nLocaleTexts:
   Enabled: false

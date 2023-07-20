@@ -1,0 +1,1 @@
+document.getElementById('info__likes__wrap-<%= @recruit.id %>').innerHTML = ("<%= j(render partial: 'favorites/favorite', locals: { recruit: @recruit }) %>");

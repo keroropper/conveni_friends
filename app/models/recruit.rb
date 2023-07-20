@@ -3,6 +3,8 @@ class Recruit < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :recruit_tags, dependent: :destroy
   has_many :tags, through: :recruit_tags
+  has_many :favorites, dependent: :destroy
+  has_many :favorites_users, through: :favorites, source: :user
   accepts_nested_attributes_for :tags, allow_destroy: true
   has_many_attached :images
   validates :required_time, numericality: { only_integer: true }
