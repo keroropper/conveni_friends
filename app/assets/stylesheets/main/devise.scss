@@ -29,9 +29,6 @@
         .optional {
           @include selected-label(#777777)
         } 
-        input::placeholder {
-          color: rgb(200, 200, 200);
-        }
         input, select#user_gender {
           @include auth-input-form;
           &:focus {

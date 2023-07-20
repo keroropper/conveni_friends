@@ -51,6 +51,13 @@
             </div>
           <% end %>
         </section>
+        <section class="info__likes">
+          <div class="info__likes__wrap">
+            <div class="like-icon">
+              <i class="fa-regular fa-heart fa-2xl"></i>
+              <span class="likes-count">30</span>
+            </div>
+        </section>
         <section class="info__summary">
           <div class="info__explain__wrap">
             <div class="info__label">
@@ -89,9 +96,24 @@
           <div class="info__label">
             <h2 class="info__label-text">募集者</h2>
           </div>
-          <div class="info__user__wrap">
-            <%= link_to user_path(@recruit.user) do %>
-              <%= render 'shared/user_info', recruit: @recruit %>
+            <div class="info__user__wrap">
+              <%= link_to user_path(@recruit.user) do %>
+                <%= render 'shared/user_info', recruit: @recruit, flag: true %>
+              <% end %>
+            </div>
+        </section>
+        <section class="info__recruit-comments">
+          <div id="comments__wrap">
+
+
+            <%= render 'comments/recruit_comments' %>
+          </div>
+
+          <div class="info__comments__create">
+            <%= form_with model: [@recruit, @comment], method: :post, local: false do |f| %>
+              <%= f.text_area :text,  maxlength: 28, placeholder: 'コメントを入力' %>
+              <%= f.hidden_field :recruit_id, value: @recruit.id %>
+              <%= f.submit '送信' %>
             <% end %>
           </div>
         </section>

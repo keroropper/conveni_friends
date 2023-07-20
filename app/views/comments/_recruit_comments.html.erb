@@ -1,0 +1,19 @@
+<div class="info__label">
+  <h2 class="info__label-text">コメント（<%= @comments.count %>）</h2>
+</div>    
+<% if @comments.count.zero? %>
+<p>コメントはまだありません</p>
+<% end %>
+<div class="info__comments__index">
+  <% @comments.each do |comment| %>
+    <div class="info__user__wrap">
+      <%= link_to user_path(@recruit.user) do %>
+        <%= render 'shared/user_info', recruit: @recruit, flag: false %>
+      <% end %>
+    </div>
+    <div class="text-container">
+      <p class="text-body"><%= safe_join(comment.text.split("\n"),tag(:br)) %></p>
+      <span class="comment__time-ago"><%= time_ago_in_words(comment.created_at) %>前</span>
+    </div>
+  <% end %>
+</div>

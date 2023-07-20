@@ -71,6 +71,10 @@ body {
   }
 }
 
+input::placeholder, textarea::placeholder {
+  color: rgb(200, 200, 200);
+}
+
 .alert {
   color: red;
 }

@@ -6,6 +6,8 @@ class RecruitsController < ApplicationController
   def show
     recruit_tags = RecruitTag.where(recruit_id: @recruit.id)
     @tags = recruit_tags.map { |recruit_tag| Tag.find(recruit_tag.tag_id) }
+    @comments = @recruit.comments
+    @comment = current_user.comments.new
   end
 
   def new
