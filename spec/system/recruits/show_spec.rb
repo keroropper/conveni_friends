@@ -22,4 +22,10 @@ RSpec.describe "Recruits", type: :system, js: true do
     image_wrap = find('.show-recruit__image.main-image')
     expect(image_wrap).to have_css('img', id: 'show-image-2', style: 'left: 592px; transform: translateX(-592px);')
   end
+
+  it 'コメントを投稿できること' do
+    fill_in "comment_text",	with: "コメント"
+    click_button '送信'
+    expect(page).to have_css('.text-body', text: 'コメント')
+  end
 end

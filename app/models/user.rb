@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :profile_photo, dependent: :destroy
   before_save :downcase_email
   devise :database_authenticatable, :registerable,

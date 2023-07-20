@@ -15,15 +15,9 @@ $element-border-color: #EEEEEE;
     textarea {
       resize: none;
       outline: none;
-      &::placeholder {
-        color: $guide-color;
-      }
     }
     input, select {
       outline: none;
-      &::placeholder {
-        color: $guide-color;
-      }
     }
     .headline {
       color: $guide-color;

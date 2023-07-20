@@ -80,7 +80,7 @@
         margin-bottom: 20px;
       }
       .info__header {
-        margin-bottom: 32px;
+        margin-bottom: 20px;
         .info__title {
           margin-top: 0;
           margin-bottom: 12px;
@@ -99,6 +99,9 @@
             background-color: #2C7CFF;
           }
         }
+      }
+      .info__likes {
+        margin-bottom: 20px;
       }
       .info__summary {
         margin-bottom: 32px;
@@ -154,6 +157,74 @@
         .fa-angle-right {
           margin-left: 35px;
         }
+      }
+      .info__recruit-comments {
+        .info__label {
+          margin-bottom: 30px;
+        }
+        p {
+          margin-bottom: 32px;
+        }
+        textarea {
+          width: 83%;
+          height: 80px;
+          padding: 8px;
+          font-size: 1.2rem;
+          border: none;
+          background-color: rgb(245, 245, 245);
+          vertical-align: middle;
+          resize: none;
+        }
+        input[type="submit"] {
+          @include submit-input-btn(15%, 80px);
+          border-radius: 0;
+          vertical-align: middle;
+          cursor: pointer;
+        }
+        .info__comments__index {
+          position: relative;
+          padding-left: 56px;
+          margin-bottom: 60px;
+          height: 400px;
+          overflow: scroll;
+          .info__user__wrap {
+            height: 20px;
+            .profile-image {
+              height: 20px;
+              .profile-photo {
+                position: absolute;
+                top: 0;
+                left: 0;
+              }
+              .profile-name {
+                position: absolute;
+                top: 0;
+                font-size: 15px;
+                margin: 0;
+              }
+            }
+          }
+          .text-container {
+            background-color: rgb(245, 245, 245);
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 10px;
+            p {
+              font-size: 15px;
+              margin: 0;
+            }
+            .comment__time-ago {
+              font-size: 10px;
+              color: $sub-text-color;
+            }
+          }
+        }
+
+      }
+      // 詳細画面のプロフィールのサイズ
+      .profile-photo {
+        width: 45px;
+        height: 45px;
       }
     }
   }
