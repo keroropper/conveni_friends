@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_recruits, through: :favorites, source: :recruit
   has_one_attached :profile_photo, dependent: :destroy
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
@@ -25,6 +27,10 @@ class User < ApplicationRecord
     else
       profile_photo.purge
     end
+  end
+
+  def favorite_by?(recruit_id)
+    favorites.exists?(recruit_id:)
   end
 
   private

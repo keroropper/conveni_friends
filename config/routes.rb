@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :recruits do
     resources :comments, only: [:create]
+    resources :favorites, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
 end

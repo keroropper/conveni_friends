@@ -52,11 +52,9 @@
           <% end %>
         </section>
         <section class="info__likes">
-          <div class="info__likes__wrap">
-            <div class="like-icon">
-              <i class="fa-regular fa-heart fa-2xl"></i>
-              <span class="likes-count">30</span>
-            </div>
+          <div id="info__likes__wrap-<%= @recruit.id %>">
+            <%= render 'favorites/favorite', recruit: @recruit %>
+          </div>
         </section>
         <section class="info__summary">
           <div class="info__explain__wrap">

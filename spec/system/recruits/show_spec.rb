@@ -28,4 +28,25 @@ RSpec.describe "Recruits", type: :system, js: true do
     click_button '送信'
     expect(page).to have_css('.text-body', text: 'コメント')
   end
+
+  it '空文字だとコメントを投稿できないこと' do
+    fill_in "comment_text",	with: ""
+    click_button '送信'
+    expect(page).to_not have_css('.text-body', text: 'コメント')
+  end
+
+  it 'いいねをすると画面のカウントが変化すること' do
+    expect(page).to have_css('.likes-count', text: '0')
+    icon = find('.like-icon')
+    icon.click
+    expect(page).to have_css('.likes-count', text: '1')
+  end
+
+  it 'いいねを削除すると画面のカウントが変化すること' do
+    icon = find('.like-icon')
+    icon.click
+    expect(page).to have_css('.likes-count', text: '1')
+    icon.click
+    expect(page).to have_css('.likes-count', text: '0')
+  end
 end
