@@ -45,16 +45,14 @@
           <h1 class="info__title">
             <%= @recruit.title %>
           </h1>
-          <% if current_user != @recruit.user %>
-            <div class="info__offer-btn actions">
-              <input type="submit" name="commit" value="応募">
-            </div>
-          <% end %>
-        </section>
-        <section class="info__likes">
           <div id="info__likes__wrap-<%= @recruit.id %>">
             <%= render 'favorites/favorite', recruit: @recruit %>
           </div>
+          <% if current_user != @recruit.user %>
+            <div id="info__applicant">
+              <%= render 'applicants/applicant', recruit: @recruit, applicant: @applicant %>
+            </div>
+          <% end %>
         </section>
         <section class="info__summary">
           <div class="info__explain__wrap">

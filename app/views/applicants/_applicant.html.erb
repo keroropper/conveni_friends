@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+
+  <% if current_user.applicant_by?(recruit.id) %>
+    <%= link_to recruit_applicant_path(recruit, applicant), method: :delete, remote: true do %>
+      <div class="info__offer-btn delete-actions">
+        <input type="submit" name="commit" value="キャンセル">
+      </div>
+    <% end %>
+  <% elsif !current_user.applicant_by?(recruit.id) %>
+    <%= link_to recruit_applicants_path(recruit), method: :post, remote: true do %>
+      <div class="info__offer-btn create-actions">
+        <input type="submit" name="commit" value="応募">
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>

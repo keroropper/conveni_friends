@@ -8,6 +8,7 @@ class RecruitsController < ApplicationController
     @tags = recruit_tags.map { |recruit_tag| Tag.find(recruit_tag.tag_id) }
     @comments = @recruit.comments
     @comment = current_user.comments.new
+    @applicant = Applicant.find_by(user_id: current_user.id, recruit_id: @recruit.id)
   end
 
   def new
