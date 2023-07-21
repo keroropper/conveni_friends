@@ -85,28 +85,29 @@
           margin-top: 0;
           margin-bottom: 12px;
         }
-        .info__tags {
-          margin-bottom: 20px;
-        }
-        .actions {
-          text-align: center;
-          margin-bottom: 6px;
-          input {
-            @include submit-input-btn(100%, 40px);
-          }
-          &:hover {
-            cursor: pointer;
-            background-color: #2C7CFF;
-          }
-        }
-      }
-      .info__likes {
-        margin-bottom: 20px;
         [id^='info__likes__wrap-'] {
+          margin-bottom: 20px;
           width: fit-content;
           a {
             color: black;
             text-decoration: none;
+          }
+        }
+        #info__applicant {
+          input {
+            @include submit-input-btn(100%, 40px);
+            &:hover {
+              cursor: pointer;
+              background-color: #2C7CFF;
+            }
+          }
+          .delete-actions {
+            input {
+              background-color: #FF3333;
+              &:hover {
+                background-color: #FF6666;
+              }
+            }
           }
         }
       }
@@ -129,6 +130,7 @@
           .info__tags {
             display: flex;
             align-items: center;
+            margin-bottom: 20px;
             .info__tags__label {
               margin-right: 25px;
             }
