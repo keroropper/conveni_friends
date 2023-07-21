@@ -4,6 +4,7 @@
 @import "main/*";
 @import "users/*";
 @import "recruits/*";
+@import "applicants/applicant_users";
 @import "flatpickr/dist/flatpickr.min";
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
@@ -111,27 +112,27 @@ img {
     .profile-photo {
       overflow: hidden;
     }
-    .profile-icon, .profile-photo {
-      position: relative;
-      width: 60px;
-      height: 60px;
-      border: 1px solid $border-color;
-      border-radius: 50%;
-      .fa-user {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        translate: -50% -50%;
-        height: 40px;
-        width: 40px;
-        color: rgb(200, 200, 200);
-      }
-    }
+  }
+}
+.profile-icon, .profile-photo {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  .fa-user {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 40px;
+    width: 40px;
+    color: rgb(200, 200, 200);
   }
 }
 
 // 編集ボタン
-.edit-btn {
+.edit-btn, .applicant-index {
   font-size: 18px;
   line-height: 21px;
   font-weight: 600;

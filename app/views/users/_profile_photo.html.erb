@@ -1,0 +1,21 @@
+<div class="profile-photo-main-container">
+  <div class="profile-photo-main-item">
+    <div class="profile-image">
+      <% if user.profile_photo.attached? %>
+        <%= image_tag user.profile_photo %>
+      <% else %>
+        <i class="fa fa-user visible-icon" aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <div class="user-attributes">
+      <div class="user-attributes name">
+        <%= user.name %>
+      </div>
+      
+      <div class="user-attributes age-and-gender">
+        <%= user.age %>歳
+        <%= user.gender %>
+      </div>
+    </div>
+  </div>
+</div>

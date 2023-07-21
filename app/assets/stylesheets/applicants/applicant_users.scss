@@ -1,0 +1,65 @@
+// Place all the styles related to the applicants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// recruit_applicants_index
+.applicant-users__container {
+  width: 100%;
+  margin-left: 40px;
+  .applicant-recruit__block {
+    display: flex;
+    align-items: center;
+    a {
+      &:nth-child(2) {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .applicant-recruit__title {
+      margin-left: 30px;
+    }
+  }
+  .applicant-users__block {
+    width: 740px;
+    display: flex;
+    flex-wrap: wrap;
+    a {
+      margin-right: 40px;
+      text-decoration: none;
+      color: black;
+      &:hover {
+        background-color: white;
+        opacity: 0.4;
+      }
+    }
+    .profile-photo-main-container {
+      position: relative;
+      margin-top: 50px;
+      .profile-photo-main-item {
+        align-items: center;
+        .profile-image {
+            @include user-image;
+            margin: 0;
+          .fa-user {
+            @include default-user-image;
+          }
+        }
+        .user-attributes.name {
+          margin-top: 20px;
+          font-size: 20px;
+        }
+        .user-attributes.age-and-gender {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  .applicant-guest {
+    font-size: 17px;
+    margin-top: 30px;
+  }
+}
+

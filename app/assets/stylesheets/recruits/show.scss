@@ -76,8 +76,13 @@
       grid-column: span 5 / auto;
       padding-left: 16px;
       margin-bottom: 32px;
-      .edit-btn {
+      .another-page__path {
         margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+        .applicant-index {
+          margin-right: 30px;
+        }
       }
       .info__header {
         margin-bottom: 20px;

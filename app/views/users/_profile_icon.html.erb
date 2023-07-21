@@ -1,0 +1,9 @@
+<% if recruit.user.profile_photo.attached? %>
+  <div class="profile-photo">
+    <%= image_tag recruit.user.profile_photo %>
+  </div>
+<% else %>
+  <div class="profile-photo">
+    <i class="fa fa-user visible-icon" aria-hidden="true"></i>
+  </div>
+<% end %>

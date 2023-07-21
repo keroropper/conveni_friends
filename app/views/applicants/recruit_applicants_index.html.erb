@@ -1,0 +1,42 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="rstlist-contents">  
+    <div class="flexible-rstlst">
+
+      <%= render 'shared/sidebar' %>
+
+      <div class="applicant-users__container">
+        <div class="applicant-recruit__block">
+          <%= link_to user_path(@recruit.user) do %>
+            <%= render 'users/profile_icon', recruit: @recruit %>
+          <% end %>
+          <%= link_to recruit_path(@recruit) do %>
+            <h1 class="applicant-recruit__title">
+              <%= @recruit.title %>
+            </h1>
+          <% end %>
+        </div>
+        <h2>応募者</h2>
+        <% if @users %>
+          <div class="applicant-users__block">
+            <% @users.each do |user| %>
+              <%= link_to user_path(user) do %>
+                <%= render 'users/profile_photo', user: user %>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="applicant-guest">
+            <span>応募者はまだいません。</span>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="rst-footer">
+  </div>
+
+</div>

@@ -63,3 +63,22 @@ $border-color: #DDDDDD;
   border-top: 1px solid #DDDDDD;
   border-bottom: 1px solid #DDDDDD;
 }
+
+@mixin user-image {
+  position: relative;
+  margin-right: 16px;
+  width: 128px;
+  height: 170px;
+  border-radius: 16px;
+  background-color: gainsboro;
+}
+
+@mixin default-user-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100px;
+  height: 80px;
+  color: gray;
+}
