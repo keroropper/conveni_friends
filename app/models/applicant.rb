@@ -8,8 +8,6 @@ class Applicant < ApplicationRecord
   private
 
   def not_applicant_own_recruit
-    if user == recruit.user
-      errors.add(:base, "You can't apply to your own recruit.")
-    end
+    errors.add(:base, "You can't apply to your own recruit.") if user == recruit.user
   end
 end

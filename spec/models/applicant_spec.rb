@@ -9,6 +9,6 @@ RSpec.describe Applicant, type: :model do
 
   it '自分の投稿には応募できないこと' do
     invalid_applicant = Applicant.new(user_id: user.id, recruit_id: recruit.id)
-    expect(invalid_applicant.valid?).to  be_falsey
+    expect(invalid_applicant.valid?).to be_falsey
   end
 end

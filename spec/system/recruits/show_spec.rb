@@ -53,18 +53,18 @@ RSpec.describe "Recruits", type: :system, js: true do
   describe 'Applicant' do
     let(:other) { create(:user) }
     let!(:others_recruit) { FactoryBot.create(:recruit, user: other) }
-    before do 
+    before do
       visit recruit_path(others_recruit)
     end
-    it '応募ボタンを押すとキャンセルボタンが表示されること(逆も)',focus: true do
+    it '応募ボタンを押すとキャンセルボタンが表示されること(逆も)', focus: true do
       expect(page).to have_css('.create-actions')
-      within ('.create-actions') do
+      within('.create-actions') do
         input = find('input')
         expect(input.value).to eq('応募')
         input.click
       end
       expect(page).to have_css('.delete-actions')
-      within ('.delete-actions') do
+      within('.delete-actions') do
         input = find('input')
         expect(input.value).to eq('キャンセル')
       end
