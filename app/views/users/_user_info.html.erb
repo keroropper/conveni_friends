@@ -1,0 +1,11 @@
+<div class="list-rst__user">
+  <div class="profile-image">
+    <%= render 'users/profile_icon', recruit: recruit %>
+    <div class="profile-name">
+      <%= recruit.user.name %>
+    </div>
+    <% if current_page?(recruit_path(recruit))  && flag %>
+      <i class="fa fa-angle-right fa-xl" aria-hidden="true"></i>
+    <% end %>
+  </div>
+</div>

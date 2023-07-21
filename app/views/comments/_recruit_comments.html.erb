@@ -8,7 +8,7 @@
   <% @comments.each do |comment| %>
     <div class="info__user__wrap">
       <%= link_to user_path(@recruit.user) do %>
-        <%= render 'shared/user_info', recruit: @recruit, flag: false %>
+        <%= render 'users/user_info', recruit: @recruit, flag: false %>
       <% end %>
     </div>
     <div class="text-container">

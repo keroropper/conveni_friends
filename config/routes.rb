@@ -9,10 +9,13 @@ Rails.application.routes.draw do
     root to: "secrets#index", as: :authenticated_root
   end
   root to: "home#index"
-  resources :recruits do
+  resources :recruits, except: :index do
     resources :comments, only: [:create]
     resources :favorites, only: [:create, :destroy]
     resources :applicants, only: [:create, :destroy]
+    get 'applicants/index' => 'applicants#recruit_applicants_index'
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    get 'applicants/index' => 'applicants#user_applicants_index'
+  end
 end

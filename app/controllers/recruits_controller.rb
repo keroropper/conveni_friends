@@ -1,6 +1,6 @@
 class RecruitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :params_of_recruit, only: [:show, :edit, :update]
+  before_action :params_of_recruit, only: [:index, :show, :edit, :update]
   before_action :params_of_tags, only: [:create, :update]
   before_action :image_count, only: [:new, :create, :edit, :update]
   def show

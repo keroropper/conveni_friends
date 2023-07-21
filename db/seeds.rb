@@ -9,15 +9,33 @@
 user = User.create!(name:                  'ryoya',
                     age:                    20,
                     gender:                '男性',
-                    email:                 'test1@example.com',
+                    email:                 'test@example.com',
                     password:              '111111',
                     password_confirmation: '111111',
                     admin:                  true,
                     confirmed_at:           Time.zone.today,
-                    activated:              true
+                    activated:              true,
+                    introduce:              '初めまして!ryoyaって言います!
+                                             仲良くしてくださいね！'
                     )
+10.times do |n|
+  name = Faker::Name.name
+  email = "test#{n}@example.com"
+  User.create!(name:                 name,
+              age:                    20,
+              gender:                '男性',
+              email:                 email,
+              password:              '111111',
+              password_confirmation: '111111',
+              admin:                  true,
+              confirmed_at:           Time.zone.today,
+              activated:              true,
+              introduce:              '初めまして!ryoyaって言います!
+                                       仲良くしてくださいね！'
+              )
+end
 
-20.times do 
+5.times do 
   recruit = Recruit.new(user:            user,
                         title:          'title',
                         explain:        'explain',
@@ -39,4 +57,11 @@ user = User.create!(name:                  'ryoya',
   recruit.images.attach(io: File.open(Rails.root.join('app/assets/images/メギド72_01.jpg')), filename: 'メギド72_01.jpg')
   recruit.images.attach(io: File.open(Rails.root.join('app/assets/images/縦長.jpeg')), filename: '縦長.jpeg')
   recruit.save!
+end
+
+users = User.all
+recruit = Recruit.first
+applicant_users = users[2...-1]
+applicant_users.each do |user|
+  Applicant.create(user_id: user.id, recruit_id: recruit.id)
 end

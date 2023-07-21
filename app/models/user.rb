@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_recruits, through: :favorites, source: :recruit
   has_many :applicants, dependent: :destroy
-  has_many :applicant_recruits, through: :favorites, source: :recruit
+  has_many :applicant_recruits, through: :applicants, source: :recruit
   has_one_attached :profile_photo, dependent: :destroy
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
@@ -37,6 +37,13 @@ class User < ApplicationRecord
 
   def applicant_by?(recruit_id)
     applicants.exists?(recruit_id:)
+  end
+
+  def applicant_user?(current_user)
+    return false if self == current_user
+
+    app_rec = applicant_recruits
+    true if app_rec.present? && (app_rec & current_user.recruits)
   end
 
   private

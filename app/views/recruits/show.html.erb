@@ -37,8 +37,13 @@
 
       <div class="show-recruit__info">
         <% if current_user == @recruit.user %>
-          <div class="edit-btn">
-            <%= link_to "編集する", edit_recruit_path(@recruit) %>
+          <div class="another-page__path">
+            <div class="applicant-index">
+              <%= link_to "応募者一覧へ", recruit_applicants_index_path(@recruit) %>
+            </div>
+            <div class="edit-btn">
+              <%= link_to "編集する", edit_recruit_path(@recruit) %>
+            </div>
           </div>
         <% end %>
         <section class="info__header">
@@ -94,7 +99,7 @@
           </div>
             <div class="info__user__wrap">
               <%= link_to user_path(@recruit.user) do %>
-                <%= render 'shared/user_info', recruit: @recruit, flag: true %>
+                <%= render 'users/user_info', recruit: @recruit, flag: true %>
               <% end %>
             </div>
         </section>

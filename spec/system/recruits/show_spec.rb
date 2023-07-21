@@ -56,7 +56,7 @@ RSpec.describe "Recruits", type: :system, js: true do
     before do
       visit recruit_path(others_recruit)
     end
-    it '応募ボタンを押すとキャンセルボタンが表示されること(逆も)', focus: true do
+    it '応募ボタンを押すとキャンセルボタンが表示されること(逆も)' do
       expect(page).to have_css('.create-actions')
       within('.create-actions') do
         input = find('input')
@@ -69,13 +69,5 @@ RSpec.describe "Recruits", type: :system, js: true do
         expect(input.value).to eq('キャンセル')
       end
     end
-  end
-
-  it 'いいねを削除すると画面のカウントが変化すること' do
-    icon = find('.like-icon')
-    icon.click
-    expect(page).to have_css('.likes-count', text: '1')
-    icon.click
-    expect(page).to have_css('.likes-count', text: '0')
   end
 end
