@@ -5,6 +5,12 @@ class User < ApplicationRecord
   has_many :favorite_recruits, through: :favorites, source: :recruit
   has_many :applicants, dependent: :destroy
   has_many :applicant_recruits, through: :applicants, source: :recruit
+  # 応募する側
+  has_many :active_relations, class_name: 'Relation', foreign_key: :followed_id
+  has_many :followings, through: :active_relations, source: :follower
+  # 応募される側
+  has_many :passive_relations, class_name: 'Relation', foreign_key: :follower_id
+  has_many :followers, through: :passive_relations, source: :followed 
   has_one_attached :profile_photo, dependent: :destroy
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
@@ -44,6 +50,11 @@ class User < ApplicationRecord
 
     app_rec = applicant_recruits
     true if app_rec.present? && (app_rec & current_user.recruits)
+  end
+
+  # 自分が応募済みかどうかを検証
+  def followed_by?(user)
+    passive_relations.find_by(followed_id: user.id).present?
   end
 
   private

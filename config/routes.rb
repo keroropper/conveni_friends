@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update] do
     get 'applicants/index' => 'applicants#user_applicants_index'
+    resources :relations, only: [:index, :create, :destroy]
+    member do
+      get :following, :followers
+    end
   end
 end

@@ -7,21 +7,21 @@
       <%= render 'shared/sidebar' %>
 
       <div class="applicant-users__container">
-        <div class="applicant-recruit__block">
-          <%= link_to user_path(@recruit.user) do %>
-            <%= render 'users/profile_icon', recruit: @recruit %>
-          <% end %>
-          <%= link_to recruit_path(@recruit) do %>
-            <h1 class="applicant-recruit__title">
-              <%= @recruit.title %>
-            </h1>
-          <% end %>
-        </div>
+        <%= link_to recruit_path(@recruit) do %>
+          <div class="applicant-recruit__block">
+            <div class="applicant-recruit__image">
+              <%= image_tag @recruit.images.first %>
+            </div>
+              <h1 class="applicant-recruit__title">
+                <%= @recruit.title %>
+              </h1>
+          </div>
+        <% end %>
         <h2>応募者</h2>
         <% if @users %>
           <div class="applicant-users__block">
             <% @users.each do |user| %>
-              <%= link_to user_path(user) do %>
+              <%= link_to user_path(user, recruit_id: @recruit.id) do %>
                 <%= render 'users/profile_photo', user: user %>
               <% end %>
             <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_21_045933) do
+ActiveRecord::Schema.define(version: 2023_07_21_165916) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -86,11 +86,22 @@ ActiveRecord::Schema.define(version: 2023_07_21_045933) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-07-17", null: false
+    t.date "date", default: "2023-07-24", null: false
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "deleted_at"
     t.index ["user_id"], name: "index_recruits_on_user_id"
+  end
+
+  create_table "relations", charset: "utf8", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.bigint "recruit_id", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "followed_id"], name: "index_relations_on_follower_id_and_followed_id", unique: true
+    t.index ["recruit_id"], name: "index_relations_on_recruit_id"
   end
 
   create_table "tags", charset: "utf8", force: :cascade do |t|
@@ -127,4 +138,5 @@ ActiveRecord::Schema.define(version: 2023_07_21_045933) do
   add_foreign_key "favorites", "recruits"
   add_foreign_key "favorites", "users"
   add_foreign_key "recruits", "users"
+  add_foreign_key "relations", "recruits"
 end

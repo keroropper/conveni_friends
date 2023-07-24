@@ -7,9 +7,9 @@
         <%= link_to "プロフィールを編集する", edit_user_path(@user) %>
       </div>
     <% end %>
-    <% if @user.applicant_user?(current_user) %>
+    <% if @user.applicant_user?(current_user) && !@user.followed_by?(current_user) %>
       <div class="edit-btn">
-        <%= link_to "承認する", '#' %>
+        <%= link_to "承認する", user_relations_path(@user, recruit_id: @recruit_id), method: :post %>
       </div>
     <% end %>
 

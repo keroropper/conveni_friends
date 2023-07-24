@@ -10,8 +10,9 @@
       align-items: center;
       .profile-image {
         @include user-image;
-      .fa-user {
-        @include default-user-image;
+        .fa-user {
+          @include default-user-image;
+        }
         .fa-camera {
           position: absolute;
           bottom: 8px;
@@ -20,7 +21,6 @@
           margin: auto;
           right: 0px;
         }
-      }
       }
       .user-attributes.name {
         font-size: 28px;

@@ -93,10 +93,6 @@
         [id^='info__likes__wrap-'] {
           margin-bottom: 20px;
           width: fit-content;
-          a {
-            color: black;
-            text-decoration: none;
-          }
         }
         #info__applicant {
           input {
@@ -163,10 +159,6 @@
         .info__user__wrap {
           padding: 16px 0;
           @include separate-border;
-        }
-        a {
-          text-decoration: none;
-          color: black;
         }
         .fa-angle-right {
           margin-left: 35px;

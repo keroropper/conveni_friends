@@ -4,7 +4,8 @@
 @import "main/*";
 @import "users/*";
 @import "recruits/*";
-@import "applicants/applicant_users";
+@import "applicants/*";
+@import "relations/*";
 @import "flatpickr/dist/flatpickr.min";
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
@@ -82,6 +83,11 @@ input::placeholder, textarea::placeholder {
 .error-message, .flash-message {
   font-size: 0.8rem;
   color: red;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 img {
