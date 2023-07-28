@@ -51,12 +51,13 @@ RSpec.describe "Recruits", type: :system, js: true do
       expect(page).to have_selector('.image', visible: true, count: 1)
     end
 
-    scenario 'googleMapにピンを立てると経度、緯度、住所が保存されること' do
+    scenario 'googleMapにピンを立てると経度、緯度、住所が保存されること', focus: true do
       create_recruit(address: '秋葉原')
+      sleep 1
       recruit = user.recruits.first
       expect(recruit.address).to eq "Taito,City,,Tokyo,110-0006,,Japan"
-      expect(recruit.latitude).to be_within(999.000001).of(35.702259)
-      expect(recruit.latitude).to be_within(999.000001).of(139.774475)
+      expect(recruit.latitude).to eq(35.7023)
+      expect(recruit.longitude).to eq(139.774)
     end
   end
 

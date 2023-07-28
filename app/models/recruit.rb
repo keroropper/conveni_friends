@@ -1,5 +1,5 @@
 class Recruit < ApplicationRecord
-  scope :active, -> { where(:deleted_at => nil)}
+  scope :active, -> { where(deleted_at: nil) }
   # Ex:- scope :active, -> {where(:active => true)}
   belongs_to :user
   has_many :comments, dependent: :destroy

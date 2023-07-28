@@ -6,14 +6,14 @@ class User < ApplicationRecord
   has_many :applicants, dependent: :destroy
   has_many :applicant_recruits, through: :applicants, source: :recruit
   # 応募する側
-  has_many :active_relations, class_name: 'Relation', foreign_key: :followed_id
+  has_many :active_relations, class_name: 'Relation', foreign_key: :followed_id, dependent: :destroy, inverse_of: :followed
   has_many :followings, through: :active_relations, source: :follower
   # 応募される側
-  has_many :passive_relations, class_name: 'Relation', foreign_key: :follower_id
-  has_many :followers, through: :passive_relations, source: :followed 
+  has_many :passive_relations, class_name: 'Relation', foreign_key: :follower_id, dependent: :destroy, inverse_of: :followerr
+  has_many :followers, through: :passive_relations, source: :followed
   has_one_attached :profile_photo, dependent: :destroy
-  has_many :members
-  has_many :chat_messages
+  has_many :members, dependent: :destroy
+  has_many :chat_messages, dependent: :destroy
   has_many :chat_rooms, through: :members
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
@@ -67,9 +67,9 @@ class User < ApplicationRecord
   end
 
   def user_relations
-    (followings + followers).sort_by { |user| user.created_at }.reverse
+    (followings + followers).sort_by(&:created_at).reverse
   end
-  
+
   def create_chat_room(other_user)
     room = ChatRoom.create
     Member.create(user_id: id, chat_room_id: room.id)
@@ -80,8 +80,7 @@ class User < ApplicationRecord
   def find_target_room(target_user)
     current_user_room = Member.where(user_id: id).map(&:chat_room_id)
     target_user_room = Member.where(user_id: target_user).map(&:chat_room_id)
-    room = ChatRoom.find(current_user_room.intersection(target_user_room)[0])
-    return room
+    ChatRoom.find(current_user_room.intersection(target_user_room)[0])
   end
 
   private
