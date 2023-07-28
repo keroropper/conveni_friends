@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_21_165916) do
+ActiveRecord::Schema.define(version: 2023_07_25_045600) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 2023_07_21_165916) do
     t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
+  create_table "chat_messages", charset: "utf8", force: :cascade do |t|
+    t.string "content", default: "", null: false
+    t.integer "chat_room_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chat_rooms", charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.string "text", default: "", null: false
     t.bigint "user_id"
@@ -70,6 +83,13 @@ ActiveRecord::Schema.define(version: 2023_07_21_165916) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "members", charset: "utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "chat_room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recruit_tags", charset: "utf8", force: :cascade do |t|
     t.integer "recruit_id"
     t.integer "tag_id"
@@ -86,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_07_21_165916) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-07-24", null: false
+    t.date "date", default: "2023-07-22", null: false
     t.string "address"
     t.float "latitude"
     t.float "longitude"

@@ -22,4 +22,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  resources :chat_rooms, only: [:create, :destroy] do
+    resources :chat_messages, only: :create
+  end
+  mount ActionCable.server => '/cable'
 end

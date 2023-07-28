@@ -1,0 +1,30 @@
+<% if @room.present? %>
+  <div class="chat-user">
+    <div class="list-rst__user">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="profile-image">
+        <%= render 'users/profile_icon', user: @user %>
+        <div class="profile-name">
+          <%= @user.name %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-messages-container" data-room_id="<%= @room.id %>">
+    <div class="chat-messages-wrap">
+      <% if @messages.present? %>
+        <% @messages.each do |message| %>
+          <%= render 'chat_message', message: message %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="chat-input">
+    <input placeholder="メッセージを入力" class="chat-input-field" type="text" name="chat_room[content]" id="chat_room_content">
+    <input type="submit" name="commit" value="送信" class="chat-submit-btn" disable_with="送信" data-disable-with="送信">
+    <input id="current_user_id" type="hidden" value= "<%=current_user.id%>">
+    <input id="partner_id" type="hidden" value= "<%=@user.id%>">
+  </div>
+<% else %>
+  <h2>チャット</h2>
+<% end %>

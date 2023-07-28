@@ -6,11 +6,11 @@
     <div class="target-users-container">
       <div class="target-users">
         <div class="target-users-head">
-          <h1>メッセージ</h1>
+          <h2>メッセージ</h2>
         </div>
         <ul class="target-users-list">
           <% @relation_users.each do |user| %>
-            <%= link_to user_relations_path(current_user, target: user.id), remote: true do %>
+            <%= link_to user_relations_path(current_user, target: user.id), local: true do %>
               <li>
                 <div class="target-user-info">
                   <div class="target-user-icon">
@@ -38,7 +38,9 @@
     </div>
 
     <div class="chat-container">
-      <h1>チャット</h1>
+      <div id="chat-wrap">
+        <%= render 'chat_messages' %>
+      </div>
     </div>
 
     <div id="target-recruit-container">

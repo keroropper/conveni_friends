@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :passive_relations, class_name: 'Relation', foreign_key: :follower_id
   has_many :followers, through: :passive_relations, source: :followed 
   has_one_attached :profile_photo, dependent: :destroy
+  has_many :members
+  has_many :chat_messages
+  has_many :chat_rooms, through: :members
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -55,6 +58,30 @@ class User < ApplicationRecord
   # 自分が応募済みかどうかを検証
   def followed_by?(user)
     passive_relations.find_by(followed_id: user.id).present?
+  end
+
+  def follow(other_user, recruit)
+    active_relations.create!(follower_id: other_user, recruit_id: recruit)
+    applicant_user = Applicant.where(recruit_id: recruit).where.not(user_id: other_user)
+    applicant_user.destroy_all
+  end
+
+  def user_relations
+    (followings + followers).sort_by { |user| user.created_at }.reverse
+  end
+  
+  def create_chat_room(other_user)
+    room = ChatRoom.create
+    Member.create(user_id: id, chat_room_id: room.id)
+    Member.create(user_id: other_user, chat_room_id: room.id)
+    room
+  end
+
+  def find_target_room(target_user)
+    current_user_room = Member.where(user_id: id).map(&:chat_room_id)
+    target_user_room = Member.where(user_id: target_user).map(&:chat_room_id)
+    room = ChatRoom.find(current_user_room.intersection(target_user_room)[0])
+    return room
   end
 
   private

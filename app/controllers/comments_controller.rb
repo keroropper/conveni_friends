@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @recruit = Recruit.find(params[:comment][:recruit_id])
     @comments = @recruit.comments
