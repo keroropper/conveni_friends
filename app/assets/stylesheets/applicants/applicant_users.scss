@@ -9,14 +9,9 @@
   .applicant-recruit__block {
     display: flex;
     align-items: center;
-    a {
-      &:nth-child(2) {
-        text-decoration: none;
-        color: black;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
+    .applicant-recruit__image {
+      width: 100px;
+      height: 100px;
     }
     .applicant-recruit__title {
       margin-left: 30px;
@@ -28,32 +23,33 @@
     flex-wrap: wrap;
     a {
       margin-right: 40px;
-      text-decoration: none;
-      color: black;
       &:hover {
         background-color: white;
         opacity: 0.4;
       }
     }
-    .profile-photo-main-container {
-      position: relative;
-      margin-top: 50px;
-      .profile-photo-main-item {
-        align-items: center;
-        .profile-image {
-            @include user-image;
-            margin: 0;
-          .fa-user {
-            @include default-user-image;
-          }
+  }
+  .profile-photo-main-container {
+    position: relative;
+    margin-top: 50px;
+    .profile-photo-main-item {
+      align-items: center;
+      .profile-image {
+          @include user-image;
+          margin: 0;
+        .fa-user {
+          @include default-user-image;
         }
-        .user-attributes.name {
-          margin-top: 20px;
-          font-size: 20px;
-        }
-        .user-attributes.age-and-gender {
-          margin-top: 5px;
-        }
+      }
+      .user-attributes {
+        width: 128px;
+      }
+      .user-attributes.name {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+      .user-attributes.age-and-gender {
+        margin-top: 5px;
       }
     }
   }

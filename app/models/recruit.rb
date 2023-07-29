@@ -1,4 +1,6 @@
 class Recruit < ApplicationRecord
+  scope :active, -> { where(deleted_at: nil) }
+  # Ex:- scope :active, -> {where(:active => true)}
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :recruit_tags, dependent: :destroy
@@ -63,6 +65,14 @@ class Recruit < ApplicationRecord
     delete_num.each do |num|
       images[num.to_i].purge_later
     end
+  end
+
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+  def restore
+    update(deleted_at: nil)
   end
 
   private

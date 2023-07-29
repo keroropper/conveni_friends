@@ -1,0 +1,111 @@
+// Place all the styles related to the relations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.relations-container {
+    margin-top: 107px;
+    padding: 0 70px;
+    height: calc(100vh - 107px);
+    width: 100%;
+    h2 {
+      margin: 0;
+    } 
+    .main-wrapper {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      & > div {
+        padding-top: 30px;
+      }
+      .target-users-container {
+        height: 100%;
+        width: 26%;
+        outline: 0;
+        border-left: 1px solid rgb(235, 242, 242);
+        .target-users-head { 
+          text-align: center;
+        }
+        ul {
+          overflow: scroll;
+          padding: 0;
+        }
+        .target-user-info {
+          display: flex;
+          .target-user-icon {
+            position: relative;
+            height: 56px;
+            width: 56px;
+            margin: 16px 0px 16px 20px;
+          }
+          .target-user-content {
+            width: 100%;
+            padding: 16px 20px 16px 12px;
+            .content-top {
+              display: flex;
+              justify-content: space-between;
+              .target-user-name {
+                font-size: 16px;
+                font-weight: 700;
+                text-align: left;
+              }
+              .message-time {
+                font-size: 10px;
+                color: rgba(10, 44, 47, 0.7);
+                text-align: right;
+              }
+            }
+            .content-btm { 
+              margin-top: 5px;
+              font-size: 14px;
+              line-height: 21px;
+              font-weight: 500;
+              color: rgba(10, 44, 47, 0.7);
+            }
+          }
+        }
+      }
+      .chat-container {
+        width: 44%;
+        border-left: 1px solid rgb(235, 242, 242);
+        border-right: 1px solid rgb(235, 242, 242);
+      }
+      #target-recruit-container {
+        width: 30%;
+        padding-left: 30px;
+        .target-recruit__head {
+          font-size: 20px;
+          font-weight: 700;
+          color: #666;
+        }
+        .target-recruit__top {
+          padding: 15px 0;
+          margin-top: 20px;
+          @include separate-border;
+          .target-recruit__image-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .target-recruit__image__and__title {
+              display: flex;
+              align-items: center;
+              .target-recruit__first-image {
+                width: 64px;
+                height: 64px;
+              }
+              .target-recruit-title {
+                margin-left: 15px;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+        .target-recruit__timeline {
+          padding: 16px 0;
+          border-bottom: 1px solid #CCCCCC;
+          & > div {
+            padding: 8px 0;
+          }
+        }
+      }
+    }
+}

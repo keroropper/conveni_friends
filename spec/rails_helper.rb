@@ -6,6 +6,7 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require "rspec/rails/shared_contexts/action_cable"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -33,13 +34,15 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
   config.include CreateRecruit, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include ActionCable::TestHelper
+  Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation

@@ -3,6 +3,7 @@ ja:
     formats:
       default: '%H:%M'
       time: '%H:%M'
+      datetime: '%-m/%d %H:%M'
   date:
     formats:
       default: '%Y/%-m/%d'

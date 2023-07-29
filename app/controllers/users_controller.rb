@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   def show
     @user = User.find(params[:id])
+    user_applicant_recruits = Applicant.where(user_id: @user.id).map(&:recruit_id)
+    @recruit_id = params[:recruit_id] || current_user.recruits.map(&:id).intersection(user_applicant_recruits)[0]
   end
 
   def edit

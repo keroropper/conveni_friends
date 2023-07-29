@@ -1,0 +1,51 @@
+<%= render 'shared/header' %>
+
+<div class="relations-container">
+  <div class="main-wrapper">
+
+    <div class="target-users-container">
+      <div class="target-users">
+        <div class="target-users-head">
+          <h2>メッセージ</h2>
+        </div>
+        <ul class="target-users-list">
+          <% @relation_users.each do |user| %>
+            <%= link_to user_relations_path(current_user, target: user.id), local: true do %>
+              <li>
+                <div class="target-user-info">
+                  <div class="target-user-icon">
+                    <%= render 'users/profile_icon', user: user %>
+                  </div>
+                  <div class="target-user-content">
+                    <div class="content-top">
+                      <div class="target-user-name">
+                        <%= user.name %>
+                      </div>
+                      <span class="message-time">
+                        <%= l(Time.current, format: :datetime) %>
+                      </span>
+                    </div>
+                    <div class="content-btm">
+                      <%= truncate('アイウエオかきくけこさしすせそ', length: 13, omission: '...') %>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chat-container">
+      <div id="chat-wrap">
+        <%= render 'chat_messages' %>
+      </div>
+    </div>
+
+    <div id="target-recruit-container">
+      <%= render 'relations_recruit', target_recruit: @target_recruit %>
+    </div>
+
+  </div>
+</div>

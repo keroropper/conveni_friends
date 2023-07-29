@@ -13,9 +13,9 @@ class ApplicantsController < ApplicationController
   end
 
   def create
-    @applicant = Applicant.create(user_id: current_user.id, recruit_id: @recruit.id)
+    @applicant = Applicant.new(user_id: current_user.id, recruit_id: @recruit.id)
     redirect_to @recruit if current_user == @recruit.user
-    if @applicant
+    if @applicant.save
       respond_to do |format|
         format.html { redirect_to @recruit }
         format.js

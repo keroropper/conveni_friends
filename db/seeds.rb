@@ -18,7 +18,7 @@ user = User.create!(name:                  'ryoya',
                     introduce:              '初めまして!ryoyaって言います!
                                              仲良くしてくださいね！'
                     )
-10.times do |n|
+20.times do |n|
   name = Faker::Name.name
   email = "test#{n}@example.com"
   User.create!(name:                 name,
@@ -61,7 +61,17 @@ end
 
 users = User.all
 recruit = Recruit.first
-applicant_users = users[2...-1]
-applicant_users.each do |user|
+applicant_users = users[1..5]
+applicant_users.each_with_index do |user, i|
   Applicant.create(user_id: user.id, recruit_id: recruit.id)
+  Relation.create(follower_id: user.id, followed_id: 1, recruit_id: i + 1)
+  room = ChatRoom.create
+  Member.create(user_id: 1, chat_room_id: room.id)
+  Member.create(user_id: i + 2, chat_room_id: room.id)
+  10.times do |index|
+    ChatMessage.create(chat_room_id: room.id, user_id: 1, content: "チャット#{index}")
+  end
+  10.times do |index|
+    ChatMessage.create(chat_room_id: room.id, user_id: i + 2, content: "チャット#{index}")
+  end
 end

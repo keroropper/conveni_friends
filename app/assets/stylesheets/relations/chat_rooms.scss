@@ -1,0 +1,78 @@
+// Place all the styles related to the chat_rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.chat-container {
+  position: relative;
+  #chat-wrap {
+    .chat-user {
+      padding: 0 15px 0 15px;
+      border-bottom: 1px solid #DDDDDD;
+      .list-rst__user {
+        display: flex;
+        align-items: center;
+        .fa-angle-left {
+          width: 27px;
+          height: 27px;
+          margin-right: 10px;
+        }
+        .profile-image {
+          .profile-photo {
+            width: 43px;
+            height: 43px;
+          }
+        }
+      }
+    }
+    .chat-messages-container {
+      .chat-messages-wrap {
+        height: 500px;
+        overflow: scroll;
+      }
+      .text-container {
+        display: flex;
+        width: 100%;
+        .text-wrap {
+          width: fit-content;
+          padding: 20px;
+          margin: 5px 5px 0 5px;
+          border-radius: 20px;
+        }
+        .text-wrap.other_user {
+          background-color: whitesmoke;
+        }
+        .text-wrap.current_user {
+          margin-left: auto;
+          background-color: rgb(0, 174, 194);
+          color: white;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .chat-input {
+    width: 100%;
+    padding: 20px 10px 5px 10px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    input[type='text'] {
+      width: 83%;
+      height: 50px;
+      padding: 8px;
+      font-size: 1.2rem;
+      border: none;
+      background-color: rgb(245, 245, 245);
+      vertical-align: middle;
+      resize: none;
+    }
+    input[type="submit"] {
+      @include submit-input-btn(13%, 50px);
+      border-radius: 0;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+}

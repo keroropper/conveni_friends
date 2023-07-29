@@ -1,0 +1,25 @@
+<h2 class="target-recruit__head">
+  募集情報
+</h2>
+<% if target_recruit %>
+  <%= link_to recruit_path(target_recruit) do %>
+    <div class="target-recruit__top">
+      <div class="target-recruit__image-wrap">
+        <div class="target-recruit__image__and__title">
+          <div class="target-recruit__first-image">
+            <%= image_tag target_recruit.images.first %>
+          </div>
+          <div class="target-recruit-title">
+            <%= target_recruit.title %>
+          </div>
+        </div>
+        <div class="target-recruit__image__icon">
+          <i class="fa fa-angle-right fa-xl" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="target-recruit__timeline">
+    <%= render 'shared/timeline', recruit: target_recruit %>
+  </div>
+<% end %>

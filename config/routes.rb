@@ -17,5 +17,13 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update] do
     get 'applicants/index' => 'applicants#user_applicants_index'
+    resources :relations, only: [:index, :create, :destroy]
+    member do
+      get :following, :followers
+    end
   end
+  resources :chat_rooms, only: [:create, :destroy] do
+    resources :chat_messages, only: :create
+  end
+  mount ActionCable.server => '/cable'
 end

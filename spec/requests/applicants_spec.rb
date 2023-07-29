@@ -8,8 +8,6 @@ RSpec.describe "Applicants", type: :request do
     sign_in(user)
   end
 
-  # it '自分の投稿'
-
   it '応募できること' do
     expect do
       post recruit_applicants_path(recruit), xhr: true
