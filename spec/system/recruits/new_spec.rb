@@ -51,7 +51,7 @@ RSpec.describe "Recruits", type: :system, js: true do
       expect(page).to have_selector('.image', visible: true, count: 1)
     end
 
-    scenario 'googleMapにピンを立てると経度、緯度、住所が保存されること', focus: true do
+    scenario 'googleMapにピンを立てると経度、緯度、住所が保存されること' do
       create_recruit(address: '秋葉原')
       sleep 1
       recruit = user.recruits.first
