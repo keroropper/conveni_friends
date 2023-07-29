@@ -1,0 +1,48 @@
+// Place all the styles related to the notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.notification__wrapper {
+  width: 650px;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+  .notification__item {
+    padding: 15px 0;
+    border-bottom: 1px solid $border-color;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .notification__detail {
+        display: flex;
+        align-items: center;
+        .profile-photo {
+          flex-shrink: 0;
+        }
+        .notification__recruit-image {
+          width: 60px;
+          height: 60px;
+        }
+        .notification__content {
+          margin-left: 15px;
+          p {
+            margin: 0;
+          }
+          .notification__text {
+            padding: 5px 0;
+          }
+          .notification__time {
+            text-align: left;
+            font-size: 12px;
+            color: $sub-text-color;
+          }
+        }
+        .fa-angle-right {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

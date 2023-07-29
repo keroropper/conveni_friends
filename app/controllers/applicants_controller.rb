@@ -16,6 +16,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(user_id: current_user.id, recruit_id: @recruit.id)
     redirect_to @recruit if current_user == @recruit.user
     if @applicant.save
+      Notification.create(sender_id: current_user.id, receiver_id: @recruit.user.id, category: 'applicant', recruit_id: @recruit.id)
       respond_to do |format|
         format.html { redirect_to @recruit }
         format.js

@@ -1,0 +1,17 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="notification__wrapper">
+    <h1 class='notification__head'>お知らせ</h1>
+    <% if @notifications.present? %>
+
+      <%= render partial: 'content', collection: @notifications %>
+
+    <% else %>
+      <div class="notification_info">
+        <h3>お知らせはありません。</h3>
+      </div>
+    <% end %>
+    
+  </div>
+</div>

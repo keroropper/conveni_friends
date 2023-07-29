@@ -21,4 +21,10 @@ RSpec.describe "Applicants", type: :request do
       delete recruit_applicant_path(recruit, applicant), xhr: true
     end.to change { recruit.applicants.count }.by(-1)
   end
+
+  it '応募すると通知が増えること' do
+    expect do
+      post recruit_applicants_path(recruit), xhr: true
+    end.to change { recruit.user.notifications.count }.by(1)
+  end
 end

@@ -1,5 +1,6 @@
 class RelationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :current_user?, only: :index
   def index
     @relation_users = current_user.user_relations
     @room = nil
@@ -19,9 +20,16 @@ class RelationsController < ApplicationController
     other_user = params[:user_id]
     if current_user.follow(other_user, recruit_id)
       current_user.create_chat_room(other_user)
+      Notification.create(receiver_id: other_user, sender_id: current_user.id, category: 'relation')
       redirect_to user_relations_path(current_user)
     end
   end
 
   def destroy; end
+
+  private
+
+  def current_user?
+    redirect_to root_path if current_user.id != params[:user_id].to_i
+  end
 end

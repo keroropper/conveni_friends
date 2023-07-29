@@ -1,0 +1,19 @@
+<% recruit = content.recruit_id ? Recruit.find(content.recruit_id) : '' %>
+<% user = User.find(content.sender_id) %>
+<div class="notification__item">
+  
+  <% if content.category == 'relation' %>
+    <%= render 'user_icon_text', user: user, notification: content, id: 'さんとマッチしました。' %>
+  <% elsif content.category == 'chat_message' %>
+    <%= render 'user_icon_text', user: user, notification: content, id: 'さんからメッセージが届きました。' %>
+  <% end %>
+
+  <% if content.category == 'comment' %>
+    <%= render 'recruit_icon_text', user: user, notification: content, recruit: recruit, id: 'コメント' %>
+  <% elsif content.category == 'applicant' %>
+    <%= render 'recruit_icon_text', user: user, notification: content, recruit: recruit, id: '応募' %>
+  <% elsif content.category == 'favorite' %>
+    <%= render 'recruit_icon_text', user: user, notification: content, recruit: recruit, id: 'いいね' %>
+  <% end %>
+
+</div>
