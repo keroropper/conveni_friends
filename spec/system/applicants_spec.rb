@@ -7,7 +7,7 @@ RSpec.describe "Applicants", type: :system do
   let!(:user) { User.first }
   let!(:recruit) { Recruit.first }
 
-  it '応募者一覧が表示でき、その応募者の詳細ページには承認ボタンがあること' do
+  it '応募者一覧が表示でき、その応募者の詳細ページには承認ボタンがあること',focus: true do
     sign_in(user)
     visit recruit_applicants_index_path(recruit)
     User.all[1..].each do |user|
