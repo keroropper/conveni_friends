@@ -10,9 +10,9 @@ RSpec.describe "Relations", type: :request do
   end
 
   it 'ユーザーは相手を承認できること' do
-    initial_count = user.followings.count
-    post user_relations_path(other, recruit_id: recruit.id)
-    expect(user.reload.followings.count).to eq(initial_count + 1)
+    expect do
+      post user_relations_path(other, recruit_id: recruit.id)
+    end.to change { user.followings.count }.by(1)
     expect(response).to redirect_to user_relations_path(user)
   end
 
@@ -22,5 +22,16 @@ RSpec.describe "Relations", type: :request do
     post user_relations_path(other, recruit_id: recruit.id)
     applicant = Applicant.where(recruit_id: recruit.id)
     expect(applicant.map(&:user_id)).to_not include(other2.id)
+  end
+
+  it '違うユーザーのマッチング画面へ遷移しようとするとルートへリダイレクトすること' do
+    get user_relations_path(other)
+    expect(response).to redirect_to root_path
+  end
+
+  it '相手を承認すると通知が増えること' do
+    expect do
+      post user_relations_path(other, recruit_id: recruit.id)
+    end.to change { other.notifications.count }.by(1)
   end
 end

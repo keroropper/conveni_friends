@@ -13,6 +13,7 @@ class RoomChannel < ApplicationCable::Channel
     current_user_id = current_user.id
     partner_id = data['partner_id']
     room_id = data['room_id']
+    Notification.create(sender_id: current_user_id, receiver_id: partner_id, category: 'chat_message')
     ChatMessageBroadcastJob.perform_later(obj, current_user_id, partner_id, room_id)
   end
 end

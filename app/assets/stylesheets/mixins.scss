@@ -32,8 +32,8 @@ $border-color: #DDDDDD;
   margin-top: 5px;
 }
 
-@mixin position-fixed($top:50%, $left:50%) {
-  position: fixed;
+@mixin position-sticky($top:50%, $left:50%) {
+  position: sticky;
   top: $top;
   left: $left;
 }

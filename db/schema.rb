@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_25_045600) do
+ActiveRecord::Schema.define(version: 2023_07_29_033730) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -90,6 +90,17 @@ ActiveRecord::Schema.define(version: 2023_07_25_045600) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notifications", charset: "utf8", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "receiver_id", null: false
+    t.string "category", default: "", null: false
+    t.integer "recruit_id"
+    t.boolean "read", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
+  end
+
   create_table "recruit_tags", charset: "utf8", force: :cascade do |t|
     t.integer "recruit_id"
     t.integer "tag_id"
@@ -106,7 +117,7 @@ ActiveRecord::Schema.define(version: 2023_07_25_045600) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
-    t.date "date", default: "2023-07-22", null: false
+    t.date "date", default: "2023-07-30", null: false
     t.string "address"
     t.float "latitude"
     t.float "longitude"

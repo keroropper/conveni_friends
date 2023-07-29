@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :chat_messages, dependent: :destroy
   has_many :chat_rooms, through: :members
+  has_many :notifications, foreign_key: :receiver_id, dependent: :destroy, inverse_of: :sender
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :notifications, only: [:index]
   end
   resources :chat_rooms, only: [:create, :destroy] do
     resources :chat_messages, only: :create

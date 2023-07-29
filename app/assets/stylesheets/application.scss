@@ -6,6 +6,7 @@
 @import "recruits/*";
 @import "applicants/*";
 @import "relations/*";
+@import "notifications/*";
 @import "flatpickr/dist/flatpickr.min";
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
@@ -21,16 +22,42 @@ body {
 }  
 
 .header {
-  @include position-fixed(0, 0);
+  @include position-sticky(0, 0);
   width: 100%;
   box-sizing: border-box;
   background-color: white;
   z-index: 9999;
   .list-sidebar__content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
     padding: 0 70px;
     height: 40px;
     .header-top-contents {
-      text-align: right;
+      & > a {
+        margin-left: 15px;
+      }
+      .unread-notification-count {
+        position: absolute;
+        top: 9px;
+        right: 150px;
+        height: 17px;
+        width: 17px;
+        background-color: red;
+        border-radius: 16px;
+        text-align: center;
+        span {
+          font-size: 10px;
+          color: white;
+          font-weight: 700;
+          vertical-align: super;
+        }
+      }
+      .svg-inline--fa {
+        height: 20px;
+        width: 20px;
+      }
     }
   }
   .header-search {
@@ -39,6 +66,7 @@ body {
     .header-fixed {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 5px 70px 5px 70px;
       height: 100%;
       .search-suggest {
@@ -52,7 +80,7 @@ body {
 
 .container {
   word-wrap: break-word;
-  margin-top: 170px;
+  margin-top: 30px;
   padding: 0 70px;
   aside {
     height: 100%;

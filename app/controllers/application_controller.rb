@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :current_user_notification
 
   def self.render_with_signed_in_user(user, *args)
     ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def current_user_notification
+    @notifications = current_user.notifications if current_user
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit :sign_up, keys: [:name, :age, :gender, :email, :password, :password_confirmation]

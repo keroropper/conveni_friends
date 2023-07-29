@@ -75,3 +75,10 @@ applicant_users.each_with_index do |user, i|
     ChatMessage.create(chat_room_id: room.id, user_id: i + 2, content: "チャット#{index}")
   end
 end
+
+category = %w[relation comment applicant chat_message favorite]
+2.times do
+  category.each do |c|
+    Notification.create(sender_id: users[0].id, receiver_id: users[2].id, category: c, read: false, recruit_id: 1 )
+  end
+end

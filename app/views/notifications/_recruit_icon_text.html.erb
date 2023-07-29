@@ -1,0 +1,12 @@
+<%= link_to recruit_path(recruit) do %>
+  <div class="notification__detail">
+    <div class="notification__recruit-image">
+      <%= image_tag recruit.images.first %>
+    </div>
+    <div class="notification__content">
+      <p class='notification__text'><%= user.name%>さんが「<%= recruit.title %>」に<%= id %>しました。</p> 
+      <p class='notification__time'><%= time_ago_in_words(notification.created_at) %>前</p>
+    </div>
+  </div>
+  <i class="fa fa-angle-right fa-xl" aria-hidden="true"></i>
+<% end %>
