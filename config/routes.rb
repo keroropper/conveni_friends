@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
     resources :notifications, only: [:index]
+    resources :evaluations, only: [:index, :new, :create]
+    get '/incomplete_evaluations', to: 'evaluations#incomplete_index'
   end
   resources :chat_rooms, only: [:create, :destroy] do
     resources :chat_messages, only: :create

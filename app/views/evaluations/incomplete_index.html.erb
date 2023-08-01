@@ -1,0 +1,27 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="incomplete-index__container">
+    <% if @evaluatee_users.present? %>
+      <h2>タスク</h2>
+      <h3>ユーザーの評価を完了してください</h1>
+      <div class="incomplete-evaluate-users__block">
+        <% @evaluatee_users.each do |user| %>
+          <%= link_to new_user_evaluation_path(user) do %>
+            <div class="incomplete-evaluate-user__info">
+              <%= render 'users/profile_icon', user: user %>
+              <div class="profile-name">
+                <%= user.name %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="complete-evaluation">
+        <h2 class="complete-title">タスク一覧</h2>
+        <span>タスクはありません。</span>
+      </div>
+    <% end %>
+  </div>
+</div>

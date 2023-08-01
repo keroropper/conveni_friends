@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_user_notification
+  before_action :incomplete_tasks
 
   def self.render_with_signed_in_user(user, *args)
     ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
@@ -12,7 +13,14 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user_notification
-    @notifications = current_user.notifications if current_user
+    if current_user
+      @notifications = current_user.notifications
+      @count = current_user.notifications.where(read: false).count
+    end
+  end
+
+  def incomplete_tasks
+    @evaluatee_users = current_user.incomplete_evaluation_users if current_user
   end
 
   def configure_permitted_parameters

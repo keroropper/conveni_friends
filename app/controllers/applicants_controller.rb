@@ -1,8 +1,6 @@
 class ApplicantsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   before_action :recruit_params, only: [:recruit_applicants_index, :create, :destroy]
-  before_action :my_recruit?, only: :recruit_applicants_index
-  before_action :applicant_user?, only: :user_applicants_index
 
   def user_applicants_index
     @recruits = current_user.applicant_recruits

@@ -1,0 +1,44 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="create-evaluation__container">
+
+    <div class="evaluatee-user__wrapper">
+      <h1>ユーザー</h1>
+      <%= render 'user_evaluation', user: @user %>
+    </div>
+    <div class="evaluator__wrapper">
+      <h1>評価</h1>
+      <%= form_with model: [@user, @evaluation] do |f| %>
+        <%= f.hidden_field :evaluator_id, value: current_user.id %>
+        <%= f.hidden_field :recruit_id, value: @target_recruit %>
+        <div class="input-evaluate__wrapper">
+          <div id="user-evaluate__score" data-score=<%= @evaluation.score ||= 5 %>></div>
+          <div class="user-evaluate__feedback">
+            <%= render 'devise/shared/validation_error_messages', attr: :feedback, resource: @evaluation %>
+            <%= f.label :feedback, "評価コメント" %>
+            <%= f.text_area :feedback %>
+          </div>
+          <%= f.submit '評価を投稿する' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('#user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>
+<script>
+  $('#user-evaluate__score').raty({
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  scoreName: 'evaluation[score]'
+  });
+</script>

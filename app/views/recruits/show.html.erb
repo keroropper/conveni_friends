@@ -97,11 +97,11 @@
           <div class="info__label">
             <h2 class="info__label-text">募集者</h2>
           </div>
-            <div class="info__user__wrap">
-              <%= link_to user_path(@recruit.user) do %>
-                <%= render 'users/user_info', recruit: @recruit, flag: true %>
-              <% end %>
-            </div>
+          <div class="info__user__wrap">
+            <%= link_to user_path(@recruit.user) do %>
+              <%= render 'users/user_info', recruit: @recruit, flag: true %>
+            <% end %>
+          </div>
         </section>
         <section class="info__recruit-comments">
           <div id="comments__wrap">
@@ -122,3 +122,4 @@
 
   </div>
 </div>
+<div id="star-rating"></div>
