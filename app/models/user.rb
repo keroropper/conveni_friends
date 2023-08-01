@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :chat_messages, dependent: :destroy
   has_many :chat_rooms, through: :members
   has_many :notifications, foreign_key: :receiver_id, dependent: :destroy, inverse_of: :sender
-  has_many :evaluations, dependent: :destroy, foreign_key: :evaluatee_id
+  has_many :evaluations, dependent: :destroy, foreign_key: :evaluatee_id, inverse_of: :evaluatee
   before_save :downcase_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -91,15 +91,14 @@ class User < ApplicationRecord
     evaluated_recruits_id = Evaluation.where(evaluator_id: id).pluck(:recruit_id)
     relation_recruit_ids -= evaluated_recruits_id
     relation_recruits = Recruit.where(id: relation_recruit_ids)
-    target_ids = relation_recruits.where("meeting_time < ? AND date <= ?", Time.now, Date.current).pluck(:id)
+    target_ids = relation_recruits.where("meeting_time < ? AND date <= ?", Time.current, Date.current).pluck(:id)
     target_relations = Relation.where(recruit_id: target_ids)
     my_relation_user_ids = []
     target_relations.each do |t|
       target_user_id = t.followed_id == id ? t.follower_id : t.followed_id
       my_relation_user_ids << target_user_id
     end
-    target_users = User.where(id: my_relation_user_ids)
-    return target_users
+    User.where(id: my_relation_user_ids)
   end
 
   def update_score
@@ -109,8 +108,8 @@ class User < ApplicationRecord
   end
 
   def delete_relation(partner, recruit_id)
-    evaluator = Evaluation.find_by(recruit_id: recruit_id, evaluator_id: id)
-    evaluatee = Evaluation.find_by(recruit_id: recruit_id, evaluatee_id: id)
+    evaluator = Evaluation.find_by(recruit_id:, evaluator_id: id)
+    evaluatee = Evaluation.find_by(recruit_id:, evaluatee_id: id)
     if evaluator.present? && evaluatee.present?
       # 関係性削除
       finder = TargetRecruitFinder.new(self, partner.id)
@@ -118,7 +117,7 @@ class User < ApplicationRecord
       target_relation = Relation.find_by(recruit_id: target_recruit.id)
       target_relation.delete
       # チャットルーム削除
-      room = self.find_target_room(partner.id)
+      room = find_target_room(partner.id)
       room.delete
       # チャットメッセージ削除
       message = ChatMessage.where(chat_room_id: room.id)

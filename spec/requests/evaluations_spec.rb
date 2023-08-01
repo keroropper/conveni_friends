@@ -12,17 +12,15 @@ RSpec.describe "Evaluations", type: :request do
     sign_in(user)
   end
   describe "GET /create" do
-    it "ユーザーの評価ができること/評価しあったら関係性がリセットされること" do
-      expect {
-        post user_evaluations_path(other), params: { evaluation: { evaluator_id: user.id, score: 5, feedback: 'ありがとう', recruit_id: recruit.id} }
-      }.to change { other.evaluations.count }.by(1)
+    it "ユーザーの評価ができること/評価しあったら関係性がリセットされること", focus: true do
+      expect do
+        post user_evaluations_path(other), params: { evaluation: { evaluator_id: user.id, score: 5, feedback: 'ありがとう', recruit_id: recruit.id } }
+      end.to change { other.evaluations.count }.by(1)
       sign_out user
       sign_in other
-      expect {
-        post user_evaluations_path(user), params: { evaluation: { evaluator_id: other.id, score: 5, feedback: 'ありがとう', recruit_id: recruit.id} }
-      }.to change { Relation.count }.by(-1).and change { Member.count }.by(-2).and change { ChatRoom.count }.by(-1)
-
+      expect do
+        post user_evaluations_path(user), params: { evaluation: { evaluator_id: other.id, score: 5, feedback: 'ありがとう', recruit_id: recruit.id } }
+      end.to change { Relation.count }.by(-1).and change { Member.count }.by(-2).and change { ChatRoom.count }.by(-1)
     end
   end
-
 end

@@ -51,6 +51,9 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'app/models/user.rb'
 
+Metrics/ClassLength:
+  Enabled: false
+  
 Rails/RootPathnameMethods:
   Enabled: false
 

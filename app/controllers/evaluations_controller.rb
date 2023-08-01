@@ -1,9 +1,7 @@
 class EvaluationsController < ApplicationController
   before_action :authenticate_user!
 
-  def incomplete_index
-
-  end
+  def incomplete_index; end
 
   def index
     @evaluations = current_user.evaluations
@@ -18,7 +16,6 @@ class EvaluationsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    recruit_id = params[:evaluation][:recruit_id]
     @evaluation = @user.evaluations.build(evaluation_params)
     if @evaluation.save
       redirect_to root_path

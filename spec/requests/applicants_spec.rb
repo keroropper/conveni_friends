@@ -4,7 +4,7 @@ RSpec.describe "Applicants", type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let!(:other) { FactoryBot.create(:user) }
   let!(:recruit) { FactoryBot.create(:recruit, user: other) }
-  let!(:relation) { FactoryBot.create(:relation, follower_id: other, followed_id: user, recruit_id: recruit.id) }
+  let!(:relation) { FactoryBot.create(:relation, follower_id: other.id, followed_id: user.id, recruit_id: recruit.id) }
   let!(:chat_room) { create(:chat_room) }
   before do
     sign_in(user)
