@@ -23,6 +23,8 @@ ja:
         images: 画像
       tags:
         name: タグ
+      evaluation:
+        feedback: 評価コメント
 
 
 

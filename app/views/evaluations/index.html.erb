@@ -1,0 +1,50 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+  <div class="evaluatee-user__container">
+    <div class="evaluatee-user__wrapper">
+      <%= render 'user_evaluation', user: current_user %>
+    </div>
+    <div class="evaluator__container">
+      <h1>評価一覧</h1>
+      <div class="evaluator_wrapper">
+        <% if @evaluations.present? %>
+        <% @evaluations.each do |eva| %>
+          <div class="info__user__wrap">
+            <div class="list-rst__user">
+              <div class="profile-image">
+                <%= link_to user_path(eva.evaluator) do %>
+                  <%= render 'users/profile_icon', user: eva.evaluator %>
+                <% end %>
+                <div class="profile-name">
+                  <%= link_to user_path(eva.evaluator) do %>
+                    <%= eva.evaluator.name %>
+                  <% end %>
+                </div>
+                <div class="feedback__wrapper">
+                  <p class="feedback-body"><%= safe_join(eva.feedback.split("\n"),tag(:br)) %></p>
+                  <span class="feedback__time-ago"><%= eva.created_at.strftime('%Y/%-m/%-d %H:%M') %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% else %>
+        <div class="not_exist_label">
+          <h3>評価はありません</h3>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('#user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>

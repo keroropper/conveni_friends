@@ -1,0 +1,86 @@
+// Place all the styles related to the evaluations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.create-evaluation__container {
+  height: calc(100vh - 137px);
+  padding: 0 100px;
+  display: flex;
+  h1 {
+    margin-top: 0;
+  }
+  .evaluatee-user__wrapper {
+    width: 350px;
+    flex-shrink: 0;
+    margin-right: 30px;
+    .evaluatee-user__box {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      & > div {
+        margin-bottom: 10px;
+      }
+      .profile-photo {
+        height: 94px;
+        width: 94px;
+      }
+      .profile-name { 
+        h2 {
+          font-size: 17px;
+          font-weight: 700;
+          color: #666;
+        }
+      }
+    }
+  }
+  .evaluator__wrapper {
+    width: 100%;
+    .input-evaluate__wrapper {
+      #user-evaluate__score {
+        padding: 20px 0;
+        & > img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+      .user-evaluate__feedback {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        label {
+          color: #666666;
+          font-size: 20px;
+        }
+        textarea {
+          display: block;
+          width: 500px;
+          height: 300px;
+          padding: 10px;
+          resize: none;
+        }
+      }
+      input[type='submit'] {
+        @include submit-input-btn(500px);
+      }
+    }
+  }
+}
+
+.user-score__box {
+  display: flex;
+  align-items: center;
+  #user-score {
+    height: fit-content;
+    margin-right: 10px;
+    & > img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+  }
+  div {
+    height: 20px;
+    color: #0073cc;;
+  }
+}

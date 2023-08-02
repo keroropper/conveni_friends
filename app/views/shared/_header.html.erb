@@ -6,12 +6,17 @@
           <%= link_to "新規登録", "#" %>
           <%= link_to "ログイン", "#" %>
         <% else %>
+          <%= link_to 'タスク', user_incomplete_evaluations_path(current_user) %>
+          <% if @evaluatee_users.present? %>
+            <div class="evaluatee-user-count">
+              <span><%= @evaluatee_users.count %></span>
+            </div>
+          <% end %>
           <%= link_to 'マイページ', user_path(current_user)  %>  
           <%= link_to user_notifications_path(current_user) do %>  
-            <% count = current_user.notifications.where(read: false).count %>
-              <% if count != 0%>
+              <% if @count != 0%>
                 <div class="unread-notification-count">
-                  <span><%= count %></span>
+                  <span><%= @count %></span>
                 </div>
               <% end %>
             <i class="fa-solid fa-bell"></i>

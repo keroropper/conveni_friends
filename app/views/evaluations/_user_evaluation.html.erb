@@ -1,0 +1,11 @@
+
+<div class="evaluatee-user__box">
+  <%= render 'users/profile_icon', user: user %>
+  <div class="profile-name">
+    <h2><%= user.name %></h2>
+  </div>
+  <div class="user-score__box">
+    <div id="user-score" data-score=<%= user.score.to_i %>></div>
+    <div><%= user.score_count %></div>
+  </div>
+</div>

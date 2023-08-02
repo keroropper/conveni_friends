@@ -3,7 +3,6 @@ class NotificationsController < ApplicationController
   before_action :current_user?
 
   def index
-    @notifications = current_user.notifications
     current_user.notifications.where(read: false).each do |notification|
       notification.read = true
       notification.save if notification.valid?

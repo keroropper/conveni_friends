@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_29_033730) do
+ActiveRecord::Schema.define(version: 2023_07_30_061913) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 2023_07_29_033730) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recruit_id"], name: "index_comments_on_recruit_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "evaluations", charset: "utf8", force: :cascade do |t|
+    t.bigint "evaluator_id", null: false
+    t.bigint "evaluatee_id", null: false
+    t.integer "score", null: false
+    t.string "feedback", default: "", null: false
+    t.integer "recruit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["evaluatee_id"], name: "index_evaluations_on_evaluatee_id"
+    t.index ["evaluator_id"], name: "index_evaluations_on_evaluator_id"
   end
 
   create_table "favorites", charset: "utf8", force: :cascade do |t|
@@ -158,6 +170,8 @@ ActiveRecord::Schema.define(version: 2023_07_29_033730) do
     t.datetime "confirmation_sent_at"
     t.boolean "activated", default: false
     t.text "introduce"
+    t.float "score", default: 0.0, null: false
+    t.integer "score_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -166,6 +180,8 @@ ActiveRecord::Schema.define(version: 2023_07_29_033730) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applicants", "recruits"
   add_foreign_key "applicants", "users"
+  add_foreign_key "evaluations", "users", column: "evaluatee_id"
+  add_foreign_key "evaluations", "users", column: "evaluator_id"
   add_foreign_key "favorites", "recruits"
   add_foreign_key "favorites", "users"
   add_foreign_key "recruits", "users"

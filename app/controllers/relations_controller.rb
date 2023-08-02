@@ -2,7 +2,7 @@ class RelationsController < ApplicationController
   before_action :authenticate_user!
   before_action :current_user?, only: :index
   def index
-    @relation_users = current_user.user_relations
+    @relation_users = current_user.relation_users
     @room = nil
     target_user = params[:target]
     if target_user.present?

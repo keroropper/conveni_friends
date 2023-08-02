@@ -39,8 +39,8 @@ end
   recruit = Recruit.new(user:            user,
                         title:          'title',
                         explain:        'explain',
-                        date:            Time.zone.tomorrow,
-                        meeting_time:   '0:00',
+                        date:            Date.current,
+                        meeting_time:    1.minute.from_now,
                         required_time:   30,
                         address:        '東京都台東区秋葉原',
                         latitude:        35.702259,
@@ -79,6 +79,7 @@ end
 category = %w[relation comment applicant chat_message favorite]
 2.times do
   category.each do |c|
+    id = (c == 'comment' || c == 'applicant' || c == 'favorite') ? 1 : nil
     Notification.create(sender_id: users[0].id, receiver_id: users[2].id, category: c, read: false, recruit_id: 1 )
   end
 end

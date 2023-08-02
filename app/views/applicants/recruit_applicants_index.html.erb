@@ -1,42 +1,33 @@
 <%= render 'shared/header' %>
 
 <div class="container">
-  <div class="rstlist-contents">  
-    <div class="flexible-rstlst">
-
-      <%= render 'shared/sidebar' %>
-
-      <div class="applicant-users__container">
-        <%= link_to recruit_path(@recruit) do %>
-          <div class="applicant-recruit__block">
-            <div class="applicant-recruit__image">
-              <%= image_tag @recruit.images.first %>
-            </div>
-              <h1 class="applicant-recruit__title">
-                <%= @recruit.title %>
-              </h1>
+  <div class="applicants__container">
+    <div class="applicant-users__container">
+      <%= link_to recruit_path(@recruit) do %>
+        <div class="applicant-recruit__block">
+          <div class="applicant-recruit__image">
+            <%= image_tag @recruit.images.first %>
           </div>
-        <% end %>
-        <h2>応募者</h2>
-        <% if @users %>
-          <div class="applicant-users__block">
-            <% @users.each do |user| %>
-              <%= link_to user_path(user, recruit_id: @recruit.id) do %>
-                <%= render 'users/profile_photo', user: user %>
-              <% end %>
+            <h1 class="applicant-recruit__title">
+              <%= @recruit.title %>
+            </h1>
+        </div>
+      <% end %>
+      <h2>応募者</h2>
+      <% if @users.present? %>
+        <div class="applicant-users__block">
+          <% @users.each do |user| %>
+            <%= link_to user_path(user, recruit_id: @recruit.id) do %>
+              <%= render 'users/profile_photo', user: user %>
             <% end %>
-          </div>
-        <% else %>
-          <div class="applicant-guest">
-            <span>応募者はまだいません。</span>
-          </div>
-        <% end %>
-      </div>
-
+          <% end %>
+        </div>
+      <% else %>
+        <div class="applicant-guest">
+          <span>応募者はいません。</span>
+        </div>
+      <% end %>
     </div>
-  </div>
-
-  <div class="rst-footer">
   </div>
 
 </div>
