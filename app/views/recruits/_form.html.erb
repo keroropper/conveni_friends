@@ -44,14 +44,14 @@
             <%= f.label :date, '日付' %>
             <span>(必須)</span>
           </div>
-          <%= f.text_field :date, class: "recruit_date", value: (l @recruit.date) %>
+          <%= f.text_field :date, id: 'date', class: "recruit_date", value: (l @recruit.date) %>
         </div>
         <div class="crt-input meeting">
           <div class="crt-date-label">
             <%= f.label :meeting_time, '集合時間' %>
             <span>(必須)</span>
           </div>
-          <%= f.text_field :meeting_time, value: (l @recruit.meeting_time) %>
+          <%= f.text_field :meeting_time, id: 'meeting_time', value: (l @recruit.meeting_time) %>
         </div>
         <div class="crt-input required">
           <div class="crt-date-label">

@@ -12,7 +12,7 @@ RSpec.describe "Evaluations", type: :request do
     sign_in(user)
   end
   describe "GET /create" do
-    it "ユーザーの評価ができること/評価しあったら関係性がリセットされること", focus: true do
+    it "ユーザーの評価ができること/評価しあったら関係性がリセットされること" do
       expect do
         post user_evaluations_path(other), params: { evaluation: { evaluator_id: user.id, score: 5, feedback: 'ありがとう', recruit_id: recruit.id } }
       end.to change { other.evaluations.count }.by(1)

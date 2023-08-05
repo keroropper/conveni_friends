@@ -24,10 +24,10 @@ RSpec.describe "Recruit", type: :system, js: true do
     explain_field = find('#recruit_explain')
     expect(explain_field.value).to eq(recruit.explain)
     # 日付
-    date_field = find('#recruit_date')
-    expect(date_field.value).to eq(recruit.date.strftime('%Y/%-m/%d'))
+    date_field = find('#date')
+    expect(date_field.value).to eq(I18n.l(recruit.date))
     # 集合時間
-    meeting_time_field = find('#recruit_meeting_time')
+    meeting_time_field = find('#meeting_time')
     expect(meeting_time_field.value).to eq(recruit.meeting_time.strftime('%H:%M'))
     # 所要時間(セレクタはfindではなく直接渡す必要がある)
     expect(page).to have_select('recruit[required_time]', selected: "#{recruit.required_time}分")
@@ -74,10 +74,10 @@ RSpec.describe "Recruit", type: :system, js: true do
     explain_field = find('#recruit_explain')
     expect(explain_field.value).to eq('update')
     # 日付
-    date_field = find('#recruit_date')
+    date_field = find('#date')
     expect(date_field.value).to eq(I18n.l(Date.current + 5))
     # 集合時間
-    meeting_time_field = find('#recruit_meeting_time')
+    meeting_time_field = find('#meeting_time')
     expect(meeting_time_field.value).to eq(I18n.l(1.hour.ago))
     # 所要時間(セレクタはfindではなく直接渡す必要がある)
     expect(page).to have_select('recruit[required_time]', selected: "１時間")

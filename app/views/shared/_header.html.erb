@@ -1,51 +1,113 @@
 <header class="header">
-  <div class="list-sidebar__content">
-    <div class="header-top">
-      <div class="header-top-contents">
+  <div class="header-top__container">
+    <div class="header-top-contents">
+      <div class="header__logo">
+        <%= link_to 'レンタルフレンド', root_path %>
+      </div>
+      <div class="header__links">
         <% unless current_user %>
-          <%= link_to "新規登録", "#" %>
-          <%= link_to "ログイン", "#" %>
+          <div class="header__sing-up">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </div>
+          <div class="header__sign-in">
+            <%= link_to "ログイン", new_user_session_path %>
+          </div>
         <% else %>
-          <%= link_to 'タスク', user_incomplete_evaluations_path(current_user) %>
+          <div class="header__tasks">
+            <%= link_to 'タスク', user_incomplete_evaluations_path(current_user) %>
+          </div>
           <% if @evaluatee_users.present? %>
             <div class="evaluatee-user-count">
               <span><%= @evaluatee_users.count %></span>
             </div>
           <% end %>
-          <%= link_to 'マイページ', user_path(current_user)  %>  
-          <%= link_to user_notifications_path(current_user) do %>  
-              <% if @count != 0%>
-                <div class="unread-notification-count">
-                  <span><%= @count %></span>
+          <%= link_to user_notifications_path(current_user), class: 'header__notification-link' do %>  
+            <% if @count != 0%>
+              <div class="unread-notification-count">
+                <span><%= @count %></span>
+              </div>
+            <% end %>
+            <div class="header__notification-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+          <% end %>
+          <div class="header__user-menu">
+            アカウント
+            <div class="header-user-menu__wrapper" style='display: none;'>
+              <div class="header-my-page">
+                <%= link_to user_path(current_user) do %>
+                  <div class="header-user__info">
+                    <%= render 'users/profile_icon', user: current_user %>
+                    <div class="header-user__detail">
+                      <div class="profile-name">
+                        <%= current_user.name %>
+                      </div>
+                      <div class="header-user-score">
+                        <div id="user-score" data-score=<%= current_user.score.to_i %>></div>
+                        <div class='header-user-score-count'><%= current_user.score_count %></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="header-user-right-icon">
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </div>
+                <% end %>
+              </div>
+              <%= link_to user_recruits_path(current_user) do %>
+                <div class="header-user-recruits">
+                  <div class="user-recruits-link">
+                    投稿一覧
+                  </div>
+                  <div class="header-user-right-icon">
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </div>
                 </div>
               <% end %>
-            <i class="fa-solid fa-bell"></i>
+              <%= link_to user_favorites_path(current_user) do %>
+                <div class="header-user-favorites">
+                  <div class="user-favorites-link">
+                    いいね！一覧
+                  </div>
+                  <div class="header-user-right-icon">
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </div>
+                </div>
+              <% end %>
+              <%= link_to user_relations_path(current_user) do %>
+                <div class="header-user-relations">
+                  <div class="user-relations-link">
+                    チャット
+                  </div>
+                  <div class="header-user-right-icon">
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </div>
+                </div>
+              <% end %>
+              <%= link_to destroy_user_session_path do %>
+                <div class="header-user-logout">
+                  <div class="user-logout-link">
+                    ログアウト
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <%= link_to new_recruit_path, class: 'header__recruit-link' do %>  
+            <div class="header__new-recruit">
+              投稿
+            </div>
           <% end %>
-          <%= link_to '投稿する', "#" %>  
         <% end %>
       </div>
     </div>
   </div>
-  <div class="header-search">
-    <div class="header-fixed">
-      <p class="header-logo">
-        <%= link_to '刹那フレンド', root_path %>
-      </p>
-      <div class="search-suggest">
-        <div class="form">
-          <span>エリア</span>
-          <span>キーワード</span>
-          <span>ジャンル</span>
-          <span>日付</span>
-          <span>時間帯</span>
-          <div>
-            <span>所要時間</span>
-            <span>性別</span>
-            <span>年齢</span>
-            <span>評価</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </header>
+
+<script>
+  $('#user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>

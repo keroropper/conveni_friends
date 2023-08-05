@@ -43,6 +43,27 @@ class RecruitsController < ApplicationController
     end
   end
 
+  def search
+    @recruits = Recruit.includes(:user).all
+    keyword = params[:keyword]
+    address = params[:address]
+    tags = params[:name]
+    date = Date.parse(params[:date]).strftime('%Y-%m-%d') if params[:date].present?
+    meeting_time = params[:meeting_time]
+    required_time = params[:required_time]
+    start_age = params[:start_age]
+    end_age = params[:end_age]
+    score = params[:score]
+    @recruits = @recruits.with_user(keyword)
+      .with_address(address)
+      .with_tags(tags)
+      .with_date(date)
+      .with_meeting_time(meeting_time)
+      .with_required_time(required_time)
+      .with_age_range(start_age, end_age)
+      .with_score(score)
+  end
+
   private
 
   def image_count

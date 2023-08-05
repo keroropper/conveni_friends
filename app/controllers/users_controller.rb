@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
+
+  def recruit_index
+    @recruits = current_user.recruits
+  end
+
+  def favorite_index
+    @recruits = current_user.favorite_recruits
+  end
+
   def show
     @user = User.find(params[:id])
     user_applicant_recruits = Applicant.where(user_id: @user.id).map(&:recruit_id)

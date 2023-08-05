@@ -27,70 +27,135 @@ body {
   width: 100%;
   box-sizing: border-box;
   background-color: white;
+  border-bottom: 1px solid #DDDDDD;
   z-index: 9999;
-  .list-sidebar__content {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    position: relative;
+  .header-top__container {
     padding: 0 70px;
-    height: 40px;
+    height: 70px;
     .header-top-contents {
-      & > a {
-        margin-left: 15px;
-      }
-      .evaluatee-user-count {
-        position: absolute;
-        top: 9px;
-        right: 280px;
-        height: 17px;
-        width: 17px;
-        background-color: red;
-        border-radius: 16px;
-        text-align: center;
-        span {
-          font-size: 10px;
-          color: white;
-          font-weight: 700;
-          vertical-align: super;
-        }
-      }
-      .unread-notification-count {
-        position: absolute;
-        top: 9px;
-        right: 150px;
-        height: 17px;
-        width: 17px;
-        background-color: red;
-        border-radius: 16px;
-        text-align: center;
-        span {
-          font-size: 10px;
-          color: white;
-          font-weight: 700;
-          vertical-align: super;
-        }
-      }
-      .svg-inline--fa {
-        height: 20px;
-        width: 20px;
-      }
-    }
-  }
-  .header-search {
-    width: 100%;
-    border-bottom: 1px solid $border-color;
-    .header-fixed {
+      height: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 5px 70px 5px 70px;
-      height: 100%;
-      .search-suggest {
-        .form {
+      position: relative;
+      .header__links {
+        display: flex;
+        align-items: center;
+        & > div, .header__notification-link, .header__recruit-link {
+          margin-left: 40px;
+        }
+        .header__recruit-link {
           display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 36px;
+          width: 60px;
+          border-radius: 4px;
+          background-color: #005FFF;
+          .header__new-recruit {
+            color: white;
+          }
+        }
+
+      }
+    }
+    .evaluatee-user-count {
+      position: absolute;
+      top: 14px;
+      right: 262px;
+      height: 17px;
+      width: 17px;
+      background-color: red;
+      border-radius: 16px;
+      text-align: center;
+      span {
+        font-size: 10px;
+        color: white;
+        font-weight: 700;
+        vertical-align: super;
+      }
+    }
+    .unread-notification-count {
+      position: absolute;
+      top: 14px;
+      right: 203px;
+      height: 17px;
+      width: 17px;
+      background-color: red;
+      border-radius: 16px;
+      text-align: center;
+      span {
+        font-size: 10px;
+        color: white;
+        font-weight: 700;
+        vertical-align: super;
+      }
+    }
+    .svg-inline--fa {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+.header__user-menu {
+  position: relative;
+  cursor: pointer;
+  .header-user-menu__wrapper {
+    position: absolute;
+    padding: 0 16px;
+    width: 400px;
+    left: -300px;
+    top: 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px #0003;
+    background-color: #fff;
+    & > a, .header-my-page {
+      display: block;
+      padding: 16px 0;
+      border-bottom: 1px solid #e5e5e5;
+      position: relative;
+      .header-user-right-icon {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        .fa-angle-right {
+          vertical-align: middle;
         }
       }
+    }
+    .header-my-page {
+      a {
+        display: flex;
+        justify-content: space-between;
+      }
+      .header-user__info {
+        display: flex;
+        align-items: center;
+        .header-user__detail {
+          margin-left: 15px;
+        }
+        .header-user-score {
+          display: flex;
+          align-items: center;
+          #user-score {
+            display: flex;
+            width: 15px;
+            height: 15px;
+          }
+          .header-user-score-count {
+            margin-left: 87px;
+            color: #0073cc;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .header-user-logout {
+      border: none;
+      color: #0073cc;
     }
   }
 }
@@ -100,6 +165,9 @@ body {
   margin-top: 30px;
   padding: 0 70px;
   width: 100%;
+  .page-title {
+    margin-top: 0;
+  }
   aside {
     height: 100%;
     min-width: 280px;
@@ -112,9 +180,62 @@ body {
     }
     .list-sidebar__content {
       margin: 14px;
-      .list-sidebar__box {
-        margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      input, select {
+        border: 1px solid #ccc;
       }
+      select#required_time {
+        width: 147px;
+      }
+      .search-age__select {
+        display: flex;
+        align-items: center;
+        select {
+          height: 30px;
+          width: 60px;
+        }
+        span {
+          width: 8px;
+          height: 2px;
+          border-radius: 0.5px;
+          background-color: rgb(10, 44, 47);
+          margin: 0px 12px;
+        }
+      }
+    }
+    .list-sidebar__content.score {
+      justify-content: flex-start;
+      label {
+        margin-right: 95px;
+      }
+      #user-evaluate__score {
+        display: flex;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .search-input-btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+      input[type='submit'] {
+        width: 80%;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.3rem;
+        text-align: center;
+        background-color: #82ad24;
+        border: 1px solid white;
+        cursor: pointer;
+      }
+    }
+    .search-clear-btn {
+      color: #0073cc;
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
     }
   }
 }

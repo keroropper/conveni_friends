@@ -12,12 +12,12 @@ module CreateRecruit
     fill_in "recruit_explain",	with: explain
 
     # flatpickrでdateを選択
-    find("#recruit_date").click
+    find("#date").click
     within(".dayContainer") do
       find(".dayContainer>.flatpickr-day[aria-label='#{date.strftime('%-m月 %-d, %Y')}']").click
     end
     # flatpickrでmeeting_timeを選択
-    find("#recruit_meeting_time").click
+    find("#meeting_time").click
     input_element = find(".numInput.flatpickr-hour")
     input_element.set(meeting_time)
 
