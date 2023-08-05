@@ -65,6 +65,7 @@ RSpec.describe "Searches", type: :system do
     other_time = I18n.l(4.hours.from_now)
     fill_in "meeting_time",	with: target_time.to_s
     click_button '絞り込む'
+    sleep 1
     expect(page).to have_css('.info__time__wrap', text: target_time.to_s)
     expect(page).to_not have_css('.info__time__wrap', text: other_time.to_s)
   end
