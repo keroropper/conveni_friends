@@ -11,4 +11,14 @@ module RecruitsHelper
       "#{time / 60}時間"
     end
   end
+
+  def create_select_age(age_start, age_end)
+    (age_start..age_end).map.with_index do |age, index|
+      if index.zero?
+        ["--", '']
+      else
+        ["#{age}歳", age]
+      end
+    end
+  end
 end

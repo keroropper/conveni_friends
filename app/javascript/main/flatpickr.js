@@ -2,8 +2,8 @@ import flatpickr from "flatpickr";
 import { Japanese } from "flatpickr/dist/l10n/ja.js";
 
 document.addEventListener("turbolinks:load", () => {
-  const datePicker = document.getElementById("recruit_date");
-  const timePicker = document.getElementById("recruit_meeting_time");
+  const datePicker = document.getElementById("date");
+  const timePicker = document.getElementById("meeting_time");
   let initializedDate = false;
   let initializedTime = false;
   let date = "today";

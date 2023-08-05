@@ -1,5 +1,25 @@
 class Recruit < ApplicationRecord
   scope :active, -> { where(deleted_at: nil) }
+  scope :with_user, ->(keyword) { joins(:user).where('title LIKE ?', "%#{keyword}%") if keyword.present? }
+  scope :with_address, ->(address) { where('address LIKE ?', "%#{address}%") if address.present? }
+  scope :with_tags, ->(tags) { joins(:tags).where(tags: { name: tags }) if tags.present? }
+  scope :with_date, ->(date) { where('date LIKE ?', date.to_s) if date.present? }
+  scope :with_meeting_time, ->(meeting_time) { where('meeting_time LIKE ?', "#{meeting_time}%") if meeting_time.present? }
+  scope :with_required_time, ->(required_time) { where('required_time LIKE ?', required_time.to_s) if required_time.present? }
+  scope :with_age_range, lambda { |start_age, end_age|
+    if start_age.present? && end_age.present?
+      if start_age > end_age
+        joins(:user).where('age BETWEEN ? AND ?', end_age, start_age)
+      else
+        joins(:user).where('age BETWEEN ? AND ?', start_age, end_age)
+      end
+    elsif start_age.present?
+      joins(:user).where('age >= ?', start_age)
+    elsif end_age.present?
+      joins(:user).where('age <= ?', end_age)
+    end
+  }
+  scope :with_score, ->(score) { joins(:user).where('score LIKE ?', score.to_s) if score.present? && score != '0' }
   # Ex:- scope :active, -> {where(:active => true)}
   belongs_to :user
   has_many :comments, dependent: :destroy

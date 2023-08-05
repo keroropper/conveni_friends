@@ -16,6 +16,7 @@ require('../main/profile_preview')
 require('../main/count')
 require('../main/map')
 require('../main/scroll')
+require('../main/home')
 
 Rails.start()
 Turbolinks.start()

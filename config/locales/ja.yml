@@ -6,7 +6,7 @@ ja:
       datetime: '%-m/%d %H:%M'
   date:
     formats:
-      default: '%Y/%-m/%d'
+      default: '%Y/%-m/%-d'
   activerecord:
     attributes:
       user:

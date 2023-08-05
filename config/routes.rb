@@ -14,16 +14,18 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
     resources :applicants, only: [:create, :destroy]
     get 'applicants/index' => 'applicants#recruit_applicants_index'
+    collection do
+      get 'search', to: 'recruits#search'
+    end
   end
   resources :users, only: [:show, :edit, :update] do
     get 'applicants/index' => 'applicants#user_applicants_index'
     resources :relations, only: [:index, :create, :destroy]
-    member do
-      get :following, :followers
-    end
     resources :notifications, only: [:index]
     resources :evaluations, only: [:index, :new, :create]
     get '/incomplete_evaluations', to: 'evaluations#incomplete_index'
+    get '/recruits', to: 'users#recruit_index'
+    get '/favorites', to: 'users#favorite_index'
   end
   resources :chat_rooms, only: [:create, :destroy] do
     resources :chat_messages, only: :create
