@@ -21,7 +21,7 @@ RSpec.describe "Homes", type: :system, js: true do
       expect(page).to have_css('.unread-notification-count span', text: user.notifications.count.to_s)
     end
 
-    it 'ヘッダーの"アカウント"をクリックするとポップアップメニューが表示されること', focus: true do
+    it 'ヘッダーの"アカウント"をクリックするとポップアップメニューが表示されること' do
       expect(page).to_not have_css('.header-user-menu__wrapper')
       find('.header__user-menu').click
       expect(page).to have_css('.header-user-menu__wrapper')
