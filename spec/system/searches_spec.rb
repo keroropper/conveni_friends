@@ -8,7 +8,7 @@ RSpec.describe "Searches", type: :system do
                       user:,
                       title: 'title1',
                       date: Date.tomorrow,
-                      meeting_time: 2.hours.from_now,
+                      meeting_time: "12:00",
                       required_time: '30',
                       address: '東京都',
                       tag_names: ['tag1'])
@@ -18,7 +18,7 @@ RSpec.describe "Searches", type: :system do
                       user:,
                       title: 'title2',
                       date: 3.days.from_now,
-                      meeting_time: 4.hours.from_now,
+                      meeting_time: "14:00",
                       required_time: '90',
                       address: '埼玉県',
                       tag_names: ['tag2'])
@@ -60,14 +60,11 @@ RSpec.describe "Searches", type: :system do
     expect(page).to have_css('.info__date__wrap', text: I18n.l(date).to_s)
     expect(page).to_not have_css('.info__date__wrap', text: I18n.l(other_date).to_s)
   end
-  it '時刻で検索できること' do
-    target_time = I18n.l(2.hours.from_now)
-    other_time = I18n.l(4.hours.from_now)
-    fill_in "meeting_time",	with: target_time.to_s
+  it '時刻で検索できること', focus: true do
+    fill_in "meeting_time",	with: "12:00"
     click_button '絞り込む'
-    sleep 1
-    expect(page).to have_css('.info__time__wrap', text: target_time.to_s)
-    expect(page).to_not have_css('.info__time__wrap', text: other_time.to_s)
+    expect(page).to have_css('.info__time__wrap', text: "12:00")
+    expect(page).to_not have_css('.info__time__wrap', text: "14:00")
   end
   it '所要時間で検索できること' do
     select '30分',	from: "required_time"
