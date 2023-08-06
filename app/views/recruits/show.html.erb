@@ -26,9 +26,11 @@
               <div class="left-arrow" style='visibility: hidden;'>
                 <i class="fa-solid fa-arrow-left fa-xl" style="color: #ffffff;"></i>
               </div>
-              <div class="right-arrow">
-                <i class="fa-solid fa-arrow-right fa-xl" style="color: #ffffff;"></i>
-              </div>
+              <% if @recruit.images.count != 1 %>
+                <div class="right-arrow">
+                  <i class="fa-solid fa-arrow-right fa-xl" style="color: #ffffff;"></i>
+                </div>
+              <% end %>
               </div>
             </div>
           </div>
