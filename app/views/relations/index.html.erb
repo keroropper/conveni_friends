@@ -11,7 +11,7 @@
         <ul class="target-users-list">
           
           <% @relation_users.each do |user| %>
-            <%= link_to user_relations_path(current_user, target: user.id), local: true do %>
+            <%= link_to user_relations_path(current_user, target: user.id), class: "user-#{user.id}", local: true do %>
               <li>
                 <div class="target-user-info">
                   <div class="target-user-icon">

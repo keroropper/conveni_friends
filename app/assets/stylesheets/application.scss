@@ -240,6 +240,50 @@ body {
   }
 }
 
+.pagination {
+  display: flex;
+  margin: 50px 0;
+  span.page.current {
+    display: flex;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #93c9ff;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+  }
+  span.page {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #696969;
+    margin: 0 5px;
+    border-radius: 50%;
+  }
+  span.next, span.last, span.prev, span.first {
+    display: flex;
+    width: fit-content;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #696969;
+    padding: 0 10px;
+    border-radius: 3px;
+  }
+  span {
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+}
+
 input::placeholder, textarea::placeholder {
   color: rgb(200, 200, 200);
 }

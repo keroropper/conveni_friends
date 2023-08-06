@@ -1,6 +1,11 @@
 class Recruit < ApplicationRecord
   scope :active, -> { where(deleted_at: nil) }
-  scope :with_user, ->(keyword) { joins(:user).where('title LIKE ?', "%#{keyword}%") if keyword.present? }
+  scope :with_user, lambda { |keyword|
+                      if keyword.present?
+                        joins(:tags).where('title LIKE ? OR `explain` LIKE ? OR name LIKE ? OR address LIKE ?',
+                                           "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+                      end
+                    }
   scope :with_address, ->(address) { where('address LIKE ?', "%#{address}%") if address.present? }
   scope :with_tags, ->(tags) { joins(:tags).where(tags: { name: tags }) if tags.present? }
   scope :with_date, ->(date) { where('date LIKE ?', date.to_s) if date.present? }
@@ -20,7 +25,7 @@ class Recruit < ApplicationRecord
     end
   }
   scope :with_score, ->(score) { joins(:user).where('score LIKE ?', score.to_s) if score.present? && score != '0' }
-  # Ex:- scope :active, -> {where(:active => true)}
+  default_scope -> { order(created_at: :desc) }
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :recruit_tags, dependent: :destroy

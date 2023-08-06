@@ -8,6 +8,5 @@
   <div class="list-rst__wrap">
     <%= render partial: 'secrets/recruit', collection: @recruits, as: :recruit %>
   </div>
-  <div class="list-pagination">
-  </div>
+  <%= paginate @recruits %>
 </div>

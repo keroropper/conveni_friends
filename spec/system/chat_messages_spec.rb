@@ -74,7 +74,7 @@ RSpec.describe "ChatMessages", type: :system, js: true do
 
     it 'メッセージを送信すると通知が増えること' do
       within '.target-users-list' do
-        find('a').click
+        find('.target-user-info').click
       end
       fill_in 'chat_room_content', with: '送信コメント'
       click_on '送信'

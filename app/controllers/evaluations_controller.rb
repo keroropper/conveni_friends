@@ -4,7 +4,7 @@ class EvaluationsController < ApplicationController
   def incomplete_index; end
 
   def index
-    @evaluations = current_user.evaluations
+    @evaluations = current_user.evaluations.page(params[:page]).per(20)
   end
 
   def new

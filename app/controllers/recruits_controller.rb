@@ -44,7 +44,7 @@ class RecruitsController < ApplicationController
   end
 
   def search
-    @recruits = Recruit.includes(:user).all
+    @recruits = Recruit.includes(:user).page(params[:page]).per(10)
     keyword = params[:keyword]
     address = params[:address]
     tags = params[:name]

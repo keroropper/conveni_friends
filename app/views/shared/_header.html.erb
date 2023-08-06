@@ -73,6 +73,16 @@
                   </div>
                 </div>
               <% end %>
+              <%= link_to user_applicants_index_path(current_user) do %>
+                <div class="header-user-applicants">
+                  <div class="user-applicants-link">
+                    応募した投稿一覧
+                  </div>
+                  <div class="header-user-right-icon">
+                    <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+                  </div>
+                </div>
+              <% end %>
               <%= link_to user_relations_path(current_user) do %>
                 <div class="header-user-relations">
                   <div class="user-relations-link">
