@@ -80,6 +80,14 @@ category = %w[relation comment applicant chat_message favorite]
 2.times do
   category.each do |c|
     id = (c == 'comment' || c == 'applicant' || c == 'favorite') ? 1 : nil
-    Notification.create(sender_id: users[0].id, receiver_id: users[2].id, category: c, read: false, recruit_id: 1 )
+    Notification.create(sender_id: users[0].id, receiver_id: users[2].id, category: c, read: false, recruit_id: id )
+  end
+end
+
+
+users.each_with_index do |user, i|
+  content = Faker::Lorem.sentence(word_count: 10)
+  if i != 2
+    Evaluation.create(evaluator_id: user.id, evaluatee_id: users[2].id, score: rand(1..5), feedback: content, recruit_id: 1)
   end
 end

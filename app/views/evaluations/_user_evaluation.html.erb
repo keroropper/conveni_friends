@@ -5,7 +5,16 @@
     <h2><%= user.name %></h2>
   </div>
   <div class="user-score__box">
-    <div id="user-score" data-score=<%= user.score.to_i %>></div>
+    <div id="evaluatee-user-score" data-score=<%= user.score.to_i %>></div>
     <div><%= user.score_count %></div>
   </div>
 </div>
+
+<script>
+  $('#evaluatee-user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>

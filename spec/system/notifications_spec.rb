@@ -22,4 +22,13 @@ RSpec.describe "Notifications", type: :system do
       expect(page).to have_content("#{other.name}さんが「#{recruit.title}」にいいねしました。")
     end
   end
+
+  it 'ページネーションが表示されていること' do
+    create_list(:notification, 30, sender_id: other.id, receiver_id: user.id, recruit_id: recruit.id, category: 'chat_message', read: false)
+    visit user_notifications_path(user)
+    expect(page).to have_css('.pagination')
+
+    click_link '2'
+    expect(page).to have_current_path(user_notifications_path(user, page: 2))
+  end
 end

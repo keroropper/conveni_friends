@@ -6,7 +6,7 @@
     <% if @notifications.present? %>
 
       <%= render partial: 'content', collection: @notifications %>
-
+      <%= paginate @notifications %>
     <% else %>
       <div class="notification_info">
         <h3>お知らせはありません。</h3>

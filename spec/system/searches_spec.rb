@@ -11,7 +11,7 @@ RSpec.describe "Searches", type: :system do
                       meeting_time: "12:00",
                       required_time: '30',
                       address: '東京都',
-                      tag_names: ['tag1'])
+                      tag_names: ['タグ1'])
   end
   let!(:recruit) do
     FactoryBot.create(:recruit,
@@ -21,7 +21,7 @@ RSpec.describe "Searches", type: :system do
                       meeting_time: "14:00",
                       required_time: '90',
                       address: '埼玉県',
-                      tag_names: ['tag2'])
+                      tag_names: ['タグ2'])
   end
   let!(:other_users_recruit) do
     FactoryBot.create(:recruit,
@@ -47,10 +47,10 @@ RSpec.describe "Searches", type: :system do
     expect(page).to_not have_css('.info__place__wrap', text: '埼玉県')
   end
   it 'タグで検索できること' do
-    fill_in "name",	with: "tag1"
+    fill_in "name",	with: "タグ1"
     click_button '絞り込む'
-    expect(page).to have_css('.list-rst__tags', text: 'tag1')
-    expect(page).to_not have_css('.list-rst__tags', text: 'tag2')
+    expect(page).to have_css('.list-rst__tags', text: 'タグ1')
+    expect(page).to_not have_css('.list-rst__tags', text: 'タグ2')
   end
   it '日付で検索できること' do
     date = Date.tomorrow

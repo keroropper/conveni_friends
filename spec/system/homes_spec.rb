@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Homes", type: :system, js: true do
+RSpec.describe "Homes", type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other) { FactoryBot.create(:user) }
   let!(:recruit) { FactoryBot.create_list(:recruit, 5) }
@@ -21,7 +21,7 @@ RSpec.describe "Homes", type: :system, js: true do
       expect(page).to have_css('.unread-notification-count span', text: user.notifications.count.to_s)
     end
 
-    it 'ヘッダーの"アカウント"をクリックするとポップアップメニューが表示されること' do
+    it 'ヘッダーの"アカウント"をクリックするとポップアップメニューが表示されること', js: true do
       expect(page).to_not have_css('.header-user-menu__wrapper')
       find('.header__user-menu').click
       expect(page).to have_css('.header-user-menu__wrapper')
@@ -31,19 +31,37 @@ RSpec.describe "Homes", type: :system, js: true do
       expect(page).to have_content(user.name)
 
       # 投稿一覧へのリンク
+      visit root_path
       find('.header__user-menu').click
       find('.user-recruits-link').click
       expect(page).to have_content('投稿した募集')
 
       # いいねした募集一覧へのリンク
+      visit root_path
       find('.header__user-menu').click
       find('.user-favorites-link').click
       expect(page).to have_content('いいね！した募集')
 
+      # 応募した投稿一覧へのリンク
+      visit root_path
+      find('.header__user-menu').click
+      find('.user-applicants-link').click
+      expect(page).to have_content('応募した投稿一覧')
+
       # チャットへのリンク
+      visit root_path
       find('.header__user-menu').click
       find('.user-relations-link').click
       expect(page).to have_content('チャット')
+    end
+
+    it 'ページネーションが表示されていること' do
+      create_list(:recruit, 7)
+      visit root_path
+      expect(page).to have_css('.pagination')
+
+      click_link '2'
+      expect(page).to have_current_path(root_path(page: 2))
     end
   end
 end

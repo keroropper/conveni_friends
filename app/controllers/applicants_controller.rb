@@ -3,11 +3,12 @@ class ApplicantsController < ApplicationController
   before_action :recruit_params, only: [:recruit_applicants_index, :create, :destroy]
 
   def user_applicants_index
-    @recruits = current_user.applicant_recruits
+    @recruits = current_user.applicant_recruits.page(params[:page]).per(10)
   end
 
   def recruit_applicants_index
-    @users = @recruit.applicant_users
+    @users = @recruit.applicant_users.page(params[:page]).per(12)
+    @count = @users.total_count
   end
 
   def create

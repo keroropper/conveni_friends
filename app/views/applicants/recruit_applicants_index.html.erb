@@ -13,7 +13,7 @@
             </h1>
         </div>
       <% end %>
-      <h2>応募者</h2>
+      <h2>応募者（<%= @count %>名）</h2>
       <% if @users.present? %>
         <div class="applicant-users__block">
           <% @users.each do |user| %>
@@ -22,6 +22,7 @@
             <% end %>
           <% end %>
         </div>
+        <%= paginate @users %>
       <% else %>
         <div class="applicant-guest">
           <span>応募者はいません。</span>
