@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
 
+  const imageCount = document.querySelectorAll('[id^="show-image-"]').length;
   const sideImageBlock = document.querySelectorAll('.show-recruit__image.side-image');
   const leftArrow = document.querySelector('.left-arrow');
   const rightArrow = document.querySelector('.right-arrow');
@@ -65,7 +66,7 @@ document.addEventListener("turbolinks:load", function() {
     if(currentImageNum == 1) {
       leftArrow.style.visibility = 'hidden';
     }
-    else if(currentImageNum == 4) {
+    else if(currentImageNum == 4 || currentImageNum == imageCount) {
       rightArrow.style.visibility = 'hidden';
     }
   }
