@@ -31,7 +31,7 @@ RSpec.describe "Users", type: :system, js: true do
       expect(user.reload.profile_photo.blob.filename.to_s).to eq '縦長.jpeg'
     end
 
-    it '画像を削除できること', focus: true do
+    it '画像を削除できること' do
       visit edit_user_path(user)
       delete_btn = find('.image-delete')
       delete_btn.click
