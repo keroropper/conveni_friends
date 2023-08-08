@@ -44,7 +44,6 @@ class RecruitsController < ApplicationController
   end
 
   def search
-    @recruits = Recruit.includes(:user).page(params[:page]).per(10)
     keyword = params[:keyword]
     address = params[:address]
     tags = params[:name]
@@ -54,14 +53,17 @@ class RecruitsController < ApplicationController
     start_age = params[:start_age]
     end_age = params[:end_age]
     score = params[:score]
-    @recruits = @recruits.with_user(keyword)
+    @recruits = Recruit.includes(:user)
+      .active
+      .with_user(keyword)
       .with_address(address)
       .with_tags(tags)
       .with_date(date)
       .with_meeting_time(meeting_time)
       .with_required_time(required_time)
       .with_age_range(start_age, end_age)
-      .with_score(score)
+      .with_score(score).page(params[:page]).per(10)
+    @count = @recruits.total_count
   end
 
   private

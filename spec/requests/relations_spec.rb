@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Relations", type: :request do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
-  let(:recruit) { create(:recruit, user:) }
+  let(:recruit) { create(:recruit, user:, title: '論理削除') }
   before do
     Applicant.create(user_id: other.id, recruit_id: recruit.id)
     sign_in user
@@ -33,5 +33,16 @@ RSpec.describe "Relations", type: :request do
     expect do
       post user_relations_path(other, recruit_id: recruit.id)
     end.to change { other.notifications.count }.by(1)
+  end
+
+  it '相手を承認すると、対象の投稿が論理削除されること' do
+    get root_path
+    expect(response.body).to include('論理削除')
+    expect(recruit.deleted_at).to be_nil
+    expect do
+      post user_relations_path(other, recruit_id: recruit.id)
+    end.to change { recruit.reload.deleted_at }.from(nil).to(a_value)
+    get root_path
+    expect(response.body).to_not include('論理削除')
   end
 end

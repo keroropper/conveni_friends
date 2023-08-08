@@ -57,6 +57,8 @@ function scrollToBottom() {
 };
 
 document.addEventListener('turbolinks:load', function() {
-  scrollToBottom();
-  chatCreate();
+  if(location.href.includes('/relations?target=')) {
+    scrollToBottom();
+    chatCreate();
+  }
 });

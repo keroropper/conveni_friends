@@ -1,3 +1,11 @@
+.edit-btn {
+  display: flex;
+  justify-content: flex-end;
+  #update-btn { 
+    margin-left: 20px;
+  }
+}
+
 .user-attributes.name {
   display: flex;
   align-items: center;

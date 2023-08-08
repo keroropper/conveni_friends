@@ -14,13 +14,13 @@ class ApplicationController < ActionController::Base
 
   def current_user_notification
     if current_user
-      @notifications = current_user.notifications.page(params[:page]).per(5)
+      @notifications = current_user.notifications.includes(:sender).page(params[:page]).per(20)
       @count = current_user.notifications.where(read: false).count
     end
   end
 
   def incomplete_tasks
-    @evaluatee_users = current_user.incomplete_evaluation_users.page(params[:page]).per(20) if current_user
+    @evaluatee_users = current_user.incomplete_evaluation_users.with_attached_profile_photo.page(params[:page]).per(20) if current_user
   end
 
   def configure_permitted_parameters

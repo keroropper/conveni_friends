@@ -63,5 +63,14 @@ RSpec.describe "Homes", type: :system do
       click_link '2'
       expect(page).to have_current_path(root_path(page: 2))
     end
+
+    it '簡単ログイン機能', js: true do
+      find('.header__user-menu').click
+      find('.user-logout-link').click
+      get root_path
+      expect(page).to have_content('簡単ログイン')
+      find('.header__easy-sign-in>a').click
+      expect(page).to have_content('アカウント')
+    end
   end
 end

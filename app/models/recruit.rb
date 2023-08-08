@@ -3,7 +3,7 @@ class Recruit < ApplicationRecord
   scope :with_user, lambda { |keyword|
                       if keyword.present?
                         joins(:tags).where('title LIKE ? OR `explain` LIKE ? OR name LIKE ? OR address LIKE ?',
-                                           "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+                                           "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").distinct
                       end
                     }
   scope :with_address, ->(address) { where('address LIKE ?', "%#{address}%") if address.present? }

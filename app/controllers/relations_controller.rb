@@ -18,9 +18,11 @@ class RelationsController < ApplicationController
   def create
     recruit_id = params[:recruit_id]
     other_user = params[:user_id]
+    recruit = Recruit.find(recruit_id)
     if current_user.follow(other_user, recruit_id)
       current_user.create_chat_room(other_user)
       Notification.create(receiver_id: other_user, sender_id: current_user.id, category: 'relation')
+      recruit.update(deleted_at: Time.current)
       redirect_to user_relations_path(current_user)
     end
   end

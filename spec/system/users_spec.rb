@@ -36,7 +36,7 @@ RSpec.describe "Users", type: :system, js: true do
       delete_btn = find('.image-delete')
       delete_btn.click
       submit_edit_btn
-      expect(page).to_not have_selector('img')
+      expect(page).to_not have_selector('.profile-image>img')
       expect(user.reload.profile_photo.attached?).to be_falsey
     end
   end

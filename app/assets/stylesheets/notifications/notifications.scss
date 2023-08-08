@@ -5,7 +5,11 @@
 .notification__wrapper {
   width: 650px;
   margin: auto;
-  h1 {
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .notification_info {
     text-align: center;
   }
   .notification__item {
