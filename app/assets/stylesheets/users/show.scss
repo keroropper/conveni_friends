@@ -25,6 +25,23 @@
       .user-attributes.name {
         font-size: 28px;
         font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .user-attributes.evaluation {
+        .user-attributes.evaluation-box {
+          display: flex;
+          align-items: center;
+          #profile-user-score {
+            display: flex;
+            width: 20px;
+            height: 20px;
+          }
+          span {
+            color: #0073cc;
+            font-size: 20px;
+            margin-left: 110px;
+          }
+        }
       }
       .user-attributes.age-and-gender {
         margin-top: 20px;

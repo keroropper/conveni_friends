@@ -2,7 +2,7 @@ import { checkFileSize } from "./recruit_preview";
 document.addEventListener('turbolinks:load', function() {
   if(location.href.includes('/users')) {
     const inputImgField = document.getElementById('input-profile');
-    let imgTag = document.querySelector('img');
+    let imgTag = document.querySelector('.profile-image>img');
     let deleteBtn = document.querySelector('.image-delete');
     let flag = true;
     if(deleteBtn) {
@@ -31,7 +31,7 @@ document.addEventListener('turbolinks:load', function() {
         // 初期画像がある場合
         } else {
           // 画像削除後、冒頭で定義したimgTagには削除前の画像が代入されているため、再度取得する
-          let imgTag = document.querySelector('img')
+          let imgTag = document.querySelector('.profile-image>img');
           // 初期画像を削除せずに違う画像をアップする場合
           if(imgTag) {
             imgTag.src = imgUrl;
@@ -66,7 +66,7 @@ document.addEventListener('turbolinks:load', function() {
 
     function addDeleteEvent(target) {
       target.addEventListener('click', function(e) {
-        let imgTag = document.querySelector('img');
+        let imgTag = document.querySelector('.profile-image>img');
         imgTag.remove();
         inputImgField.value = '';
         e.target.setAttribute('hidden', 'true');
@@ -74,8 +74,8 @@ document.addEventListener('turbolinks:load', function() {
       })
     } 
     function switchIcon(style) {
-      let icon = document.querySelectorAll('svg')
-      let imageIcon = Array.from(icon).slice(0, 2);
+      let icon = document.querySelectorAll('.profile-image>svg');
+      let imageIcon = Array.from(icon);
       
       if(style == 'hidden'){
         imageIcon.forEach((e) => {

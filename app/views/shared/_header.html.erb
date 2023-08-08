@@ -2,7 +2,7 @@
   <div class="header-top__container">
     <div class="header-top-contents">
       <div class="header__logo">
-        <%= link_to 'レンタルフレンド', root_path %>
+        <%= link_to 'コンフレ', root_path %>
       </div>
       <div class="header__links">
         <% unless current_user %>
@@ -11,6 +11,9 @@
           </div>
           <div class="header__sign-in">
             <%= link_to "ログイン", new_user_session_path %>
+          </div>
+          <div class="header__easy-sign-in">
+            <%= link_to "簡単ログイン", users_guest_sign_in_path, method: :post  %>
           </div>
         <% else %>
           <div class="header__tasks">

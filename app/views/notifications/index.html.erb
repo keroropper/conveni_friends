@@ -2,14 +2,14 @@
 
 <div class="container">
   <div class="notification__wrapper">
-    <h1 class='notification__head'>お知らせ</h1>
+    <h2 class='notification__head'>お知らせ</h2>
     <% if @notifications.present? %>
 
       <%= render partial: 'content', collection: @notifications %>
       <%= paginate @notifications %>
     <% else %>
       <div class="notification_info">
-        <h3>お知らせはありません。</h3>
+        <span>お知らせはありません。</span>
       </div>
     <% end %>
     

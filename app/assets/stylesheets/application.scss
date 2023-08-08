@@ -97,6 +97,24 @@ body {
     }
   }
 }
+.background-image__container {
+  .top-page__text-wrapper {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Noto Serif JP', serif;
+    font-style: italic;
+    p {
+      margin: 0;
+    }
+    p.top-page__first-text {
+      margin-top: 30px;
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+  }
+}
 
 .header__user-menu {
   position: relative;

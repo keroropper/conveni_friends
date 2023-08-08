@@ -9,4 +9,10 @@ class Users::SessionsController < Devise::RegistrationsController
       respond_with(resource, serialize_options(resource))
     end
   end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path
+  end
 end

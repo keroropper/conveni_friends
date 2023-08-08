@@ -3,11 +3,13 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def recruit_index
-    @recruits = current_user.recruits.page(params[:page]).per(10)
+    @recruits = current_user.recruits.with_attached_images.page(params[:page]).per(10)
+    @count = @recruits.total_count
   end
 
   def favorite_index
-    @recruits = current_user.favorite_recruits.page(params[:page]).per(10)
+    @recruits = current_user.favorite_recruits.with_attached_images.page(params[:page]).per(10)
+    @count = @recruits.total_count
   end
 
   def show

@@ -1,6 +1,7 @@
 class SecretsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @recruits = Recruit.page(params[:page]).per(10)
+    @recruits = Recruit.active.with_attached_images.page(params[:page]).per(10)
+    @count = @recruits.total_count
   end
 end

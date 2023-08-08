@@ -9,7 +9,15 @@
     </div>
     <div class="user-attributes">
       <div class="user-attributes name">
-        <%= user.name %>
+        <span><%= user.name %></span>
+      </div>
+      <div class="user-attributes evaluation">
+        <%= link_to user_evaluations_path(user) do %>
+          <div class="user-attributes evaluation-box">
+            <div id="profile-user-score" data-score=<%= user.score.to_i %>></div>
+            <span><%= user.score_count %></span>
+          </div>
+        <% end %>
       </div>
       
       <div class="user-attributes age-and-gender">
@@ -19,3 +27,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('#profile-user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>
