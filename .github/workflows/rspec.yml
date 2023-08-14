@@ -62,12 +62,8 @@ jobs:
     env:
       AWS_REGION: ap-northeast-1
       ECR_REPOSITORY: conveni_friends-prod
-      RAILS_ENV: production
     steps:
       - uses: actions/checkout@v2
-      - name: Build and compile assets
-        run: |
-          RAILS_ENV=$RAILS_ENV bundle exec rails assets:precompile
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -84,7 +80,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -f docker/production/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker buildx build -f docker/production/Dockerfile --secret id=master_key,src=./config/master.key -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       - name: Update ECS service
