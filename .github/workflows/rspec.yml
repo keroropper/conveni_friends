@@ -81,9 +81,9 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          touch master.key
-          echo $RAILS_MASTER_KEY > master.key
-          docker buildx build -f docker/production/Dockerfile --secret id=master_key,src=master.key -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          touch config/master.key
+          echo $RAILS_MASTER_KEY > config/master.key
+          docker buildx build -f docker/production/Dockerfile --secret id=master_key,src=config/master.key -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
       - name: Update ECS service
