@@ -33,7 +33,6 @@ RSpec.describe "ChatMessages", type: :system, js: true do
     end
 
     it 'メッセージを送信するとメッセージが相手の画面に表示されること' do
-
       using_session :user1 do
         sign_in user
         visit user_relations_path(user.id)
