@@ -20,6 +20,7 @@ module ConveniFriends
     end
     # 画像を上書きではなく追加アップロードできるようにする。
     config.active_storage.replace_on_assign_to_many = false
+    config.active_storage.track_variants = false
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

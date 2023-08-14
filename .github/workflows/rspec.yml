@@ -1,8 +1,6 @@
 name: RSpec
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+on: push
 
 jobs:
   test:
@@ -63,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: ap-northeast-1
-      ECR_REPOSITORY: conveni_friends-dev
+      ECR_REPOSITORY: conveni_friends-prod
     steps:
       - uses: actions/checkout@v2
       - name: Configure AWS credentials
@@ -81,7 +79,10 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Update ECS service
+        run:
+          aws ecs update-service --cluster conveni_friends --service conveni-friends-v5-2 --force-new-deployment

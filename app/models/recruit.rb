@@ -39,9 +39,9 @@ class Recruit < ApplicationRecord
   validates :required_time, numericality: { only_integer: true }
   validates :title, :explain, :date, :required_time, :meeting_time, presence: true
   validates :title, length: { maximum: 20 }
-  validates :explain, length: { maximum: 100 }
+  validates :explain, length: { maximum: 300 }
   validates :images, limit: { min: 1, max: 8 },
-                     content_type: { in: %w[image/jpeg image/gif image/png image/jpg],
+                     content_type: { in: %w[image/jpeg image/gif image/png image/jpg image/webp],
                                      message: "形式はjpeg, jpg, gif, pngのみ有効です。" },
                      size: { less_than: 5.megabytes,
                              message: "ファイルは5MB以下である必要があります。" }

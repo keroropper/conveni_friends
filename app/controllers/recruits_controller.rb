@@ -16,11 +16,6 @@ class RecruitsController < ApplicationController
     @recruit = Recruit.new(tags: [Tag.new])
   end
 
-  def edit
-    tags_name = @recruit.tags.map(&:name)
-    @tags = tags_name.join(' ')
-  end
-
   def create
     @recruit = current_user.recruits.build(recruit_params)
     if @recruit.save && @recruit.recruit_tags_create(@tags)
@@ -28,6 +23,11 @@ class RecruitsController < ApplicationController
     else
       render action: :new
     end
+  end
+  
+  def edit
+    tags_name = @recruit.tags.map(&:name)
+    @tags = tags_name.join(' ')
   end
 
   def update

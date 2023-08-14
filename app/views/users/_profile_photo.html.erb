@@ -11,14 +11,16 @@
       <div class="user-attributes name">
         <span><%= user.name %></span>
       </div>
-      <div class="user-attributes evaluation">
-        <%= link_to user_evaluations_path(user) do %>
-          <div class="user-attributes evaluation-box">
-            <div id="profile-user-score" data-score=<%= user.score.to_i %>></div>
-            <span><%= user.score_count %></span>
-          </div>
-        <% end %>
-      </div>
+      <% if score %>
+        <div class="user-attributes evaluation">
+          <%= link_to user_evaluations_path(user) do %>
+            <div class="user-attributes evaluation-box">
+              <div id="profile-user-score" data-score=<%= user.score.to_i %>></div>
+              <span><%= user.score_count %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       
       <div class="user-attributes age-and-gender">
         <%= user.age %>歳

@@ -1,4 +1,4 @@
-<%= render 'shared/header' %>
+
 
 <div class="container">
   <div class="profile-main">
@@ -13,7 +13,7 @@
       </div>
     <% end %>
 
-    <%= render 'users/profile_photo', user: @user %>
+    <%= render 'users/profile_photo', user: @user, score: true %>
 
     <div class="profile-detail-contents">
       <div class="profile-detail introduce">

@@ -1,5 +1,3 @@
-<%= render 'shared/header' %>
-
 <div class="container">
   <div class="applicants__container">
     <div class="applicant-users__container">
@@ -18,7 +16,7 @@
         <div class="applicant-users__block">
           <% @users.each do |user| %>
             <%= link_to user_path(user, recruit_id: @recruit.id) do %>
-              <%= render 'users/profile_photo', user: user %>
+              <%= render 'users/profile_photo', user: user, score: false %>
             <% end %>
           <% end %>
         </div>

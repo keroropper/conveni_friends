@@ -53,5 +53,6 @@ test:
 production:
   <<: *default
   database: conveni_friends_production
-  username: conveni_friends
-  password: <%= ENV['CONVENI_FRIENDS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  host: <%= ENV['DB_HOST'] %>
