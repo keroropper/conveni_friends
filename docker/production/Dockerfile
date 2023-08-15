@@ -39,6 +39,7 @@ COPY . /app
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle 
 COPY --from=yarn /app/node_modules /app/node_modules
 # docker buildx build -f docker/production/Dockerfile --secret id=master_key,src=./config/master.key -t conveni_friends-prod .
+RUN bundle exec rake tmp:clear
 RUN --mount=type=secret,id=master_key,target=config/master.key,required=true bundle exec rails webpacker:compile RAILS_ENV=production
 #webpackをproduction環境で実行
 RUN chmod +x ./bin/webpack
