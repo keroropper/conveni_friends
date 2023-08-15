@@ -17,7 +17,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'pry-byebug'
   gem 'action-cable-testing'
 end
@@ -56,3 +55,4 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'active_storage_validations'
 gem 'kaminari'
+gem 'faker'

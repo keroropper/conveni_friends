@@ -88,4 +88,4 @@ jobs:
 
       - name: Update ECS service
         run:
-          aws ecs update-service --cluster conveni_friends --service conveni-friends-v5-2 --force-new-deployment
+          aws ecs update-service --cluster conveni_friends --service conveni-friends --force-new-deployment
