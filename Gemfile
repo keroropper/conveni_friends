@@ -17,7 +17,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'pry-byebug'
   gem 'action-cable-testing'
 end
@@ -40,6 +39,11 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production do
+  gem 'aws-sdk-s3', require: false
+  gem "redis", ' ~> 3.3'
+end
+
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails'
@@ -51,3 +55,4 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'active_storage_validations'
 gem 'kaminari'
+gem 'faker'

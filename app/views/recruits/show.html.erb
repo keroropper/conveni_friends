@@ -1,5 +1,3 @@
-<%= render 'shared/header' %>
-
 <div class="container">
   <div class="show-recruit__wrap">
 
@@ -67,7 +65,7 @@
               <h2 class="info__label-text">概要</h2>
             </div>
             <div class="info__explain__content">
-              <%= @recruit.explain %>          
+              <%= safe_join(@recruit.explain.split("\n"),tag(:br)) %>          
             </div>
             <div class="recruit__time-ago">
               <%= time_ago_in_words(@recruit.created_at) %>前

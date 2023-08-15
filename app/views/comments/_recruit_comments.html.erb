@@ -2,7 +2,7 @@
   <h2 class="info__label-text">コメント（<%= @comments.count %>）</h2>
 </div>    
 <% if @comments.count.zero? %>
-<p>コメントはまだありません</p>
+<p>コメントはまだありません。</p>
 <% end %>
 <div class="info__comments__index">
   <% @comments.each do |comment| %>

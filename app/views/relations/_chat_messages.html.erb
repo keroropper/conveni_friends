@@ -1,14 +1,16 @@
 <% if @room.present? %>
   <div class="chat-user">
-    <div class="list-rst__user">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="profile-image">
-        <%= render 'users/profile_icon', user: @user %>
-        <div class="profile-name">
-          <%= @user.name %>
+    <%= link_to user_path(@user) do %>
+      <div class="list-rst__user">
+        <i class="fa-solid fa-angle-left"></i>
+        <div class="profile-image">
+          <%= render 'users/profile_icon', user: @user %>
+          <div class="profile-name">
+            <%= @user.name %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
   <div class="chat-messages-container" data-room_id="<%= @room.id %>">
     <div class="chat-messages-wrap">

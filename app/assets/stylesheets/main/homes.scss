@@ -3,9 +3,31 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .background-image__container {
-  background-image: image-url('hand.jpg');
   width: 100vw;
-  height: 100vh;
-  background-size: cover; /* 画像を要素に合わせて拡大縮小 */
+  height: calc(100vh - 70px);
+  background-image: image-url('hand.jpg');
+  background-size: cover;
   background-position: center;
+  overflow: hidden;
+  .top-page__text-wrapper {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Noto Serif JP', serif;
+    font-style: italic;
+    p {
+      margin: 0;
+    }
+    p.top-page__first-text {
+      margin-top: 15px;
+    }
+    p.top-page__explain-text {
+      font-size: 17px;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+  }
 }

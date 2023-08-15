@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def current_user_notification
     if current_user
       @notifications = current_user.notifications.includes(:sender).page(params[:page]).per(20)
-      @count = current_user.notifications.where(read: false).count
+      @notification_count = current_user.notifications.where(read: false).count
     end
   end
 

@@ -2,7 +2,7 @@
   <div class="crt-image-item">
     <div class="crt-image-data">
     
-      <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: 'display: none;', id: "img-file" %>
+      <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png,image/webp", style: 'display: none;', id: "img-file" %>
       <%= f.hidden_field :image_num, id: 'image-number', style: 'visibility: hidden;' %>
       <% if @recruit.images.count > 0 && @image_count > 0 %>
         <% visibility = 'hidden' %>

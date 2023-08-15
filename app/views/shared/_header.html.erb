@@ -2,7 +2,7 @@
   <div class="header-top__container">
     <div class="header-top-contents">
       <div class="header__logo">
-        <%= link_to 'コンフレ', root_path %>
+        <%= link_to '刹那フレンド', root_path, id: 'logo' %>
       </div>
       <div class="header__links">
         <% unless current_user %>
@@ -25,9 +25,9 @@
             </div>
           <% end %>
           <%= link_to user_notifications_path(current_user), class: 'header__notification-link' do %>  
-            <% if @count != 0%>
+            <% if @notification_count != 0%>
               <div class="unread-notification-count">
-                <span><%= @count %></span>
+                <span><%= @notification_count %></span>
               </div>
             <% end %>
             <div class="header__notification-icon">

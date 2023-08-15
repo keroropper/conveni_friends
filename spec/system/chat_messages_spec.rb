@@ -34,20 +34,7 @@ RSpec.describe "ChatMessages", type: :system, js: true do
 
     it 'メッセージを送信するとメッセージが相手の画面に表示されること' do
       using_session :user1 do
-        visit new_user_session_path
-        fill_in 'メールアドレス', with: user.email
-        fill_in 'パスワード', with: user.password
-        click_on 'ログイン'
-      end
-
-      using_session :user2 do
-        visit new_user_session_path
-        fill_in 'メールアドレス', with: other.email
-        fill_in 'パスワード', with: other.password
-        click_on 'ログイン'
-      end
-
-      using_session :user1 do
+        sign_in user
         visit user_relations_path(user.id)
         within '.target-users-list' do
           find('a').click
@@ -55,6 +42,7 @@ RSpec.describe "ChatMessages", type: :system, js: true do
         end
       end
       using_session :user2 do
+        sign_in other
         visit user_relations_path(other.id)
         within '.target-users-list' do
           find('a').click
