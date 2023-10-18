@@ -5,6 +5,5 @@ class SecretsController < ApplicationController
     @count = @recruits.total_count
   end
 
-  def search
-  end
+  def search; end
 end

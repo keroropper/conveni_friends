@@ -86,6 +86,6 @@ jobs:
           docker buildx build -f docker/production/Dockerfile --secret id=master_key,src=config/master.key -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-      - name: Update ECS service
-        run:
-          aws ecs update-service --cluster conveni_friends --service conveni-friends --force-new-deployment
+      # - name: Update ECS service
+      #   run:
+      #     aws ecs update-service --cluster conveni_friends --service conveni-friends --force-new-deployment
