@@ -42,7 +42,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include ActionCable::TestHelper
-  Webdrivers::Chromedriver.required_version = '114.0.5735.90'
+  # Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation

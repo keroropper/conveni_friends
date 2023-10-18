@@ -32,9 +32,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
-  gem 'webdrivers'
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
