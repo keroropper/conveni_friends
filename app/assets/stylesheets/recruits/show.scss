@@ -1,21 +1,15 @@
 @import  "../mixins.scss";
 .show-recruit__wrap {
-  margin: 0 46px;
   .show-recruit__article {
-    display: grid;
-    grid-gap: 24px;
-    grid-template-columns: repeat(12, 1fr);
+    display: flex;
     .show-recruit__images__wrap {
-      grid-column: span 7 / auto;
+      width: 55%;
     }
     .show-recruit__images {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-gap: 24px;
+      display: flex;
       .side-image-block {
-        grid-template-rows: repeat(4, 1fr);
-        grid-auto-flow: column;
         cursor: pointer;
+        margin-right: 2rem;
         .side-image {
           width: 78px;
           height: 78px;
@@ -33,9 +27,8 @@
         }
       }
       .main-image__wrap {
-        grid-column: span 6 / auto;
         width: 592px;
-        height: 592px;
+        aspect-ratio: 1;
         .main-image-block {
           width: 100%;
           height: 100%;
@@ -53,17 +46,17 @@
             }
             .left-arrow {
               @include arrow;
+              opacity: 1;
               left: 20px;
               &:hover {
-                opacity: 0.5;
                 cursor: pointer;
               }
             }
             .right-arrow {
               @include arrow;
+              opacity: 1;
               right: 20px;
               &:hover {
-                opacity: 0.5;
                 cursor: pointer;
               }
             }
@@ -73,7 +66,7 @@
     }
     .show-recruit__info {
       height: 100%;
-      grid-column: span 5 / auto;
+      width: 45%;
       padding-left: 16px;
       margin-bottom: 32px;
       .another-page__path {
@@ -232,6 +225,43 @@
       .profile-photo {
         width: 45px;
         height: 45px;
+      }
+    }
+  }
+}
+
+@media ( max-width: 1000px) {
+  .show-recruit__wrap {
+    .show-recruit__article {
+      display: block;
+      .show-recruit__images__wrap {
+        width: 70%;
+        margin: 0 auto;
+      }
+      .show-recruit__info {
+        width: 70%;
+        margin: 30px auto 0;
+      }
+    }
+  }
+}
+
+@media ( max-width: 800px) {
+    .side-image-block {
+      display: none;
+    }
+}
+
+
+@media ( max-width: 600px ) {
+  .show-recruit__wrap {
+    .show-recruit__article {
+      .show-recruit__images__wrap {
+        width: 100%;
+      }
+      .show-recruit__info {
+        width: 100%;
+        padding: 0;
       }
     }
   }

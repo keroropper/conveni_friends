@@ -51,12 +51,11 @@ $border-color: #DDDDDD;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 36px;
-  width: 36px;
+  height: 2.3rem;
+  width: 2.3rem;
   background-color: #000;
-  top: calc(50% - 40px);
-  transform: translate(0 -50%);
-  opacity: 0.2;
+  top: 50%;
+  transform: translateY(-1.15rem);
 }
 
 @mixin separate-border {
@@ -78,7 +77,7 @@ $border-color: #DDDDDD;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 100px;
-  height: 80px;
+  width: 80%;
+  height: 50%;
   color: gray;
 }

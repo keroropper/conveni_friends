@@ -4,4 +4,7 @@ class SecretsController < ApplicationController
     @recruits = Recruit.active.with_attached_images.page(params[:page]).per(10)
     @count = @recruits.total_count
   end
+
+  def search
+  end
 end

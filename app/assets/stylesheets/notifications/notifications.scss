@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .notification__wrapper {
-  width: 650px;
-  margin: auto;
+  width: 75%;
+  margin:0 auto;
   h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -48,5 +48,13 @@
         }
       }
     }
+  }
+}
+
+@media ( max-width: 600px ) {
+  .notification__wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0 1rem;
   }
 }

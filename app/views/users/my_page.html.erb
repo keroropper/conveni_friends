@@ -1,0 +1,79 @@
+<div class="my-page__user-menu">
+  <div class="header-user-menu__wrapper">
+    <div class="header-my-page">
+      <%= link_to user_path(current_user) do %>
+        <div class="header-user__info">
+          <%= render 'users/profile_icon', user: current_user %>
+          <div class="header-user__detail">
+            <div class="profile-name">
+              <%= current_user.name %>
+            </div>
+            <div class="header-user-score">
+              <div id="my-page__user-score" data-score=<%= current_user.score.to_i %>></div>
+              <div class='header-user-score-count'><%= current_user.score_count %></div>
+            </div>
+          </div>
+        </div>
+        <div class="header-user-right-icon">
+          <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to user_recruits_path(current_user) do %>
+      <div class="header-user-recruits">
+        <div class="user-recruits-link">
+          投稿一覧
+        </div>
+        <div class="header-user-right-icon">
+          <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to user_favorites_path(current_user) do %>
+      <div class="header-user-favorites">
+        <div class="user-favorites-link">
+          いいね！一覧
+        </div>
+        <div class="header-user-right-icon">
+          <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to user_applicants_index_path(current_user) do %>
+      <div class="header-user-applicants">
+        <div class="user-applicants-link">
+          応募した投稿一覧
+        </div>
+        <div class="header-user-right-icon">
+          <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to user_relations_path(current_user) do %>
+      <div class="header-user-relations">
+        <div class="user-relations-link">
+          チャット
+        </div>
+        <div class="header-user-right-icon">
+          <i class="fa fa-angle-right fa-sm" aria-hidden="true"></i>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to destroy_user_session_path do %>
+      <div class="header-user-logout">
+        <div class="user-logout-link">
+          ログアウト
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('#my-page__user-score').raty({
+  score:    $(this).attr('data-score'),
+  readOnly: true,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn:   '<%= asset_path('star-on.png') %>',
+  });
+</script>

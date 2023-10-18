@@ -43,6 +43,9 @@
         </div>
       <% end %>
       <div id="auth_page-link">
+        <div class="header__easy-sign-in">
+          <%= link_to "簡単ログイン", users_guest_sign_in_path, method: :post  %>
+        </div>
         <%= render "devise/shared/links" %>
       </div>
     </div>

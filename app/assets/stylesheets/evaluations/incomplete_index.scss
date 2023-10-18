@@ -1,6 +1,6 @@
 .incomplete-index__container {
-  width: 600px;
-  margin: auto;
+  width: 70%;
+  margin: 0 auto;
   h2 {
     text-align: center;
   }
@@ -26,5 +26,13 @@
     h2 {
       margin-bottom: 50px;
     }
+  }
+}
+
+@media ( max-width: 600px ) {
+  .incomplete-index__container {
+    width: 100%;
+    margin: 0;
+    padding: 0 1rem;
   }
 }

@@ -4,66 +4,63 @@
 
     <%= form_tag search_recruits_path, method: :get do %>
 
-
-    <h3>キーワード</h3>
-    <div class="list-sidebar__content">
-      <label for="search-keyword">キーワード:</label>
-      <%= text_field_tag :keyword %>
-    </div>
-
-    <h3>エリア</h3>
-    <div class="list-sidebar__content">
-      <label for="search-address">エリア:</label>
-      <%= text_field_tag :address %>
-    </div>
-
-
-    <h3>タグ</h3>
-    <div class="list-sidebar__content">
-      <label for="search-tag">タグ:</label>
-      <%= text_field_tag :'name' %>
-    </div>
-
-    <h3>日時</h3>
-    <div class="list-sidebar__wrap">
+      <h3>キーワード</h3>
       <div class="list-sidebar__content">
-        <label for="search-date">日付:</label>
-        <%= text_field_tag :date%>
-      </div>
-      <div class="list-sidebar__content">
-        <label for="search-meeting-time">時間:</label>
-        <%= text_field_tag :meeting_time %>
-      </div>
-      <div class="list-sidebar__content">
-        <label for="search-required-time">所要時間:</label>
-        <%= select_tag :required_time, options_for_select(required_time_options) %>
+        <label for="search-keyword">キーワード:</label>
+        <%= text_field_tag :keyword %>
       </div>
 
-    </div>
-
-    <h3>その他</h3>
-    <div class="list-sidebar__wrap">
+      <h3>エリア</h3>
       <div class="list-sidebar__content">
-        <label for="search-age">年齢:</label>
-        <div class="search-age__select">
-          <%= select_tag :start_age, options_for_select(create_select_age(19, 60)) %>
-          <span></span>
-          <%= select_tag :end_age, options_for_select(create_select_age(19, 60)) %>
+        <label for="search-address">エリア:</label>
+        <%= text_field_tag :address %>
+      </div>
+
+      <h3>タグ</h3>
+      <div class="list-sidebar__content">
+        <label for="search-tag">タグ:</label>
+        <%= text_field_tag :'name' %>
+      </div>
+
+      <h3>日時</h3>
+      <div class="list-sidebar__wrap">
+        <div class="list-sidebar__content">
+          <label for="search-date">日付:</label>
+          <%= text_field_tag :date%>
+        </div>
+        <div class="list-sidebar__content">
+          <label for="search-meeting-time">時間:</label>
+          <%= text_field_tag :meeting_time %>
+        </div>
+        <div class="list-sidebar__content">
+          <label for="search-required-time">所要時間:</label>
+          <%= select_tag :required_time, options_for_select(required_time_options) %>
         </div>
       </div>
-      <div class="list-sidebar__content score">
-        <label for="search_keyword">評価:</label>
-        <div id="user-evaluate__score" data-score= '0' ></div>
-      </div>
-    </div>
 
-    <div class="search-input-btn">
-      <%= submit_tag '絞り込む' %>
-    </div>
-    <div class="search-clear-btn">
-      クリア
-    </div>
-  <% end %>
+      <h3>その他</h3>
+      <div class="list-sidebar__wrap">
+        <div class="list-sidebar__content">
+          <label for="search-age">年齢:</label>
+          <div class="search-age__select">
+            <%= select_tag :start_age, options_for_select(create_select_age(19, 60)) %>
+            <span></span>
+            <%= select_tag :end_age, options_for_select(create_select_age(19, 60)) %>
+          </div>
+        </div>
+        <div class="list-sidebar__content score">
+          <label for="search_keyword">評価:</label>
+          <div id="user-evaluate__score" data-score= '0' ></div>
+        </div>
+      </div>
+
+      <div class="search-input-btn">
+        <%= submit_tag '絞り込む' %>
+      </div>
+      <div class="search-clear-btn">
+        クリア
+      </div>
+    <% end %>
 
   </div>
 </aside>

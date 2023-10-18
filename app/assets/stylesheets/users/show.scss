@@ -1,9 +1,10 @@
 @import '../mixins.scss';
 .profile-main {
-  margin: 0 450px 0 400px;
+  width: 40%;
+  margin: 0 auto;
   .profile-photo-main-container {
     position: relative;
-    padding-bottom: 40px;
+    padding-bottom: 2rem;
     border-bottom: 1px solid $border-color;
     .profile-photo-main-item {
       display: flex;
@@ -58,4 +59,50 @@
     .profile-detail-contents {
       margin-top: 40px;
     }
+}
+
+// ユーザープロフィール画面、編集画面レスポンシブ
+
+@media ( max-width: 800px ) {
+  .profile-main {
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+@media ( max-width: 600px ) {
+  .profile-main, #user-update-form {
+    & .profile-photo-main-container {
+      .profile-photo-main-item {
+        align-items: flex-start;
+        .profile-image {
+          width: 25%;
+          height: 30vw;
+        }
+        .user-attributes {
+          width: 100%;
+          .name {
+            font-size: 1.2rem;
+            input {
+              width: 100%;
+              font-size: 1.2rem;
+            }
+          }
+          .age-and-gender {
+            font-size: 0.8rem;
+          }
+        }
+        label[for="input-profile"] {
+          width: 25%;
+          height: 30vw;
+          flex-shrink: 0;
+          margin-right: 16px;
+          .profile-image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
 }

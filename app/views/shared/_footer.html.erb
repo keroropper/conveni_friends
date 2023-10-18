@@ -1,0 +1,36 @@
+<div class="responsive__footer-container">
+
+  <div class="responsive__footer-flex-container">
+    <div class="responsive__footer-home">
+      <%= link_to root_path do %>
+        <i class="fa-solid fa-house"></i>
+        <p>ホーム</p>
+      <% end%>
+    </div>
+    <div class="responsive__footer-search">
+      <%= link_to secrets_search_path do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <p>さがす</p>
+      <% end %>
+    </div>
+    <div class="responsive__footer-recruit">
+      <%= link_to new_recruit_path do %>
+        <i class="fa-regular fa-paper-plane"></i>
+        <p>募集</p>
+      <% end %>
+    </div>
+    <div class="responsive__footer-chat">
+      <%= link_to user_relations_path(current_user) do %>
+        <i class="fa-regular fa-comment"></i>
+        <p>チャット</p>
+      <% end %>
+    </div>
+    <div class="responsive__footer-my-page">
+      <%= link_to user_my_page_path(current_user) do %>
+        <i class="fa-regular fa-user"></i>
+        <p>マイページ</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -4,7 +4,7 @@
 // 認証画面
 .auth-wrapper {
   height: 100%;
-  width: 550px;
+  max-width: 550px;
   display: flex;
   margin: 0 auto;
   .auth-item {

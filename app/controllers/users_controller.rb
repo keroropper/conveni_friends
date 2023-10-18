@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:recruits_index, :favorite_index, :edit, :update, :my_page]
 
   def recruit_index
     @recruits = current_user.recruits.with_attached_images.page(params[:page]).per(10)
@@ -33,11 +33,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_page
+    @user = User.find(params[:user_id])
+  end
+
   private
 
   # 正しいユーザーかどうかを確認
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    @user = User.find(params[:user_id]) if params[:user_id]
     redirect_to(root_url) unless current_user == @user
   end
 

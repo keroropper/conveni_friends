@@ -17,20 +17,23 @@
           </div>
         <% else %>
           <div class="header__tasks">
-            <%= link_to 'タスク', user_incomplete_evaluations_path(current_user) %>
-          </div>
-          <% if @evaluatee_users.present? %>
-            <div class="evaluatee-user-count">
-              <span><%= @evaluatee_users.count %></span>
-            </div>
-          <% end %>
-          <%= link_to user_notifications_path(current_user), class: 'header__notification-link' do %>  
-            <% if @notification_count != 0%>
-              <div class="unread-notification-count">
-                <span><%= @notification_count %></span>
+            <%# if @evaluatee_users.present? %>
+              <div class="evaluatee-user-count">
+                <span><%= @evaluatee_users.count %></span>
               </div>
+            <%# end %>
+            <%= link_to user_incomplete_evaluations_path(current_user), id: 'user-tasks__icon', style: 'visibility: hidden;' do %>
+              <i class="fa-solid fa-list-check"></i>
             <% end %>
+            <%= link_to 'タスク', user_incomplete_evaluations_path(current_user), id: 'user-tasks' %>
+          </div>
+          <%= link_to user_notifications_path(current_user), class: 'header__notification-link' do %>  
             <div class="header__notification-icon">
+              <% if @notification_count != 0%>
+                <div class="unread-notification-count">
+                  <span><%= @notification_count %></span>
+                </div>
+              <% end %>
               <i class="fa-solid fa-bell"></i>
             </div>
           <% end %>
