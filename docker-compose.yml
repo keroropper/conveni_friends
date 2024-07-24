@@ -7,12 +7,12 @@ services:
     env_file:
       - .env
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} 
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - 3306:3306
-    volumes: 
+    volumes:
       - db_data:/var/lib/mysql
-  
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -21,10 +21,10 @@ services:
     volumes:
       - .:/src/app
       - node_modules_volume:/workspaces/node_modules
-      - /app/vendor
-      - /app/tmp
-      - /app/log
-      - /app/.git
+      - /src/app/vendor
+      - /src/app/tmp
+      - /src/app/log
+      - /src/app/.git
     depends_on:
       - db
     tty: true

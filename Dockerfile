@@ -11,17 +11,17 @@ RUN apt-get update -qq \
 RUN gem update --system && gem install bundler:2.4.12
 
 FROM builder AS main
-WORKDIR /app
-COPY Gemfile /app
-COPY Gemfile.lock /app
+WORKDIR /src/app
+COPY Gemfile /src/app
+COPY Gemfile.lock /src/app
 RUN bundle install --jobs=4 --retry=3
 
-COPY . /app
+COPY . /src/app
 RUN yarn install --check-files
 RUN bundle exec rails webpacker:compile
 
 COPY ./entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh  
+RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
